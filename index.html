@@ -104,8 +104,8 @@ function toggleLang(){
   document.querySelectorAll('.en').forEach(e=>e.style.display=isHindi?'none':'block');
   document.querySelectorAll('.nav-links .hi').forEach(e=>e.style.display=isHindi?'inline':'none');
   document.querySelectorAll('.nav-links .en').forEach(e=>e.style.display=isHindi?'none':'inline');
- document.getElementById('langBtn').innerText=isHindi?'हिंदी':'English';
-  localStorage.setItem('siteLang', isHindi?'hi':'en');
+ 
+ document.getElementById('langBtn').innerText=isHindi?'हिंदी':'English'; localStorage.setItem('siteLang', isHindi?'hi':'en');
 }
 window.addEventListener('load',()=>{
   document.querySelectorAll('.nav-links .hi').forEach(e=>e.style.display='inline');
