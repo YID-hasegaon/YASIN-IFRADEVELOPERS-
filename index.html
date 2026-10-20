@@ -7,7 +7,6 @@
     <style>
         * { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
         body { background:#f5f5f5; }
-        /* TOP NAVBAR */
         .navbar {
             background:#0d1b2a;
             color:white;
@@ -15,7 +14,7 @@
             justify-content:space-between;
             align-items:center;
             padding:15px 30px;
-            position:sticky; top:0;
+            position:sticky; top:0; z-index:100;
         }
         .logo { font-weight:bold; font-size:20px; letter-spacing:1px; }
         .logo span { color:#ffcc00; }
@@ -24,7 +23,6 @@
             font-size:14px;
         }
         .nav-links a:hover { color:#ffcc00; }
-        /* HERO / BANNER */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1504307651254-35680f356dfd');
             background-size:cover; background-position:center;
@@ -40,53 +38,79 @@
             padding:12px 25px; text-decoration:none;
             font-weight:bold; border-radius:5px;
         }
-        /* SECTIONS */
         .section { padding:50px 30px; text-align:center; background:white; margin:20px; border-radius:10px; }
         .section h2 { margin-bottom:20px; color:#0d1b2a; }
-        /* FOOTER */
         .footer { background:#0d1b2a; color:white; text-align:center; padding:20px; margin-top:20px; }
+        #langBtn { background: linear-gradient(45deg, #FF6600, #FF8533); color:white; padding:16px 36px; border:3px solid white; border-radius:50px; font-size:22px; font-weight:900; box-shadow:0 6px 20px rgba(0,0,0,0.5); cursor:pointer; }
     </style>
 </head>
 <body>
 
-    <!-- NAVBAR / SAITBAR -->
+    <!-- LEFT BIG BUTTON -->
+    <div style="position:fixed; top:80px; left:15px; z-index:99999;">
+      <button id="langBtn" onclick="toggleLang()">English</button>
+    </div>
+
     <div class="navbar">
         <div class="logo" style="display:flex; align-items:center; gap:10px;">
-  <img src="logo.png" style="height:50px; width:50px; border-radius:50%; border:2px solid #ffcc00;">
-  <span>YASIN <span style="color:#ffcc00">INFRA</span> DEVELOPERS</span>
-</div>
+          <img src="logo.png" style="height:50px; width:50px; border-radius:50%; border:2px solid #ffcc00;">
+          <span>YASIN <span style="color:#ffcc00">INFRA</span> DEVELOPERS</span>
+        </div>
         <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="services.html">Services</a>
-            <a href="projects.html">Projects</a>
-            <a href="contact.html">Contact</a>
+            <a href="index.html"><span class="hi">होम</span><span class="en" style="display:none;">Home</span></a>
+            <a href="about.html"><span class="hi">हमारे बारे में</span><span class="en" style="display:none;">About</span></a>
+            <a href="services.html"><span class="hi">सेवाएं</span><span class="en" style="display:none;">Services</span></a>
+            <a href="projects.html"><span class="hi">प्रोजेक्ट्स</span><span class="en" style="display:none;">Projects</span></a>
+            <a href="contact.html"><span class="hi">संपर्क</span><span class="en" style="display:none;">Contact</span></a>
         </div>
     </div>
 
     <!-- BANNER -->
     <div class="hero">
-        <h1>We Build Your Dream</h1>
-        <p>YID - Trusted Construction & Infrastructure Company</p>
-        <a href="contact.html" class="btn">Get Quote</a>
+        <div class="hi">
+            <h1>हम बनाते हैं आपके सपनों का घर</h1>
+            <p>YID - हसेगांव, लातूर में भरोसेमंद कंस्ट्रक्शन कंपनी</p>
+            <a href="contact.html" class="btn">कोटेशन लें</a>
+        </div>
+        <div class="en" style="display:none;">
+            <h1>We Build Your Dream</h1>
+            <p>YID - Trusted Construction & Infrastructure Company</p>
+            <a href="contact.html" class="btn">Get Quote</a>
+        </div>
     </div>
 
     <!-- WELCOME -->
     <div class="section">
-        <h2>Welcome to Yasin Infra Developers</h2>
-        <p>.We provide high quality construction, building, and infrastructure development services in Hasegaon, Latur, Maharashtra and all over Maharashtra.</p>
-<p>
+        <div class="hi">
+            <h2>यासीन इंफ्रा डेवलपर्स में आपका स्वागत है</h2>
+            <p>हम हसेगांव, लातूर, महाराष्ट्र और पूरे महाराष्ट्र में उच्च गुणवत्ता वाली निर्माण, बिल्डिंग और बुनियादी ढांचा विकास सेवाएं प्रदान करते हैं।</p>
+            <p><br><b>"मजबूत काम, भरोसेमंद काम"</b></p>
+        </div>
+        <div class="en" style="display:none;">
+            <h2>Welcome to Yasin Infra Developers</h2>
+            <p>We provide high quality construction, building, and infrastructure development services in Hasegaon, Latur, Maharashtra and all over Maharashtra.</p>
+        </div>
     </div>
 
     <div class="footer">
         © 2026 Yasin Infra Developers | All Rights Reserved
     </div>
-<div id="google_translate_element" style="position:fixed; top:10px; right:10px; z-index:9999; background:white; padding:5px; border-radius:10px;"></div>
+
 <script>
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,hi,mr', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+let isHindi=true;
+function toggleLang(){
+  isHindi=!isHindi;
+  document.querySelectorAll('.hi').forEach(e=>e.style.display=isHindi?'block':'none');
+  document.querySelectorAll('.en').forEach(e=>e.style.display=isHindi?'none':'block');
+  document.querySelectorAll('.nav-links .hi').forEach(e=>e.style.display=isHindi?'inline':'none');
+  document.querySelectorAll('.nav-links .en').forEach(e=>e.style.display=isHindi?'none':'inline');
+  document.getElementById('langBtn').innerText=isHindi?'English':'हिंदी';
+  localStorage.setItem('siteLang', isHindi?'hi':'en');
 }
+window.addEventListener('load',()=>{
+  document.querySelectorAll('.nav-links .hi').forEach(e=>e.style.display='inline');
+  if(localStorage.getItem('siteLang')==='en') toggleLang();
+});
 </script>
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
