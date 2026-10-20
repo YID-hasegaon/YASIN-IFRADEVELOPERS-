@@ -6,72 +6,148 @@
   <title>About Us - YASIN INFRA DEVELOPERS</title>
   <style>
     * { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
-    .navbar { background:#0d1b2a; color:white; display:flex; justify-content:space-between; align-items:center; padding:15px 30px; position:sticky; top:0; }
+    .navbar { background:#0d1b2a; color:white; display:flex; justify-content:space-between; align-items:center; padding:15px 30px; position:sticky; top:0; z-index:100; }
     .logo { font-weight:bold; font-size:20px; }
     .logo span { color:#ffcc00; }
     .nav-links a { color:white; text-decoration:none; margin-left:20px; font-size:14px; }
     .nav-links a:hover { color:#ffcc00; }
     .header { background:#1b263b; color:white; padding:60px 30px; text-align:center; }
-    .section { padding:50px 30px; background:white; margin:20px; border-radius:10px; line-height:1.7; }
+    .section { padding:50px 30px; background:white; margin:20px; border-radius:10px; line-height:1.7; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
     .footer { background:#0d1b2a; color:white; text-align:center; padding:20px; }
+    /* Button Style */
+    #langBtn { background: linear-gradient(45deg, #FF6600, #FF8533); color:white; padding:16px 36px; border:3px solid white; border-radius:50px; font-size:22px; font-weight:900; box-shadow:0 6px 20px rgba(0,0,0,0.5); cursor:pointer; transition:0.2s; }
+    #langBtn:active { transform: scale(0.95); }
   </style>
 </head>
 <body>
+  <!-- ===== LEFT BIG BUTTON ===== -->
+  <div style="position:fixed; top:25px; left:25px; z-index:99999;">
+    <button id="langBtn" onclick="toggleLang()">English</button>
+  </div>
+
   <div class="navbar">
     <div class="logo"><span>YASIN</span> INFRA DEVELOPERS</div>
     <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="services.html">Services</a>
-      <a href="contact.html">Contact</a>
+      <a href="index.html"><span class="hi">होम</span><span class="en" style="display:none;">Home</span></a>
+      <a href="about.html"><span class="hi">हमारे बारे में</span><span class="en" style="display:none;">About</span></a>
+      <a href="services.html"><span class="hi">सेवाएं</span><span class="en" style="display:none;">Services</span></a>
+      <a href="contact.html"><span class="hi">संपर्क</span><span class="en" style="display:none;">Contact</span></a>
     </div>
   </div>
   
   <div class="header">
-    <h1>About Us</h1>
-    <p>Building Trust Since 2024</p>
+    <div class="hi">
+      <h1>हमारे बारे में</h1>
+      <p>2024 से विश्वास का निर्माण</p>
+    </div>
+    <div class="en" style="display:none;">
+      <h1>About Us</h1>
+      <p>Building Trust Since 2024</p>
+    </div>
   </div>
   
   <div class="section">
-    <h2>Company Details</h2><br>
-    <p><b>Company Name:</b> Yasin Infra Developers, Hasegaon</p>
-    <p><b>Established:</b> 2024</p>
-    <p><b>Founder:</b> Ismail M. Shaikh (Yasin)</p>
-    <p><b>Type:</b> Proprietorship</p>
-    <p><b>Address:</b> At Post Hasegaon, Tq. Ausa, Dist. Latur - 413520, Maharashtra</p>
-    <p><b>Phone:</b> 9067580027 | <b>Email:</b> yasinfradevelopers@gmail.com</p>
+    <div class="hi">
+      <h2>कंपनी विवरण</h2><br>
+      <p><b>कंपनी का नाम:</b> यासीन इंफ्रा डेवलपर्स, हसेगांव</p>
+      <p><b>स्थापना:</b> 2024</p>
+      <p><b>संस्थापक:</b> इस्माइल एम. शेख (यासीन)</p>
+      <p><b>प्रकार:</b> प्रोप्राइटरशिप</p>
+      <p><b>पता:</b> पोस्ट हसेगांव, तहसील औसा, जिला लातूर - 413520, महाराष्ट्र</p>
+      <p><b>फोन:</b> 9067580027 | <b>ईमेल:</b> yasinfradevelopers@gmail.com</p>
+    </div>
+    <div class="en" style="display:none;">
+      <h2>Company Details</h2><br>
+      <p><b>Company Name:</b> Yasin Infra Developers, Hasegaon</p>
+      <p><b>Established:</b> 2024</p>
+      <p><b>Founder:</b> Ismail M. Shaikh (Yasin)</p>
+      <p><b>Type:</b> Proprietorship</p>
+      <p><b>Address:</b> At Post Hasegaon, Tq. Ausa, Dist. Latur - 413520, Maharashtra</p>
+      <p><b>Phone:</b> 9067580027 | <b>Email:</b> yasinfradevelopers@gmail.com</p>
+    </div>
   </div>
   
   <div class="section">
-    <h2>What We Do</h2><br>
-    <p>Yasin Infra Developers specializes in civil construction and interior finishing. We do <b>RCC work, plaster, brick work, flooring, and complete house/shop construction</b>.</p>
-    <p><b>Target Customers:</b> Local people, farmers, shopkeepers, small builders in Hasegaon, Latur, Ausa.</p>
+    <div class="hi">
+      <h2>हम क्या करते हैं</h2><br>
+      <p>यासीन इंफ्रा डेवलपर्स सिविल कंस्ट्रक्शन और इंटीरियर फिनिशिंग में माहिर है। हम <b>आरसीसी वर्क, प्लास्टर, ईंट का काम, फ्लोरिंग और पूरे घर/दुकान का निर्माण</b> करते हैं।</p>
+      <p><b>हमारे ग्राहक:</b> हसेगांव, लातूर, औसा के स्थानीय लोग, किसान, दुकानदार, छोटे बिल्डर।</p>
+    </div>
+    <div class="en" style="display:none;">
+      <h2>What We Do</h2><br>
+      <p>Yasin Infra Developers specializes in civil construction and interior finishing. We do <b>RCC work, plaster, brick work, flooring, and complete house/shop construction</b>.</p>
+      <p><b>Target Customers:</b> Local people, farmers, shopkeepers, small builders in Hasegaon, Latur, Ausa.</p>
+    </div>
   </div>
   
   <div class="section">
-    <h2>Vision & Mission</h2><br>
-    <p><b>Mission:</b> "Good quality at reasonable price with honesty."</p>
-    <p><b>Vision:</b> To be the most trusted construction company in Latur district.</p>
-    <p><b>Tagline:</b> "Mazboot Kaam, Bharosemand Kaam"</p>
+    <div class="hi">
+      <h2>विजन और मिशन</h2><br>
+      <p><b>मिशन:</b> "वाजिब दाम में ईमानदारी के साथ अच्छा काम।"</p>
+      <p><b>विजन:</b> लातूर जिले की सबसे भरोसेमंद कंस्ट्रक्शन कंपनी बनना।</p>
+      <p><b>टैगलाइन:</b> "मजबूत काम, भरोसेमंद काम"</p>
+    </div>
+    <div class="en" style="display:none;">
+      <h2>Vision & Mission</h2><br>
+      <p><b>Mission:</b> "Good quality at reasonable price with honesty."</p>
+      <p><b>Vision:</b> To be the most trusted construction company in Latur district.</p>
+      <p><b>Tagline:</b> "Mazboot Kaam, Bharosemand Kaam"</p>
+    </div>
   </div>
   
   <div class="section">
-    <h2>Why Choose Us?</h2><br>
-    <p>1. Reasonable price</p>
-    <p>2. Best quality materials</p>
-    <p>3. On-time delivery</p>
-    <p>4. Transparent transactions</p>
-    <p>5. Experienced team</p>
+    <div class="hi">
+      <h2>हमें क्यों चुनें?</h2><br>
+      <p>1. वाजिब दाम</p>
+      <p>2. सबसे अच्छी गुणवत्ता वाली सामग्री</p>
+      <p>3. समय पर डिलीवरी</p>
+      <p>4. पारदर्शी व्यवहार</p>
+      <p>5. अनुभवी टीम</p>
+    </div>
+    <div class="en" style="display:none;">
+      <h2>Why Choose Us?</h2><br>
+      <p>1. Reasonable price</p>
+      <p>2. Best quality materials</p>
+      <p>3. On-time delivery</p>
+      <p>4. Transparent transactions</p>
+      <p>5. Experienced team</p>
+    </div>
   </div>
   
   <div class="section">
-    <h2>Government Registrations</h2><br>
-    <p>Udyam No: UDYAM-MH-16-0071702</p>
-    <p>Shop Act: 2641700321590862</p>
-    <p>Udyog Aadhaar: 108998502603</p>
+    <div class="hi">
+      <h2>सरकारी पंजीकरण</h2><br>
+      <p>उद्यम नंबर: UDYAM-MH-16-0071702</p>
+      <p>शॉप एक्ट: 2641700321590862</p>
+      <p>उद्योग आधार: 108998502603</p>
+    </div>
+    <div class="en" style="display:none;">
+      <h2>Government Registrations</h2><br>
+      <p>Udyam No: UDYAM-MH-16-0071702</p>
+      <p>Shop Act: 2641700321590862</p>
+      <p>Udyog Aadhaar: 108998502603</p>
+    </div>
   </div>
   
   <div class="footer">© 2026 Yasin Infra Developers</div>
+
+<script>
+let isHindi=true;
+function toggleLang(){
+  isHindi=!isHindi;
+  document.querySelectorAll('.hi').forEach(e=>e.style.display=isHindi?'block':'none');
+  document.querySelectorAll('.en').forEach(e=>e.style.display=isHindi?'none':'block');
+  // nav links ke andar span hai toh inline karna padega
+  document.querySelectorAll('.nav-links .hi').forEach(e=>e.style.display=isHindi?'inline':'none');
+  document.querySelectorAll('.nav-links .en').forEach(e=>e.style.display=isHindi?'none':'inline');
+  document.getElementById('langBtn').innerText=isHindi?'English':'हिंदी';
+  localStorage.setItem('siteLang', isHindi?'hi':'en');
+}
+window.addEventListener('load',()=>{
+  // Default Hindi rakha hai, isliye English se start karenge toh toggle
+  document.querySelectorAll('.nav-links .hi').forEach(e=>e.style.display='inline');
+  if(localStorage.getItem('siteLang')==='en') toggleLang();
+});
+</script>
 </body>
 </html>
-
