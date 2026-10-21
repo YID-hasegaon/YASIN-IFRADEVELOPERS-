@@ -3,26 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects - YID</title>
+  <title>Projects - Yasin Infra Developers</title>
   <style>
     *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-    .navbar{background:#0d1b2a;color:white;display:flex;justify-content:space-between;align-items:center;padding:15px 30px;position:sticky;top:0;z-index:100}
+    .navbar{background:#0d1b2a;color:white;display:flex;justify-content:space-between;align-items:center;padding:15px 30px;position:sticky;top:0;z-index:100;flex-wrap:wrap}
     .logo{font-weight:bold;font-size:20px}.logo span{color:#ffcc00}
     .nav-links a{color:white;text-decoration:none;margin-left:15px;font-size:14px}
-    .header{background:#1b263b;color:white;padding:60px;text-align:center}
+    .header{background:#1b263b;color:white;padding:60px 20px;text-align:center}
     .projects{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;padding:30px}
-    .card{background:white;width:280px;padding:20px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1);text-align:center}
-    .card img{width:100%;height:150px;object-fit:cover;border-radius:5px;margin-bottom:10px}
+    .card{background:white;width:300px;padding:20px;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,0.1);text-align:center;transition:0.3s}
+    .card:hover{transform:translateY(-5px)}
+    .card img{width:100%;height:180px;object-fit:cover;border-radius:8px;margin-bottom:12px}
     .footer{background:#0d1b2a;color:white;text-align:center;padding:20px;margin-top:20px}
-    #langBtn { background: linear-gradient(45deg, #FF6600, #FF8533); color:white; padding:16px 36px; border:3px solid white; border-radius:50px; font-size:22px; font-weight:900; box-shadow:0 6px 20px rgba(0,0,0,0.5); cursor:pointer; }
+    #langBtn { position:fixed; top:80px; left:15px; z-index:99999; background: linear-gradient(45deg, #FF6600, #FF8533); color:white; padding:12px 24px; border:2px solid white; border-radius:50px; font-size:18px; font-weight:900; box-shadow:0 6px 20px rgba(0,0,0,0.3); cursor:pointer; }
+    @media(max-width:600px){ .navbar{padding:10px 15px} .nav-links a{margin-left:10px;font-size:13px} }
   </style>
 </head>
 <body>
 
-  <!-- LEFT BIG BUTTON -->
-  <div style="position:fixed; top:80px; left:15px; z-index:99999;">
-    <button id="langBtn" onclick="toggleLang()">हिंदी</button>
-  </div>
+  <button id="langBtn" onclick="toggleLang()">हिंदी</button>
 
   <div class="navbar">
     <div class="logo"><span>YASIN</span> INFRA DEVELOPERS</div>
@@ -36,57 +35,50 @@
   </div>
 
   <div class="header">
-    <div class="hi">
-      <h1>हमारे प्रोजेक्ट्स</h1><p>हमारे हाल के काम</p>
-    </div>
-    <div class="en" style="display:none;">
-      <h1>Our Projects</h1><p>Our Recent Works</p>
-    </div>
+    <div class="hi"><h1>हमारे प्रोजेक्ट्स</h1><p>हमारे हाल के काम - हसेगांव, लातूर</p></div>
+    <div class="en" style="display:none;"><h1>Our Projects</h1><p>Our Recent Works - Hasegaon, Latur</p></div>
   </div>
 
   <div class="projects">
     <div class="card">
-      <img src="PROJECT1.JPG.jpeg" alt="Residential House">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500" alt="House">
       <div class="hi"><h3>🏠 रिहायशी मकान</h3><p>हसेगांव, लातूर - 2000 sqft</p></div>
       <div class="en" style="display:none;"><h3>🏠 Residential House</h3><p>Hasegaon, Latur - 2000 sqft</p></div>
     </div>
     <div class="card">
-      <img src="PROJECT1.JPG.jpeg" alt="Residential House">
+      <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=500" alt="Complex">
       <div class="hi"><h3>🏢 कमर्शियल कॉम्प्लेक्स</h3><p>लातूर मार्केट</p></div>
       <div class="en" style="display:none;"><h3>🏢 Commercial Complex</h3><p>Latur Market</p></div>
     </div>
     <div class="card">
-      <img src="PROJECT1.JPG.jpeg" alt="Residential House">
-      <div class="hi"><h3>🏗️ विला प्रोजेक्ट</h3><p>उदगीर रोड</p></div>
-      <div class="en" style="display:none;"><h3>🏗️ Villa Project</h3><p>Udgir Road</p></div>
+      <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500" alt="Villa">
+      <div class="hi"><h3>🏗️ विला प्रोजेक्ट</h3><p>उदगीर रोड, लातूर</p></div>
+      <div class="en" style="display:none;"><h3>🏗️ Villa Project</h3><p>Udgir Road, Latur</p></div>
     </div>
   </div>
 
-  <div class="footer">© 2026 Yasin Infra Developers | All Rights Reserved</div>
+  <div class="footer">© 2026 Yasin Infra Developers | Hasegaon Project | All Rights Reserved</div>
 
 <script>
-let isHindi=true;
+let isHindi = localStorage.getItem('siteLang') !== 'en';
 function toggleLang(){
-  isHindi=!isHindi;
-  document.querySelectorAll('.hi').forEach(e=>e.style.display=isHindi?'block':'none');
-  document.querySelectorAll('.en').forEach(e=>e.style.display=isHindi?'none':'block');
-  document.querySelectorAll('.nav-links .hi').forEach(e=>e.style.display=isHindi?'inline':'none');
-  document.querySelectorAll('.nav-links .en').forEach(e=>e.style.display=isHindi?'none':'inline');
-  document.getElementById('langBtn').innerText=isHindi?'हिंदी':'English';
-  localStorage.setItem('siteLang', isHindi?'hi':'en');
+  isHindi = !isHindi;
+  document.querySelectorAll('.hi').forEach(e => {
+    e.style.display = isHindi ? (e.closest('.nav-links') ? 'inline' : 'block') : 'none';
+  });
+  document.querySelectorAll('.en').forEach(e => {
+    e.style.display = !isHindi ? (e.closest('.nav-links') ? 'inline' : 'block') : 'none';
+  });
+  document.getElementById('langBtn').innerText = isHindi ? 'हिंदी' : 'English';
+  localStorage.setItem('siteLang', isHindi ? 'hi' : 'en');
 }
-window.addEventListener('load',()=>{
-  document.querySelectorAll('.nav-links .hi').forEach(e=>e.style.display='inline');
-  if(localStorage.getItem('siteLang')==='en'){
-    isHindi=false;
-    document.querySelectorAll('.hi').forEach(e=>e.style.display='none');
-    document.querySelectorAll('.en').forEach(e=>e.style.display='block');
-    document.querySelectorAll('.nav-links .hi').forEach(e=>e.style.display='none');
-    document.querySelectorAll('.nav-links .en').forEach(e=>e.style.display='inline');
+window.addEventListener('load', () => {
+  if(!isHindi){
+    document.querySelectorAll('.hi').forEach(e => e.style.display='none');
+    document.querySelectorAll('.en').forEach(e => e.style.display = e.closest('.nav-links') ? 'inline' : 'block');
     document.getElementById('langBtn').innerText='English';
   }
 });
 </script>
-
 </body>
 </html>
