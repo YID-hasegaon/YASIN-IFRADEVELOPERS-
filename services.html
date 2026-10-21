@@ -1,93 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services - YID</title>
-    <style>
-        * { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
-        body{background:#f8f9fa}
-        .navbar { background:#0d1b2a; color:white; display:flex; justify-content:space-between; align-items:center; padding:15px 30px; position:sticky; top:0; z-index:10; }
-        .logo { font-weight:bold; font-size:20px; } .logo span { color:#ffcc00; }
-        .nav-links a { color:white; text-decoration:none; margin-left:20px; font-size:14px; }
-        .nav-links a.active{color:#ffcc00; border-bottom:2px solid #ffcc00;}
-        .header { background:#1b263b; color:white; padding:50px 30px; text-align:center; }
-        .header h1{font-size:32px}
-        .services { display:flex; gap:20px; padding:30px; flex-wrap:wrap; justify-content:center; max-width:1200px; margin:auto; }
-        .card { background:white; padding:0; width:300px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1); text-align:center; overflow:hidden; border-top:4px solid #ffcc00; }
-        .card img{width:100%; height:200px; object-fit:cover;}
-        .card-content{padding:20px}
-        .card h3 { margin-bottom:10px; color:#0d1b2a; font-size:18px; }
-        .card p{font-size:13px; color:#555; line-height:1.5;}
-        .proof-tag{background:#ffcc00; color:#0d1b2a; font-size:11px; font-weight:bold; padding:4px 10px; border-radius:20px; display:inline-block; margin-top:10px;}
-        .cta{background:#0d1b2a; color:white; text-align:center; padding:30px; margin:20px; border-radius:12px;}
-        .btn{background:#FF6600; color:white; padding:12px 25px; border-radius:8px; text-decoration:none; font-weight:bold; display:inline-block; margin-top:10px;}
-        .footer { background:#0d1b2a; color:white; text-align:center; padding:20px; margin-top:20px; font-size:13px; }
-        @media(max-width:600px){.navbar{flex-direction:column; gap:10px} .services{padding:15px}}
-    </style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services - YID</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#f8f9fa}
+.navbar{background:#0d1b2a;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;position:sticky;top:0;z-index:10;flex-wrap:wrap}
+.logo{font-weight:bold;font-size:18px} .logo span{color:#ffcc00}
+.nav-links a{color:#fff;text-decoration:none;margin-left:12px;font-size:13px}
+.lang-btn{background:#ffcc00;color:#0d1b2a;border:none;padding:6px 14px;border-radius:20px;font-weight:bold;cursor:pointer;margin-left:15px}
+.header{background:#1b263b;color:#fff;padding:40px 20px;text-align:center}
+.services{display:flex;gap:20px;padding:30px;flex-wrap:wrap;justify-content:center;max-width:1200px;margin:auto}
+.card{background:#fff;width:300px;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,.1);overflow:hidden;border-top:4px solid #ffcc00;text-align:center}
+.card img{width:100%;height:200px;object-fit:cover}
+.card-content{padding:18px} .card h3{color:#0d1b2a;margin-bottom:6px} .card p{font-size:13px;color:#555;line-height:1.5}
+.proof{background:#ffcc00;color:#0d1b2a;font-size:11px;font-weight:bold;padding:4px 10px;border-radius:20px;display:inline-block;margin-top:8px}
+.cta{background:#0d1b2a;color:#fff;text-align:center;padding:30px;margin:20px;border-radius:12px}
+.btn{background:#FF6600;color:#fff;padding:12px 25px;border-radius:8px;text-decoration:none;font-weight:bold;display:inline-block;margin:5px}
+.footer{background:#0d1b2a;color:#ccc;text-align:center;padding:18px;font-size:12px;margin-top:20px}
+</style>
 </head>
 <body>
-    <div class="navbar">
-        <div class="logo"><span>YASIN</span> INFRA DEVELOPERS</div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="services.html" class="active">Services</a>
-            <a href="projects.html">Projects</a>
-            <a href="contact.html">Contact</a>
-        </div>
-    </div>
 
-    <div class="header">
-        <h1>Our Services - Latur Specialist</h1>
-        <p>Mazboot Kaam, Bharosemand Kaam | Hasegaon 9067580027 | 4 Real Projects</p>
-    </div>
+<div class="navbar">
+<div class="logo"><span>YASIN</span> INFRA DEVELOPERS</div>
+<div style="display:flex;align-items:center">
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="services.html">Services</a>
+<a href="projects.html">Projects</a>
+<a href="contact.html">Contact</a>
+</div>
+<button class="lang-btn" onclick="toggleLang()" id="langBtn">हिंदी में देखें</button>
+</div>
+</div>
 
-    <div class="services">
-        <div class="card">
-            <img src="latur-work-4.jpg" alt="College Building">
-            <div class="card-content">
-                <h3>🏫 College Bhawan Nirman</h3>
-                <p>College, School, Coaching building ka complete RCC construction - G+2 tak.</p>
-                <span class="proof-tag">✓ Proof: latur-work-4.jpg (3.05 MB Project)</span>
-            </div>
-        </div>
+<div class="header">
+<h1 id="mainTitle">🏗️ Our Services - Latur Specialist</h1>
+<p id="subTitle">Mazboot Kaam, Bharosemand Kaam | Hasegaon 9067580027</p>
+</div>
 
-        <div class="card">
-            <img src="latur-work-3.jpg" alt="Commercial">
-            <div class="card-content">
-                <h3>🏬 Commercial Building</h3>
-                <p>Shop, Complex, Office - Front elevation plaster hamari specialty hai.</p>
-                <span class="proof-tag">✓ Proof: latur-work-3.jpg</span>
-            </div>
-        </div>
+<div class="services">
+<div class="card">
+<img src="latur-work-4.jpg">
+<div class="card-content">
+<h3 id="t1">🏫 College Building Construction</h3>
+<p id="d1">Complete RCC work for College, School, Coaching building - Up to G+2 floors with full strength.</p>
+<span class="proof">✓ Proof: latur-work-4.jpg - G+2 Apartment</span>
+</div>
+</div>
 
-        <div class="card">
-            <img src="latur-work-2.jpg" alt="House Work">
-            <div class="card-content">
-                <h3>🏠 Ghar & Apartment Nirman</h3>
-                <p>Brick work se RCC slab tak full contract. Aapka budget hamari zimmedari.</p>
-                <span class="proof-tag">✓ Proof: latur-work-2.jpg</span>
-            </div>
-        </div>
+<div class="card">
+<img src="latur-work-3.jpg">
+<div class="card-content">
+<h3 id="t2">🏬 Commercial Building</h3>
+<p id="d2">Shop, Complex, Office, Godown - More strength in less budget. Front elevation is our specialty.</p>
+<span class="proof">✓ Proof: latur-work-3.jpg - Front Elevation</span>
+</div>
+</div>
 
-        <div class="card">
-            <img src="latur-work-1.jpg" alt="RCC Work">
-            <div class="card-content">
-                <h3>🧱 RCC & Brick Work</h3>
-                <p>Slab, Beam, Column, Brick structure - 100% level & finishing ke saath.</p>
-                <span class="proof-tag">✓ Proof: latur-work-1.jpg</span>
-            </div>
-        </div>
-    </div>
+<div class="card">
+<img src="latur-work-2.jpg">
+<div class="card-content">
+<h3 id="t3">🏠 House & Apartment</h3>
+<p id="d3">Full contract from brick work to RCC slab. Your budget, our responsibility.</p>
+<span class="proof">✓ Proof: latur-work-2.jpg - RCC Work</span>
+</div>
+</div>
 
-    <div class="cta">
-        <h2>📞 Aapka Ghar Bhi Isi Jaisa Banana Hai?</h2>
-        <p>Free Site Visit + Estimate in Hasegaon, Latur</p>
-        <a href="tel:+919067580027" class="btn">📞 Call - 9067580027</a>
-        <a href="projects.html" class="btn" style="background:white; color:#0d1b2a; margin-left:10px;">📸 All Projects</a>
-    </div>
+<div class="card">
+<img src="latur-work-1.jpg">
+<div class="card-content">
+<h3 id="t4">🧱 RCC & Brick Work</h3>
+<p id="d4">Slab, Beam, Column, Brick structure - 100% level & finishing with strong work.</p>
+<span class="proof">✓ Proof: latur-work-1.jpg - Real Site</span>
+</div>
+</div>
+</div>
 
-    <div class="footer">© 2026 Yasin Infra Developers | yidhasegaon.in | YID Hasegaon - 4 Real Photos</div>
+<div class="cta">
+<h2 id="ctaTitle">📞 Want to Build Your House Like This?</h2>
+<p id="ctaSub">Free Site Visit + Estimate in Hasegaon, Latur</p>
+<a href="tel:+919067580027" class="btn">📞 Call - 9067580027</a>
+</div>
+
+<div class="footer">© 2026 Yasin Infra Developers | yidhasegaon.in | 4 Real Projects</div>
+
+<script>
+let isHindi = false;
+function toggleLang(){
+isHindi = !isHindi;
+document.getElementById('langBtn').innerText = isHindi ? 'View in English' : 'हिंदी में देखें';
+document.getElementById('mainTitle').innerText = isHindi ? '🏗️ हमारी सेवाएं - लातूर स्पेशलिस्ट' : '🏗️ Our Services - Latur Specialist';
+document.getElementById('subTitle').innerText = isHindi ? 'मजबूत काम, भरोसेमंद काम | हसेगांव 9067580027' : 'Mazboot Kaam, Bharosemand Kaam | Hasegaon 9067580027';
+document.getElementById('t1').innerText = isHindi ? '🏫 कॉलेज भवन निर्माण' : '🏫 College Building Construction';
+document.getElementById('d1').innerText = isHindi ? 'कॉलेज, स्कूल, कोचिंग बिल्डिंग का पूरा RCC काम - G+2 मंजिल तक मजबूती के साथ।' : 'Complete RCC work for College, School, Coaching building - Up to G+2 floors with full strength.';
+document.getElementById('t2').innerText = isHindi ? '🏬 कमर्शियल बिल्डिंग' : '🏬 Commercial Building';
+document.getElementById('d2').innerText = isHindi ? 'दुकान, कॉम्प्लेक्स, ऑफिस, गोदाम - कम बजट में ज्यादा मजबूती। फ्रंट एलिवेशन हमारी स्पेशलिटी।' : 'Shop, Complex, Office, Godown - More strength in less budget. Front elevation is our specialty.';
+document.getElementById('t3').innerText = isHindi ? '🏠 घर और अपार्टमेंट निर्माण' : '🏠 House & Apartment';
+document.getElementById('d3').innerText = isHindi ? 'ईंट के काम से लेकर RCC स्लैब तक पूरा कॉन्ट्रैक्ट। आपका बजट, हमारी जिम्मेदारी।' : 'Full contract from brick work to RCC slab. Your budget, our responsibility.';
+document.getElementById('t4').innerText = isHindi ? '🧱 RCC और ब्रिक वर्क' : '🧱 RCC & Brick Work';
+document.getElementById('d4').innerText = isHindi ? 'स्लैब, बीम, कॉलम, ब्रिक स्ट्रक्चर - 100% लेवल और फिनिशिंग के साथ मजबूत काम।' : 'Slab, Beam, Column, Brick structure - 100% level & finishing with strong work.';
+document.getElementById('ctaTitle').innerText = isHindi ? '📞 आपका घर भी इसी जैसा बनाना है?' : '📞 Want to Build Your House Like This?';
+document.getElementById('ctaSub').innerText = isHindi ? 'हसेगांव, लातूर में फ्री साइट विजिट + एस्टीमेट' : 'Free Site Visit + Estimate in Hasegaon, Latur';
+}
+</script>
+
 </body>
 </html>
