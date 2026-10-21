@@ -3,35 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - YID</title>
+    <title>Contact - Yasin Infra Developers</title>
     <style>
         * { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
-        .navbar { background:#0d1b2a; color:white; display:flex; justify-content:space-between; align-items:center; padding:15px 30px; }
+        .navbar { background:#0d1b2a; color:white; display:flex; justify-content:space-between; align-items:center; padding:15px 30px; position:sticky; top:0; z-index:100; flex-wrap:wrap; }
         .logo { font-weight:bold; font-size:20px; } .logo span { color:#ffcc00; }
-        .nav-links a { color:white; text-decoration:none; margin-left:20px; font-size:14px; }
+        .nav-links a { color:white; text-decoration:none; margin-left:15px; font-size:14px; }
         .header { background:#1b263b; color:white; padding:60px 30px; text-align:center; }
-        .contact-box { background:white; max-width:600px; margin:30px auto; padding:30px; border-radius:10px; line-height:2; }
-        .footer { background:#0d1b2a; color:white; text-align:center; padding:20px; }
+        .contact-box { background:white; max-width:600px; margin:30px auto; padding:30px; border-radius:12px; line-height:2; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
+        .contact-box p{font-size:16px}
+        .btn-call{display:inline-block;margin-top:15px;background:#FF6600;color:white;padding:12px 25px;border-radius:8px;text-decoration:none;font-weight:bold}
+        .footer { background:#0d1b2a; color:white; text-align:center; padding:20px; margin-top:20px;}
+        #langBtn { position:fixed; top:80px; left:15px; z-index:99999; background: linear-gradient(45deg, #FF6600, #FF8533); color:white; padding:12px 24px; border:2px solid white; border-radius:50px; font-size:18px; font-weight:900; box-shadow:0 6px 20px rgba(0,0,0,0.3); cursor:pointer; }
     </style>
 </head>
 <body>
+
+    <button id="langBtn" onclick="toggleLang()">हिंदी</button>
+
     <div class="navbar">
         <div class="logo"><span>YASIN</span> INFRA DEVELOPERS</div>
         <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="service.html">Services</a>
-            <a href="contact.html">Contact</a>
+            <a href="index.html"><span class="hi">होम</span><span class="en" style="display:none;">Home</span></a>
+            <a href="about.html"><span class="hi">हमारे बारे में</span><span class="en" style="display:none;">About</span></a>
+            <a href="services.html"><span class="hi">सेवाएं</span><span class="en" style="display:none;">Services</span></a>
+            <a href="projects.html"><span class="hi">प्रोजेक्ट्स</span><span class="en" style="display:none;">Projects</span></a>
+            <a href="contact.html"><span class="hi">संपर्क</span><span class="en" style="display:none;">Contact</span></a>
         </div>
     </div>
-    <div class="header"><h1>Contact Us</h1><p>Get In Touch</p></div>
-    <div class="contact-box">
-        <h2>Yasin Infra Developers</h2><br>
-        <p><b>📍 Address:</b> hasegaon, Maharashtra 413531</p>
-        <p><b>📞 Phone:</b> +91 9067580027</p>
-        <p><b>✉️ Email:</b> yasininfra@gmail.com</p><br>
-        <p>Call us for free site visit and quotation.</p>
+
+    <div class="header">
+        <div class="hi"><h1>संपर्क करें</h1><p>हमसे जुड़ें</p></div>
+        <div class="en" style="display:none;"><h1>Contact Us</h1><p>Get In Touch</p></div>
     </div>
-    <div class="footer">© 2026 Yasin Infra Developers</div>
-</body>
-</html>
+
+    <div class="contact-box">
+        <div class="hi">
+            <h2>यासीन इंफ्रा डेवलपर्स</h2><br>
+            <p><b>📍 पता:</b> हसेगांव, महाराष्ट्र
