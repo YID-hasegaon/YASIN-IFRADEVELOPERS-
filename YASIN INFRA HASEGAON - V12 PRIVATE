@@ -1,1 +1,193 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> YASIN INFRA HASEGAON - V12 PRIVATE  </title>
+<style>
+:root{--gold:#d4af37;--orange:#ff6600}
+body{font-family:Arial;margin:0;background:#f0f0f0}
+#loginScreen{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#000 0%,#222 100%);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.loginBox{background:#111;border:3px solid gold;border-radius:20px;padding:25px;width:85%;max-width:320px;text-align:center;box-shadow:0 10px 30px rgba(212,175,55,0.4)}
+.loginBox h2{color:gold;margin:0 0 5px 0}
+.loginBox input{width:100%;padding:15px;margin:12px 0;border-radius:10px;border:2px solid gold;background:#000;color:gold;font-size:22px;text-align:center;letter-spacing:8px;box-sizing:border-box}
+.loginBox button{width:100%;padding:14px;background:gold;color:#000;border:none;border-radius:10px;font-weight:bold;font-size:16px;cursor:pointer}
+.wrong{color:#ff4444;font-size:12px;margin-top:8px;display:none}
+.header{background:#000;color:var(--gold);text-align:center;padding:12px;border-bottom:3px solid var(--gold);display:flex;align-items:center;justify-content:center;gap:10px}
+.header img{width:48px;height:48px;border-radius:50%;border:2px solid var(--gold);background:#fff}
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
+.menuBtn{padding:18px 10px;border:none;border-radius:12px;font-weight:bold;font-size:15px;cursor:pointer;box-shadow:0 3px 6px rgba(0,0,0,0.2)}
+.m1{background:#000;color:gold;border:2px solid gold}
+.m2{background:#ff6600;color:white}
+.m3{background:#3f51b5;color:white}
+.m4{background:#2e7d32;color:white}
+.m5{background:#111;color:white;border:1px dashed gold}
+.section{display:none;background:white;margin:10px;padding:14px;border-radius:12px;box-shadow:0 3px 10px rgba(0,0,0,0.15)}
+.section.active{display:block}
+.goldBox{background:#000;color:gold;border:2px solid gold;border-radius:10px;padding:12px;text-align:center;margin-bottom:10px}
+.termsBox{background:#000;color:#fff;border:2px solid gold;border-radius:12px;padding:15px;margin-top:15px}
+.termsTitle{color:gold;font-weight:bold;font-size:16px;text-align:center;border-bottom:1px solid gold;padding-bottom:8px;margin-bottom:10px}
+.footerGold{background:gold;color:#000;text-align:center;padding:10px;border-radius:6px;font-weight:bold;font-size:11px;margin-top:12px}
+.tip{font-size:10px;color:#aaa;text-align:right;margin-top:8px;font-style:italic}
+input,select{width:100%;padding:12px;margin:6px 0;border-radius:8px;border:1px solid #ccc;box-sizing:border-box;font-size:15px}
+label{font-weight:bold;font-size:13px}
+table{width:100%;border-collapse:collapse;margin-top:8px}th,td{border:1px solid #444;padding:6px;font-size:12px}th{background:gold;color:#000}
+.btn{width:100%;padding:12px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;margin-top:8px}
+.btn-green{background:#25D366;color:white}
+.itemRow{display:flex;align-items:center;gap:8px;background:#fffbe6;padding:8px;border-radius:8px;margin:6px 0;border:1px solid #e0c56a}
+.itemRow.checked{border:2px solid #2e7d32;background:#e8f5e9}
+.itemRow input[type=checkbox]{width:22px;height:22px}
+.itemRow .qty{width:90px}
+.groupHead{background:gold;color:#000;padding:6px 10px;border-radius:20px;font-weight:bold;font-size:12px;margin:12px 0 6px 0;display:inline-block}
+.newItem{border:2px solid #ff6600!important;background:#fff3e0!important}
+</style>
+</head>
+<body>
+<div id="loginScreen">
+<div class="loginBox">
+<div style="font-size:48px">🏗️</div>
+<h2>YASIN INFRA</h2>
+<small style="color:#fff">DEVELOPERS - Hasegaon</small>
+<p style="color:gold;font-size:12px;margin:15px 0 5px 0">🔒 Password डालो - 0027</p>
+<input type="password" id="passInput" placeholder="••••" maxlength="4" inputmode="numeric">
+<button onclick="checkPass()">UNLOCK 🔓</button>
+<div class="wrong" id="wrongMsg">❌ गलत Password! Call: 9067580027</div>
+<small style="color:#555;display:block;margin-top:12px">Private Software - Hasegaon</small>
+</div>
+</div>
+<div id="mainContent" class="main">
+<div class="header">
+<img src="logo.png" style="width:55px;height:55px;border-radius:50%;border:2px solid gold;margin-right:10px">
+<h2>YASIN INFRA HASEGAON - V12 PRIVATE</h2>
+<button onclick="logout()" style="margin-left:10px;background:#222;color:gold;border:1px solid gold;border-radius:6px;padding:4px 8px;font-size:10px">Lock 🔒</button>
+</div>
+<div class="menu">
+<button class="menuBtn m1" onclick="show('rate')">💰 दर पत्रक + Terms</button>
+<button class="menuBtn m2" onclick="show('bill')">🧮 बिल - 150+300+500</button>
+<button class="menuBtn m3" onclick="show('worker')">👷 मजदूर हिसाब</button>
+<button class="menuBtn m4" onclick="show('party')">🏦 पार्टी / बटन हिसाब</button>
+<button class="menuBtn m5" onclick="show('custom')" style="grid-column: span 2">🏗️ 21 आइटम ON/OFF वाला कस्टम - FINAL V12</button>
+</div>
+<div id="rate" class="section active">
+<div class="goldBox"><h3 style="margin:0">YASIN INFRA WORK - दर पत्रक - V12 FINAL 🔒</h3><small style="color:#fff">बंधकाम + प्लास्टर एक जगह | बेसमेंट + बिल्टप आखिर में | Password: 0027</small></div>
+<table>
+<tr><th>अ क्र</th><th>तपशील</th><th>प्रति</th><th>दर</th></tr>
+<tr><td>1</td><td>बेड काँक्रिट</td><td>ब्रास</td><td>1700</td></tr>
+<tr><td>2</td><td>कॉलम/बीम</td><td>फुट</td><td>150</td></tr>
+<tr><td>3</td><td>बेड सलाई बंधकाम</td><td>ब्रास</td><td>2200</td></tr>
+<tr><td>4</td><td>फूटिंग</td><td>नग</td><td>2000</td></tr>
+<tr><td>5</td><td>कूपिंग</td><td>फुट</td><td>80</td></tr>
+<tr><td>6</td><td>लेंटर लाफ्ट</td><td>फुट</td><td>110</td></tr>
+<tr><td>7</td><td>छत</td><td>ब्रास</td><td>8000</td></tr>
+<tr><td>8</td><td>R.C.C टप्पे</td><td>नग</td><td>700</td></tr>
+<tr><td>9</td><td>R.C.C फोल्डिंग टप्पे</td><td>नग</td><td>1350</td></tr>
+<tr><td>10</td><td>सलब छत</td><td>फुट</td><td>140</td></tr>
+<tr><td>11</td><td>पोटिशन</td><td>फुट</td><td>110</td></tr>
+<tr><td>12</td><td>पोट भीम</td><td>फुट</td><td>2300</td></tr>
+<tr><td colspan="4" style="background:gold;color:#000;text-align:center;font-weight:bold">🧱 बंधकाम + प्लास्टर एक जगह जमा</td></tr>
+<tr><td>14</td><td>बंधकाम</td><td>ब्रास</td><td>2300</td></tr>
+<tr><td>18</td><td>छर्रा गिलवा (प्लास्टर)</td><td>फुट</td><td>150</td></tr>
+<tr><td>17</td><td>गलता पट्टी</td><td>फुट</td><td>110</td></tr>
+<tr><td>19</td><td>मोल्डिंग</td><td>फुट</td><td>80</td></tr>
+<tr><td colspan="4" style="background:#000;color:gold;text-align:center;font-weight:bold">🏁 आखिर में - बेसमेंट और बिल्टप</td></tr>
+<tr><td>-</td><td>बेसमेंट</td><td>Sq.Ft</td><td>150</td></tr>
+<tr><td>20</td><td>बिल्टप वर्क</td><td>Sq.Ft</td><td>300</td></tr>
+<tr style="background:#fff3e0"><td>21</td><td>🔥 बिल्टप पूरा</td><td>Sq.Ft</td><td>500</td></tr>
+</table>
+<div class="termsBox">
+<div class="termsTitle">अटी व शर्ती / Terms & Conditions:</div>
+<ul style="font-size:13px;line-height:1.8;text-align:left;margin:0;padding-left:20px">
+<li>प्रत्येक 10 फुटाला 25% वाढ राहिल</li>
+<li>मिक्सर भागे धुम्मस व टापे मालकाकडे राहिल.</li>
+<li>खोल फिटिंग भाव वेगळा राहिल.</li>
+<li>कॉलम भीम सरवाई दीड पट माप लागेल.</li>
+<li>खड्डे भर मालकाकडे राहिल.</li>
+</ul>
+<div class="footerGold">YASIN INFRA WORK | Mob: 9067580027 | Address: Bhusni Road, Near Grampanchayat, Hasegaon 413531</div>
+<div class="tip">टीप: हा दर पत्रक केवळ अंदाजे आहे. अंतिम दर प्रत्यक्ष कामानुसार ठरविला जाईल.</div>
+</div>
+</div>
+<div id="bill" class="section">
+<div class="goldBox"><h3 style="margin:0">150 + 300 + 500 वाला बिल</h3></div>
+<label>बेसमेंट (₹150) Sq.Ft</label><input id="besmit" type="number" value="0" oninput="calcBill()">
+<label>बिल्टप वर्क (₹300) Sq.Ft</label><input id="chat" type="number" value="0" oninput="calcBill()">
+<label>बिल्टप पूरा (₹500) - NEW</label><input id="chat500" type="number" value="0" oninput="calcBill()">
+<label>Extra</label><input id="extra" type="number" value="0" oninput="calcBill()">
+<label>Discount</label><input id="disc" type="number" value="20000" oninput="calcBill()">
+<div class="goldBox"><div id="bLine" style="font-size:11px;color:#fff;text-align:left"></div><div style="font-size:22px;margin-top:8px">FINAL: <span id="bFinal">₹0</span></div></div>
+<button class="btn btn-green" onclick="shareBill()">📤 WhatsApp Bill</button>
+</div>
+<div id="worker" class="section"><h3>👷 मजदूर हिसाब</h3><select id="wCat"><option>Khudai</option><option>Shuttering</option><option>Eet Bandhkam</option><option>Plaster</option><option>Bandhkam+Plaster</option></select><input id="wName" placeholder="Worker Naam"><select id="wType"><option>Advance</option><option selected>Liya</option><option>Diya</option></select><input id="wRupya" type="number" placeholder="Rupya"><input id="wMobile" placeholder="Mobile"><button class="btn btn-orange" onclick="addWorker()">Add</button><div id="wList"></div></div>
+<div id="party" class="section"><h3>🏦 पार्टी हिसाब</h3><input id="pName" placeholder="Party Naam"><select id="pType"><option>Jama</option><option>Kharch</option><option>Advance</option></select><input id="pRupya" type="number" placeholder="Rupya"><button class="btn" style="background:green;color:white" onclick="addParty()">Add</button><div id="pList"></div><div id="pTotal" style="margin-top:10px;background:#e8f5e9;padding:10px;border-radius:8px;font-weight:bold"></div></div>
+<div id="custom" class="section">
+<div class="goldBox"><h3 style="margin:0">🏗️ 21 आइटम कस्टम - ON/OFF - FINAL V12</h3><small style="color:#fff">टिक हटाओ तो बिल कम! | Password Protected 0027 🔒</small></div>
+<div style="display:flex;gap:6px;margin-bottom:8px">
+<button style="padding:6px 10px;border:none;border-radius:6px;background:gold;font-weight:bold" onclick="checkAll(true)">सब टिक ✅</button>
+<button style="padding:6px 10px;border:none;border-radius:6px;background:#000;color:gold;border:1px solid gold" onclick="checkAll(false)">सब हटाओ ❌</button>
+<button style="padding:6px 10px;border:none;border-radius:6px;background:#25D366;color:white;font-weight:bold" onclick="demoQty()">Demo Qty भरो</button>
+</div>
+<div id="customItems"></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px"><div><label>Discount</label><input id="cDisc" type="number" value="20000" oninput="calcCustom()"></div><div><label>Extra</label><input id="cExtra" type="number" value="0" oninput="calcCustom()"></div></div>
+<div class="goldBox" style="margin-top:12px"><div id="cBreak" style="font-size:11px;color:#fff;text-align:left"></div><hr style="border-color:gold"><div style="font-size:16px">TOTAL: <span id="cTotal">₹0</span></div><div style="font-size:22px">FINAL: <span id="cFinal">₹0</span></div></div>
+<button class="btn btn-green" onclick="shareCustom()">📤 ये कस्टम बिल WhatsApp करो</button>
+<button class="btn btn-black" onclick="window.print()">🖨️ Print</button>
+</div>
+<footer style="background:#000;color:gold;text-align:center;padding:10px;border-top:2px solid gold">© 2026 YASIN INFRA - 9067580027 - V12 FINAL - LOCKED 0027 🔒 Private</footer>
+<script>
+const CORRECT_PASS="0027";
+function checkPass(){let p=document.getElementById('passInput').value;if(p===CORRECT_PASS){document.getElementById('loginScreen').style.display='none';localStorage.setItem('yasin_auth','yes');}else{document.getElementById('wrongMsg').style.display='block';document.getElementById('passInput').value='';setTimeout(()=>{document.getElementById('wrongMsg').style.display='none';},2000);}}
+function logout(){localStorage.removeItem('yasin_auth');document.getElementById('loginScreen').style.display='flex';document.getElementById('passInput').value='';}
+if(localStorage.getItem('yasin_auth')==='yes'){document.getElementById('loginScreen').style.display='none';}
+document.getElementById('passInput').addEventListener('keypress',function(e){if(e.key==='Enter')checkPass();});
+function show(id){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+let d=JSON.parse(localStorage.getItem('yasin_final_v12')||'{"worker":[],"party":[]}');
+const ITEMS=[
+ {id:'bed',name:'1. बेड काँक्रिट',rate:1700,unit:'ब्रास',group:'foundation'},
+ {id:'column',name:'2. कॉलम/बीम',rate:150,unit:'फुट',group:'foundation'},
+ {id:'bed_salai',name:'3. बेड सलाई बंधकाम',rate:2200,unit:'ब्रास',group:'foundation'},
+ {id:'footing',name:'4. फूटिंग',rate:2000,unit:'नग',group:'foundation'},
+ {id:'cooping',name:'5. कूपिंग',rate:80,unit:'फुट',group:'foundation'},
+ {id:'laft',name:'6. लेंटर लाफ्ट',rate:110,unit:'फुट',group:'slab'},
+ {id:'chat_brass',name:'7. छत',rate:8000,unit:'ब्रास',group:'slab'},
+ {id:'rcc_tappe',name:'8. R.C.C टप्पे',rate:700,unit:'नग',group:'slab'},
+ {id:'rcc_fold',name:'9. R.C.C फोल्डिंग टप्पे',rate:1350,unit:'नग',group:'slab'},
+ {id:'salab_chat',name:'10. सलब छत',rate:140,unit:'फुट',group:'slab'},
+ {id:'potition',name:'11. पोटिशन',rate:110,unit:'फुट',group:'slab'},
+ {id:'pot_bheem',name:'12. पोट भीम',rate:2300,unit:'फुट',group:'slab'},
+ {id:'bandhkam',name:'14. बंधकाम',rate:2300,unit:'ब्रास',group:'bandhkam_plaster'},
+ {id:'charra',name:'18. छर्रा गिलवा (प्लास्टर)',rate:150,unit:'फुट',group:'bandhkam_plaster'},
+ {id:'galta',name:'17. गलता पट्टी',rate:110,unit:'फुट',group:'bandhkam_plaster'},
+ {id:'molding',name:'19. मोल्डिंग',rate:80,unit:'फुट',group:'bandhkam_plaster'},
+ {id:'besmit',name:'बेसमेंट (150)',rate:150,unit:'Sq.Ft',group:'last'},
+ {id:'biltp',name:'20. बिल्टप वर्क (300)',rate:300,unit:'Sq.Ft',group:'last'},
+ {id:'biltp_pura',name:'🔥 21. बिल्टप पूरा (500) NEW',rate:500,unit:'Sq.Ft',group:'last',isNew:true},
+];
+function renderCustomItems(){
+ let h=''; let lastGroup='';
+ ITEMS.forEach(it=>{
+   if(it.group!==lastGroup){
+     if(it.group==='bandhkam_plaster') h+=`<div class="groupHead">🧱 बंधकाम + प्लास्टर एक जगह</div>`;
+     if(it.group==='last') h+=`<div class="groupHead" style="background:#000;color:gold;border:1px solid gold">🏁 आखिर में - बेसमेंट और बिल्टप</div>`;
+     lastGroup=it.group;
+   }
+   h+=`<div class="itemRow ${it.isNew?'newItem':''} checked" id="row_${it.id}"><input type="checkbox" id="chk_${it.id}" checked onchange="calcCustom()"><div style="flex:1"><b>${it.name}</b><br><small>${it.rate} Rs / ${it.unit}</small></div><input class="qty" type="number" id="qty_${it.id}" value="0" oninput="calcCustom()" placeholder="Qty"><div style="width:85px;text-align:right;font-weight:bold" id="amt_${it.id}">₹0</div></div>`;
+ });
+ document.getElementById('customItems').innerHTML=h;
+}
+renderCustomItems();
+function checkAll(v){ITEMS.forEach(it=>{document.getElementById('chk_'+it.id).checked=v;});calcCustom();}
+function demoQty(){document.getElementById('qty_bed').value=2;document.getElementById('qty_column').value=100;document.getElementById('qty_chat_brass').value=2;document.getElementById('qty_bandhkam').value=2;document.getElementById('qty_charra').value=200;document.getElementById('qty_besmit').value=500;document.getElementById('qty_biltp_pura').value=600;calcCustom();}
+function calcCustom(){let total=0, brk='';ITEMS.forEach(it=>{let chk=document.getElementById('chk_'+it.id).checked;let qty=parseFloat(document.getElementById('qty_'+it.id).value)||0;let amt=chk? qty*it.rate : 0;let row=document.getElementById('row_'+it.id);if(row){ if(chk) row.classList.add('checked'); else row.classList.remove('checked'); }document.getElementById('amt_'+it.id).innerText='₹'+amt.toLocaleString('en-IN');if(chk && qty>0){ total+=amt; brk+=`${it.name}: ${qty} x ${it.rate} = ₹${amt.toLocaleString('en-IN')}<br>`; }});let disc=parseFloat(document.getElementById('cDisc').value)||0;let extra=parseFloat(document.getElementById('cExtra').value)||0;let final= total + extra - disc;document.getElementById('cBreak').innerHTML=brk||'Qty डालो या Demo दबाओ';document.getElementById('cTotal').innerText='₹'+(total+extra).toLocaleString('en-IN');document.getElementById('cFinal').innerText='₹'+final.toLocaleString('en-IN');}
+function calcBill(){let b=parseFloat(document.getElementById('besmit').value)||0;let c=parseFloat(document.getElementById('chat').value)||0;let c500=parseFloat(document.getElementById('chat500').value)||0;let ex=parseFloat(document.getElementById('extra').value)||0;let dc=parseFloat(document.getElementById('disc').value)||0;let total= b*150 + c*300 + c500*500 + ex;let final= total - dc;document.getElementById('bLine').innerHTML=`बेसमेंट ${b} x 150 = ${b*150}<br>बिल्टप 300: ${c} x 300 = ${c*300}<br>बिल्टप पूरा 500: ${c500} x 500 = ${c500*500}<br>Extra: ${ex}`;document.getElementById('bFinal').innerText='₹'+final.toLocaleString('en-IN');}
+function shareBill(){let msg=`*YASIN BILL - 150+300+500*%0ABesmit: ${document.getElementById('besmit').value} x 150%0A300: ${document.getElementById('chat').value} x 300%0A500: ${document.getElementById('chat500').value} x 500%0AFinal: ${document.getElementById('bFinal').innerText}`;window.open(`https://wa.me/?text=${msg}`,'_blank');}
+function shareCustom(){let msg='*YASIN INFRA - 21 ITEM BILL - V12 FINAL LOCKED*%0A%0A';ITEMS.forEach(it=>{let chk=document.getElementById('chk_'+it.id).checked;let qty=parseFloat(document.getElementById('qty_'+it.id).value)||0;if(chk && qty>0) msg+=`${it.name}: ${qty} x ${it.rate} = ${qty*it.rate}%0A`;});msg+=`%0ATotal: ${document.getElementById('cTotal').innerText}%0AFinal: ${document.getElementById('cFinal').innerText}%0AMob: 9067580027`;window.open(`https://wa.me/?text=${msg}`,'_blank');}
+function addWorker(){let cat=document.getElementById('wCat').value,name=document.getElementById('wName').value.trim(),type=document.getElementById('wType').value,amt=parseFloat(document.getElementById('wRupya').value);if(!name||!amt)return alert('Naam Rupya');let e={id:Date.now(),cat,name,type,amount:amt,mobile:document.getElementById('wMobile').value};d.worker.push(e);localStorage.setItem('yasin_final_v12',JSON.stringify(d));render();document.getElementById('wName').value='';document.getElementById('wRupya').value='';}
+function addParty(){let name=document.getElementById('pName').value.trim(),type=document.getElementById('pType').value,amt=parseFloat(document.getElementById('pRupya').value);if(!name||!amt)return alert('Naam Rupya');let e={id:Date.now(),name,type,amount:amt};d.party.push(e);localStorage.setItem('yasin_final_v12',JSON.stringify(d));render();document.getElementById('pName').value='';document.getElementById('pRupya').value='';}
+function del(cat,id){if(!confirm('Delete?'))return;d[cat]=d[cat].filter(x=>x.id!=id);localStorage.setItem('yasin_final_v12',JSON.stringify(d));render();}
+function calcBaki(n){let l=0,dd=0;d.worker.filter(x=>x.name.toLowerCase()==n.toLowerCase()).forEach(x=>{x.type=='Liya'||x.type=='Advance'?l+=x.amount:dd+=x.amount});return{baki:l-dd};}
+function render(){let wh='<table><tr><th>Naam</th><th>Cat</th><th>Type</th><th>Rs</th><th>Baki</th><th>X</th></tr>';d.worker.slice().reverse().forEach(r=>{let b=calcBaki(r.name);wh+=`<tr><td>${r.name}</td><td><small>${r.cat}</small></td><td>${r.type}</td><td>${r.amount}</td><td style="color:${b.baki>=0?'green':'red'};font-weight:bold">${b.baki}</td><td><button onclick="del('worker',${r.id})" style="background:red;color:white;border:none;border-radius:4px">X</button></td></tr>`});wh+='</table>';document.getElementById('wList').innerHTML=wh;let ph='<table><tr><th>Party</th><th>Type</th><th>Rs</th><th>X</th></tr>';d.party.slice().reverse().forEach(r=>{ph+=`<tr><td>${r.name}</td><td>${r.type}</td><td>${r.amount}</td><td><button onclick="del('party',${r.id})" style="background:red;color:white;border:none">X</button></td></tr>`});ph+='</table>';document.getElementById('pList').innerHTML=ph;let j=0,k=0;d.party.forEach(x=>{x.type=='Jama'?j+=x.amount:k+=x.amount});document.getElementById('pTotal').innerText=`Jama: ₹${j.toLocaleString('en-IN')} | Kharch: ₹${k.toLocaleString('en-IN')} | Baki: ₹${(j-k).toLocaleString('en-IN')}`;}
+calcBill();calcCustom();render();
+</script>
+</body>
+</html>
 
