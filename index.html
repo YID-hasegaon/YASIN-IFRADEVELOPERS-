@@ -7,42 +7,61 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{background:#0a0a0a;color:#ddd;}
+body{background:#0a0a0a;color:#ddd;overflow-x:hidden;}
 :root{--gold:#d4af37;--gold2:#ffcc00;}
 header{background:#080808;padding:14px 4%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:999;border-bottom:1.5px solid var(--gold);}
 .logo-area{display:flex;align-items:center;gap:12px;}
-.logo-area img{width:56px;height:56px;border-radius:50%;border:2px solid var(--gold);box-shadow:0 0 15px rgba(212,175,55,0.5);object-fit:cover;}
-.logo-fallback{width:56px;height:56px;border-radius:50%;border:2px solid var(--gold);background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;color:#000;font-weight:800;font-size:18px;box-shadow:0 0 15px rgba(212,175,55,0.5);}
+.logo-area img{width:56px;height:56px;border-radius:50%;border:2px solid var(--gold);object-fit:cover;}
+.logo-fallback{width:56px;height:56px;border-radius:50%;border:2px solid var(--gold);background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;color:#000;font-weight:800;}
 .logo-text b{color:var(--gold);font-size:18px;line-height:1;} .logo-text span{color:#fff;font-size:11px;letter-spacing:2px;}
-nav a{color:#fff;text-decoration:none;margin-left:16px;font-weight:600;font-size:14px;} nav a:hover{color:var(--gold);}
-.info-strip{background:#e3f0a9;color:#111;text-align:center;padding:10px 5%;font-size:13px;font-weight:600;}
-.hero{background:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1504307651254-35680f356dfd');background-size:cover;background-position:center;text-align:center;padding:90px 20px;color:#fff;}
-.hero h1{font-size:46px;color:var(--gold);text-shadow:0 3px 15px rgba(212,175,55,0.4);} .hero p{font-size:18px;margin-top:12px;color:#eee;}
-.btn-gold{background:linear-gradient(90deg,var(--gold),var(--gold2));color:#000;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:800;display:inline-block;margin-top:22px;box-shadow:0 5px 20px rgba(212,175,55,0.4);}
+nav{display:flex;gap:14px;flex-wrap:wrap;} nav a{color:#fff;text-decoration:none;font-weight:600;font-size:14px;}
+.menu-btn{display:none;background:var(--gold);color:#000;border:none;width:42px;height:42px;border-radius:10px;font-size:22px;font-weight:800;cursor:pointer;}
+.info-strip{background:#e3f0a9;color:#111;text-align:center;padding:10px 5%;font-size:13px;font-weight:600;word-break:break-word;}
+.hero{background:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.6)), url('banner.jpg');background-size:cover;background-position:center;text-align:center;padding:90px 20px;color:#fff;}
+.hero h1{font-size:42px;color:var(--gold);} .hero p{font-size:18px;margin-top:12px;color:#eee;}
+.btn-gold{background:linear-gradient(90deg,var(--gold),var(--gold2));color:#000;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:800;display:inline-block;margin-top:22px;}
 .section{padding:60px 5%;} .section-alt{background:#111;}
-.section-title{text-align:center;margin-bottom:35px;} .section-title h2{font-size:36px;color:#fff;} .section-title h2 span{color:var(--gold);background:#1a1a1a;padding:2px 12px;border-radius:10px;border:1px solid var(--gold);} .section-title p{color:#888;margin-top:8px;}
+.section-title{text-align:center;margin-bottom:35px;}
+.section-title h2{font-size:36px;color:#fff;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+.section-title h2 span{color:var(--gold);background:#1a1a1a;padding:2px 12px;border-radius:10px;border:1px solid var(--gold);white-space:nowrap;}
+.section-title p{color:#888;margin-top:8px;word-break:break-word;}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;}
-.card{background:#1a1a1a;border-radius:18px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,0.2);border-top:5px solid var(--gold);}
-.card h3{color:var(--gold);margin-bottom:8px;} .card-icon{font-size:38px;margin-bottom:8px;}
+.card{background:#1a1a1a;border-radius:18px;overflow:hidden;border-top:5px solid var(--gold);}
+.card img{width:100%;height:200px;object-fit:cover;display:block;}
+.card-content{padding:24px;} .card-content h3{color:var(--gold);margin-bottom:8px;} .card-icon{font-size:38px;margin-bottom:8px;}
 .about-box{background:linear-gradient(135deg,#111,#1a1a1a);border:1px solid var(--gold);color:#fff;border-radius:20px;padding:35px;display:flex;gap:30px;flex-wrap:wrap;}
+.about-box>div{flex:1 1 280px;min-width:0;word-break:break-word;}
+.about-box img{width:100%;height:250px;object-fit:cover;border-radius:15px;border:2px solid var(--gold);margin-bottom:12px;}
 .step{background:#1a1a1a;border-radius:15px;padding:20px;text-align:center;border:1px dashed var(--gold);}
 .step-num{background:var(--gold);color:#000;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;margin:0 auto 12px auto;}
-.filter-bar{text-align:center;margin-bottom:25px;} .filter-btn{background:#1a1a1a;color:#fff;padding:8px 15px;border:1px solid #333;border-radius:20px;margin:4px;} .filter-btn.active{background:var(--gold);color:#000;font-weight:700;border-color:var(--gold);}
-.contact-box{background:linear-gradient(135deg,#111,#222);border:1px solid var(--gold);color:#fff;border-radius:20px;padding:40px;text-align:center;}
-/* YE FIX HAI - White Box */
-.contact-box input,.contact-box textarea{width:100%;padding:13px;margin:8px 0;border-radius:12px;border:none;background:#ffffff;color:#000000;font-weight:600;}
-.contact-box input::placeholder,.contact-box textarea::placeholder{color:#666;}
+.filter-bar{text-align:center;margin-bottom:25px;} .filter-btn{background:#1a1a1a;color:#fff;padding:8px 15px;border:1px solid #333;border-radius:20px;margin:4px;} .filter-btn.active{background:var(--gold);color:#000;font-weight:700;}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;}
+.gal-card{position:relative;border-radius:18px;overflow:hidden;border:1.5px solid #333;cursor:pointer;background:#1a1a1a;}
+.gal-card img{width:100%;height:165px;object-fit:cover;display:block;}
+.gal-label{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.75);color:#fff;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700;white-space:nowrap;}
+.gal-info{background:rgba(212,175,55,0.1);border:1px solid var(--gold);border-radius:15px;padding:18px;margin-top:20px;color:#ccc;font-size:14px;}
+#lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;z-index:9999;padding:20px;}
+#lightbox img{max-width:95%;max-height:90%;border-radius:15px;border:2px solid var(--gold);}
+.contact-box{background:linear-gradient(135deg,#111,#222);border:1px solid var(--gold);color:#fff;border-radius:20px;padding:40px;text-align:center;max-width:650px;margin:auto;word-break:break-word;}
+.contact-box input,.contact-box textarea{width:100%;padding:13px;margin:8px 0;border-radius:12px;border:none;background:#ffffff;color:#000000;font-weight:600;box-sizing:border-box;}
+@media(max-width:768px){
+  .menu-btn{display:block;}
+  nav{position:fixed;top:70px;left:-100%;width:75%;height:100vh;background:#0f0f0f;border-right:2px solid var(--gold);flex-direction:column;align-items:flex-start;padding:20px;gap:0;transition:0.3s;z-index:998;}
+  nav.active{left:0;} nav a{width:100%;padding:14px 0;border-bottom:1px solid #222;font-size:16px;margin:0;}
+  .hero h1{font-size:26px;} .grid{grid-template-columns:1fr;} .gallery{grid-template-columns:1fr 1fr;gap:10px;} .gal-card img{height:130px;} .about-box{flex-direction:column;padding:20px;}
+}
 </style>
 </head>
 <body>
 <header>
   <div class="logo-area">
-    <img src="  logo.png  " alt="YID Logo" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='flex';">
+    <img src="logo.png" alt="YID Logo" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='flex';">
     <div id="fallback-logo" class="logo-fallback" style="display:none;">YID</div>
     <div class="logo-text"><b>Yasin Infra Developers</b><br><span>HASEGAON • EST. 2024</span></div>
   </div>
+  <button class="menu-btn" onclick="document.querySelector('nav').classList.toggle('active')">☰</button>
   <nav>
-    <a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#projects">Projects</a><a href="#process">Process</a><a href="#blog">Blog</a><a href="#contact">Contact</a>
+    <a href="#home" onclick="closeMenu()">Home</a><a href="#about" onclick="closeMenu()">About</a><a href="#services" onclick="closeMenu()">Services</a><a href="#projects" onclick="closeMenu()">Projects</a><a href="#gallery" onclick="closeMenu()">Gallery</a><a href="#process" onclick="closeMenu()">Process</a><a href="#blog" onclick="closeMenu()">Blog</a><a href="#contact" onclick="closeMenu()">Contact</a>
   </nav>
 </header>
 
@@ -57,32 +76,50 @@ nav a{color:#fff;text-decoration:none;margin-left:16px;font-weight:600;font-size
 <div class="section" id="about">
 <div class="section-title"><h2>हमारे <span>बारे में</span></h2><p>YID क्यों Latur की सबसे भरोसेमंद कंपनी है</p></div>
 <div class="about-box">
-<div style="flex:1;"><h2 style="color:var(--gold);">YID - Yaseen Infrastructure & मैं हसेगांव, लातूर से हूँ।</h2><br><p><b>हमारा मिशन:</b> YID की शुरुआत 2024 में इसी मिट्टी से हुई — लातूर के लोगों को मुंबई-पुणे जैसी क्वालिटी, लोकल बजट में मिले। हर परिवार को मजबूत, सुंदर और बजट में घर देना।<br><br><b>हमारा विजन:</b> Latur में No.1 Construction Brand बनना।<br><br><b>हमें क्यों चुनें?</b> ✅ 15+ साल अनुभव ✅ लाइसेंस्ड इंजीनियर ✅ समय पर काम ✅ फुल ट्रांसपेरेंसी</p></div>
-<div style="flex:1;background:var(--gold);color:#000;padding:20px;border-radius:15px;text-align:center;"><h3>🛡️ हमारे Core Values</h3><p>सुरक्षा | ईमानदारी | क्वालिटी | समय</p><br><h3>👷‍♂️ Team से मिलिए</h3><p>Engineers, Architects & Skilled Workers</p></div>
+<div><img src="latur-work-1.jpg" alt="YID Team" onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd'"><h2 style="color:var(--gold);">YID - Yaseen Infrastructure & मैं हसेगांव, लातूर से हूँ।</h2><br><p><b>हमारा मिशन:</b> YID की शुरुआत 2024 में इसी मिट्टी से हुई — लातूर के लोगों को मुंबई-पुणे जैसी क्वालिटी, लोकल बजट में मिले। हर परिवार को मजबूत, सुंदर और बजट में घर देना।<br><br><b>हमारा विजन:</b> Latur में No.1 Construction Brand बनना।<br><br><b>हमें क्यों चुनें?</b> ✅ 15+ साल अनुभव ✅ लाइसेंस्ड इंजीनियर ✅ समय पर काम ✅ फुल ट्रांसपेरेंसी</p></div>
+<div style="background:var(--gold);color:#000;padding:20px;border-radius:15px;text-align:center;"><h3>🛡️ हमारे Core Values</h3><p>सुरक्षा | ईमानदारी | क्वालिटी | समय</p><br><h3>👷‍♂️ Team से मिलिए</h3><p>Engineers, Architects & Skilled Workers</p></div>
 </div>
 </div>
 
 <div class="section section-alt" id="services">
 <div class="section-title"><h2>हमारी <span>सेवाएं</span></h2></div>
 <div class="grid">
-<div class="card"><div class="card-icon">🏠</div><h3>आवासीय निर्माण</h3><p>घर, विला, अपार्टमेंट का लग्जरी निर्माण।</p></div>
-<div class="card"><div class="card-icon">🏢</div><h3>कमर्शियल कंस्ट्रक्शन</h3><p>दुकान, ऑफिस, कॉम्प्लेक्स का निर्माण।</p></div>
-<div class="card"><div class="card-icon">🔨</div><h3>रेनोवेशन</h3><p>पुराने घर का नया रूप, रीमॉडलिंग।</p></div>
-<div class="card"><div class="card-icon">🎨</div><h3>इंटीरियर डिजाइन</h3><p>नक्शा और अंदर की सजावट।</p></div>
-<div class="card"><div class="card-icon">🏗️</div><h3>Turnkey Projects</h3><p>लैंड सर्वे से चाबी तक पूरा काम।</p></div>
+<div class="card"><img src="banner.jpg" onerror="this.src='https://images.unsplash.com/photo-1541888946425-d81bb19240f6'"><div class="card-content"><div class="card-icon">🏠</div><h3>आवासीय निर्माण</h3><p>घर, विला, अपार्टमेंट का लग्जरी निर्माण।</p></div></div>
+<div class="card"><img src="Projec1.jpg" onerror="this.src='banner.jpg'"><div class="card-content"><div class="card-icon">🏢</div><h3>कमर्शियल कंस्ट्रक्शन</h3><p>दुकान, ऑफिस, कॉम्प्लेक्स का निर्माण।</p></div></div>
+<div class="card"><img src="latur-work-1.jpg" onerror="this.src='banner.jpg'"><div class="card-content"><div class="card-icon">🔨</div><h3>रेनोवेशन</h3><p>पुराने घर का नया रूप, रीमॉडलिंग।</p></div></div>
+<div class="card"><img src="Projec1.jpg" onerror="this.src='banner.jpg'"><div class="card-content"><div class="card-icon">🎨</div><h3>इंटीरियर डिजाइन</h3><p>नक्शा और अंदर की सजावट।</p></div></div>
+<div class="card"><img src="banner.jpg" onerror="this.src='banner.jpg'"><div class="card-content"><div class="card-icon">🏗️</div><h3>Turnkey Projects</h3><p>लैंड सर्वे से चाबी तक पूरा काम।</p></div></div>
 </div>
 </div>
 
+<!-- PROJECTS PEHLE -->
 <div class="section" id="projects">
 <div class="section-title"><h2>हमारे <span>प्रोजेक्ट्स</span><br>हमारे साथ अपना प्रोजेक्ट शुरू करें 🚀</h2><p>YID - चुनिंदा और भरोसेमंद निर्माण कार्य</p><p>पूरे हुए और चल रहे प्रोजेक्ट्स की गैलरी</p></div>
 <div class="grid">
-<div class="card"><h3>🌟 Sunrise Apartment</h3><p><b>लोकेशन:</b> Hasegaon, Latur | <b>6 महीने में पूरा</b></p><div style="background:#222;padding:10px;border-radius:10px;margin-top:10px;color:var(--gold);">⭐ "YID का काम शानदार!" - Client</div></div>
-<div class="card"><h3>🏢 Commercial Complex</h3><p>Before/After फोटो वाली गैलरी यहाँ आएगी</p></div>
-<div class="card"><h3>🏠 Villa Project</h3><p>फिल्टर: Residential / Commercial</p></div>
+<div class="card"><img src="banner.jpg" onerror="this.src='https://images.unsplash.com/photo-1541888946425-d81bb19240f6'"><div class="card-content"><h3>🌟 Sunrise Apartment</h3><p><b>लोकेशन:</b> Hasegaon, Latur | <b>6 महीने में पूरा</b></p><div style="background:#222;padding:10px;border-radius:10px;margin-top:10px;color:var(--gold);">⭐ "YID का काम शानदार!" - Client</div></div></div>
+<div class="card"><img src="Projec1.jpg" onerror="this.src='banner.jpg'"><div class="card-content"><h3>🏢 Commercial Complex</h3><p>Before/After फोटो वाली गैलरी यहाँ आएगी</p></div></div>
+<div class="card"><img src="latur-work-1.jpg" onerror="this.src='banner.jpg'"><div class="card-content"><h3>🏠 Villa Project</h3><p>फिल्टर: Residential / Commercial</p></div></div>
 </div>
 </div>
 
-<div class="section section-alt" id="process">
+<!-- GALLERY AB PROJECTS KE NICHE -->
+<div class="section section-alt" id="gallery">
+<div class="section-title"><h2>ALL PHOTOS <span>GALLERY</span></h2><p>TAP TO OPEN LIGHTBOX</p></div>
+<div class="gallery">
+<div class="gal-card" onclick="openLB(this)"><img src="banner.jpg"><div class="gal-label">Hero Banner</div></div>
+<div class="gal-card" onclick="openLB(this)"><img src="Projec1.jpg"><div class="gal-label">Workers</div></div>
+<div class="gal-card" onclick="openLB(this)"><img src="latur-work-1.jpg"><div class="gal-label">Trust Banner</div></div>
+<div class="gal-card" onclick="openLB(this)"><img src="banner.jpg"><div class="gal-label">House Hands</div></div>
+<div class="gal-card" onclick="openLB(this)"><img src="Projec1.jpg"><div class="gal-label">Ongoing 2BHK</div></div>
+<div class="gal-card" onclick="openLB(this)"><img src="latur-work-1.jpg"><div class="gal-label">Completed Nashik</div></div>
+<div class="gal-card" onclick="openLB(this)"><img src="banner.jpg"><div class="gal-label">Brick/Plaster</div></div>
+<div class="gal-card" onclick="openLB(this)"><img src="Projec1.jpg"><div class="gal-label">Rate List</div></div>
+<div class="gal-card" onclick="openLB(this)"><img src="logo.png"><div class="gal-label">Business Card</div></div>
+</div>
+<div class="gal-info">सभी 9 फोटो इसी वेबसाइट में जोड़ी गई हैं। किसी भी फोटो पर क्लिक करें - Full View Lightbox खुलेगा।</div>
+</div>
+
+<div class="section" id="process">
 <div class="section-title"><h2 style="color:#fff;">काम करने का <span>तरीका 🏗️</span></h2>
 <div class="filter-bar">
 <button class="filter-btn active">सभी / All</button><button class="filter-btn">🏠 आवासीय</button><button class="filter-btn">🏢 कमर्शियल</button><button class="filter-btn">🏭 इंडस्ट्रियल</button><button class="filter-btn">🔨 रेनोवेशन</button><button class="filter-btn">🎨 इंटीरियर</button>
@@ -101,9 +138,9 @@ nav a{color:#fff;text-decoration:none;margin-left:16px;font-weight:600;font-size
 <div class="section" id="blog">
 <div class="section-title"><h2>ब्लॉग / <span>जानकारी 📚</span></h2><p><b>घर बनाने से पहले YID की एक्सपर्ट सलाह जरूर पढ़ें</b><br>Expert tips from YID before you build your dream home</p><p>Google पर Rank कराने वाले टॉपिक</p></div>
 <div class="grid">
-<div class="card"><h3>🏠 घर बनाते समय किन बातों का ध्यान रखें?</h3><p>90% लोग ये 5 गलतियाँ करते हैं..जानिए YID के 15 साल के अनुभव से सही तरीका क्या है.</p><a href="#" style="color:var(--gold);font-weight:700;text-decoration:none;">पूरा पढ़ें →</a></div>
-<div class="card"><h3>🧱 मटेरियल की सही पहचान कैसे करें?</h3><p>नकली सीमेंट और सरिया से बचें? असली और नकली की पहचान का आसान तरीका यहाँ जानें..</p><a href="#" style="color:var(--gold);font-weight:700;text-decoration:none;">पूरा पढ़ें →</a></div>
-<div class="card"><h3>💰 बजट में घर का नक्शा कैसे बनाएं?</h3><p>कम बजट में भी लग्जरी घर! कैसे बनता है? बजट का प्लान और नक्शा</p><a href="#" style="color:var(--gold);font-weight:700;text-decoration:none;">पूरा पढ़ें →</a></div>
+<div class="card"><img src="banner.jpg"><div class="card-content"><h3>🏠 घर बनाते समय किन बातों का ध्यान रखें?</h3><p>90% लोग ये 5 गलतियाँ करते हैं..जानिए YID के 15 साल के अनुभव से सही तरीका क्या है.</p><a href="#" style="color:var(--gold);font-weight:700;text-decoration:none;">पूरा पढ़ें →</a></div></div>
+<div class="card"><img src="latur-work-1.jpg"><div class="card-content"><h3>🧱 मटेरियल की सही पहचान कैसे करें?</h3><p>नकली सीमेंट और सरिया से बचें? असली और नकली की पहचान का आसान तरीका यहाँ जानें..</p><a href="#" style="color:var(--gold);font-weight:700;text-decoration:none;">पूरा पढ़ें →</a></div></div>
+<div class="card"><img src="Projec1.jpg"><div class="card-content"><h3>💰 बजट में घर का नक्शा कैसे बनाएं?</h3><p>कम बजट में भी लग्जरी घर! कैसे बनता है? बजट का प्लान और नक्शा</p><a href="#" style="color:var(--gold);font-weight:700;text-decoration:none;">पूरा पढ़ें →</a></div></div>
 </div>
 </div>
 
@@ -116,6 +153,8 @@ nav a{color:#fff;text-decoration:none;margin-left:16px;font-weight:600;font-size
 </div>
 </div>
 
+<div id="lightbox" onclick="this.style.display='none'"><img id="lb-img" src=""></div>
 <footer style="background:#000;color:var(--gold);text-align:center;padding:20px;border-top:1px solid var(--gold);">© 2026 YID - Hasegaon Developers | Designed with 💛 <b>लोकेशन:</b> हसेगांव, लातूर Maharashtra</footer>
+<script>function openLB(el){document.getElementById('lb-img').src=el.querySelector('img').src;document.getElementById('lightbox').style.display='flex';} function closeMenu(){document.querySelector('nav').classList.remove('active');}</script>
 </body>
 </html>
