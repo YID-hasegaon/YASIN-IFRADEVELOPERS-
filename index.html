@@ -44,10 +44,24 @@ nav{display:flex;gap:14px;flex-wrap:wrap;} nav a{color:#fff;text-decoration:none
 #lightbox img{max-width:95%;max-height:90%;border-radius:15px;border:2px solid var(--gold);}
 .contact-box{background:linear-gradient(135deg,#111,#222);border:1px solid var(--gold);color:#fff;border-radius:20px;padding:40px;text-align:center;max-width:650px;margin:auto;word-break:break-word;}
 .contact-box input,.contact-box textarea{width:100%;padding:13px;margin:8px 0;border-radius:12px;border:none;background:#ffffff;color:#000000;font-weight:600;box-sizing:border-box;}
+
 @media(max-width:768px){
   .menu-btn{display:block;}
-  nav{position:fixed;top:70px;left:-100%;width:75%;height:100vh;background:#0f0f0f;border-right:2px solid var(--gold);flex-direction:column;align-items:flex-start;padding:20px;gap:0;transition:0.3s;z-index:998;}
-  nav.active{left:0;} nav a{width:100%;padding:14px 0;border-bottom:1px solid #222;font-size:16px;margin:0;}
+  nav{position:fixed;top:0;left:-100%;width:78%;height:100vh;background:#0f0f0f;border-right:2px solid var(--gold);flex-direction:column;align-items:flex-start;padding:65px 20px 20px 20px;gap:0;transition:0.35s;z-index:99999;overflow-y:auto;}
+  nav.active{left:0;} 
+  nav a{width:100%;padding:14px 10px;border-bottom:1px solid #222;font-size:16px;margin:0; box-sizing:border-box;}
+  /* FIX - ANDAR WALA X BUTTON AB BHAGEGA NAHI */
+  nav .closebtn{
+    position:absolute !important;
+    top:12px !important; right:12px !important;
+    width:42px !important; height:42px !important;
+    background:#1e1e1e !important; color:#fff !important;
+    border:1.5px solid #333 !important;
+    border-radius:10px !important;
+    font-size:28px !important; line-height:38px !important;
+    text-align:center !important; padding:0 !important;
+    display:block !important;
+  }
   .hero h1{font-size:26px;} .grid{grid-template-columns:1fr;} .gallery{grid-template-columns:1fr 1fr;gap:10px;} .gal-card img{height:130px;} .about-box{flex-direction:column;padding:20px;}
 }
 </style>
@@ -59,20 +73,21 @@ nav{display:flex;gap:14px;flex-wrap:wrap;} nav a{color:#fff;text-decoration:none
     <div id="fallback-logo" class="logo-fallback" style="display:none;">YID</div>
     <div class="logo-text"><b>Yasin Infra Developers</b><br><span>HASEGAON • EST. 2024</span></div>
   </div>
-  <button class="menu-btn" onclick="document.querySelector('nav').classList.toggle('active')">☰</button>
+  <!-- BAHAR WALA BUTTON - ☰ -->
+  <button class="menu-btn" onclick="document.querySelector('nav').classList.add('active')">☰</button>
   <nav>
+    <!-- ANDAR WALA BUTTON - X AB ANDAR HI RAHEGA -->
+    <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">×</a>
+    
     <a href="#home" onclick="closeMenu()">Home</a><a href="#about" onclick="closeMenu()">About</a><a href="#services" onclick="closeMenu()">Services</a><a href="#projects" onclick="closeMenu()">Projects</a><a href="#gallery" onclick="closeMenu()">Gallery</a><a href="#process" onclick="closeMenu()">Process</a><a href="#blog" onclick="closeMenu()">Blog</a><a href="#contact" onclick="closeMenu()">Contact</a>
   </nav>
 </header>
-
 <div class="info-strip">.मजबूत नींव, सुंदर निर्माण — आपके सपनों का घर । कॉलेज भवन, अपार्टमेंट और कमर्शियल बिल्डिंग के विशेषज्ञ। 🏗️ YID - जहाँ भरोसा, वहीं निर्माण 📍 Bhusni Road, Near Grampanchayat, Hasegaon - 413531</div>
-
 <div class="hero" id="home">
 <h1>YID के साथ अपने सपनों का & निर्माण</h1>
 <p>लातूर की नंबर 1 भरोसेमंद कंस्ट्रक्शन कंपनी- YID</p>
 <a href="#contact" class="btn-gold">📞 FREE QUOTE PAYE</a>
 </div>
-
 <div class="section" id="about">
 <div class="section-title"><h2>हमारे <span>बारे में</span></h2><p>YID क्यों Latur की सबसे भरोसेमंद कंपनी है</p></div>
 <div class="about-box">
@@ -80,7 +95,6 @@ nav{display:flex;gap:14px;flex-wrap:wrap;} nav a{color:#fff;text-decoration:none
 <div style="background:var(--gold);color:#000;padding:20px;border-radius:15px;text-align:center;"><h3>🛡️ हमारे Core Values</h3><p>सुरक्षा | ईमानदारी | क्वालिटी | समय</p><br><h3>👷‍♂️ Team से मिलिए</h3><p>Engineers, Architects & Skilled Workers</p></div>
 </div>
 </div>
-
 <div class="section section-alt" id="services">
 <div class="section-title"><h2>हमारी <span>सेवाएं</span></h2></div>
 <div class="grid">
@@ -91,8 +105,6 @@ nav{display:flex;gap:14px;flex-wrap:wrap;} nav a{color:#fff;text-decoration:none
 <div class="card"><img src="banner.jpg" onerror="this.src='banner.jpg'"><div class="card-content"><div class="card-icon">🏗️</div><h3>Turnkey Projects</h3><p>लैंड सर्वे से चाबी तक पूरा काम।</p></div></div>
 </div>
 </div>
-
-<!-- PROJECTS PEHLE -->
 <div class="section" id="projects">
 <div class="section-title"><h2>हमारे <span>प्रोजेक्ट्स</span><br>हमारे साथ अपना प्रोजेक्ट शुरू करें 🚀</h2><p>YID - चुनिंदा और भरोसेमंद निर्माण कार्य</p><p>पूरे हुए और चल रहे प्रोजेक्ट्स की गैलरी</p></div>
 <div class="grid">
@@ -101,8 +113,6 @@ nav{display:flex;gap:14px;flex-wrap:wrap;} nav a{color:#fff;text-decoration:none
 <div class="card"><img src="latur-work-1.jpg" onerror="this.src='banner.jpg'"><div class="card-content"><h3>🏠 Villa Project</h3><p>फिल्टर: Residential / Commercial</p></div></div>
 </div>
 </div>
-
-<!-- GALLERY AB PROJECTS KE NICHE -->
 <div class="section section-alt" id="gallery">
 <div class="section-title"><h2>ALL PHOTOS <span>GALLERY</span></h2><p>TAP TO OPEN LIGHTBOX</p></div>
 <div class="gallery">
@@ -118,7 +128,6 @@ nav{display:flex;gap:14px;flex-wrap:wrap;} nav a{color:#fff;text-decoration:none
 </div>
 <div class="gal-info">सभी 9 फोटो इसी वेबसाइट में जोड़ी गई हैं। किसी भी फोटो पर क्लिक करें - Full View Lightbox खुलेगा।</div>
 </div>
-
 <div class="section" id="process">
 <div class="section-title"><h2 style="color:#fff;">काम करने का <span>तरीका 🏗️</span></h2>
 <div class="filter-bar">
@@ -134,7 +143,6 @@ nav{display:flex;gap:14px;flex-wrap:wrap;} nav a{color:#fff;text-decoration:none
 <div class="step"><div class="step-num">5</div><h3>Handover</h3><p>चाबी सौंपना</p></div>
 </div>
 </div>
-
 <div class="section" id="blog">
 <div class="section-title"><h2>ब्लॉग / <span>जानकारी 📚</span></h2><p><b>घर बनाने से पहले YID की एक्सपर्ट सलाह जरूर पढ़ें</b><br>Expert tips from YID before you build your dream home</p><p>Google पर Rank कराने वाले टॉपिक</p></div>
 <div class="grid">
@@ -143,7 +151,6 @@ nav{display:flex;gap:14px;flex-wrap:wrap;} nav a{color:#fff;text-decoration:none
 <div class="card"><img src="Projec1.jpg"><div class="card-content"><h3>💰 बजट में घर का नक्शा कैसे बनाएं?</h3><p>कम बजट में भी लग्जरी घर! कैसे बनता है? बजट का प्लान और नक्शा</p><a href="#" style="color:var(--gold);font-weight:700;text-decoration:none;">पूरा पढ़ें →</a></div></div>
 </div>
 </div>
-
 <div class="section section-alt" id="contact">
 <div class="contact-box">
 <h2 style="color:var(--gold);font-size:36px;">संपर्क करें / Free Quote 🚀</h2><p style="color:#ccc;">आज ही इंजीनियर से बात करें</p><br>
@@ -152,7 +159,6 @@ nav{display:flex;gap:14px;flex-wrap:wrap;} nav a{color:#fff;text-decoration:none
 <br><br><p>📍 Office: Latur, Maharashtra | 📞 +91 9067580027 | ✉️ yasinfradevelopers@gmail.com<br>🕒 सोम - शनि, सुबह 9:00 - शाम 6:00</p>
 </div>
 </div>
-
 <div id="lightbox" onclick="this.style.display='none'"><img id="lb-img" src=""></div>
 <footer style="background:#000;color:var(--gold);text-align:center;padding:20px;border-top:1px solid var(--gold);">© 2026 YID - Hasegaon Developers | Designed with 💛 <b>लोकेशन:</b> हसेगांव, लातूर Maharashtra</footer>
 <script>function openLB(el){document.getElementById('lb-img').src=el.querySelector('img').src;document.getElementById('lightbox').style.display='flex';} function closeMenu(){document.querySelector('nav').classList.remove('active');}</script>
