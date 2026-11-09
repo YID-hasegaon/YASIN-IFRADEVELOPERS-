@@ -1,1 +1,63 @@
-
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YASIN INFRA HASEGAON - V16</title>
+<style>
+body{font-family:Arial;margin:0;background:#f0f0f0}
+#loginScreen{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#000 0%,#222 100%);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.loginBox{background:#111;border:3px solid gold;border-radius:20px;padding:25px;width:85%;max-width:320px;text-align:center}
+.loginBox h2{color:gold;margin:0}
+.loginBox input{width:100%;padding:15px;margin:12px 0;border-radius:10px;border:2px solid gold;background:#000;color:gold;font-size:22px;text-align:center;letter-spacing:8px;box-sizing:border-box}
+.loginBox button{width:100%;padding:14px;background:gold;color:#000;border:none;border-radius:10px;font-weight:bold;font-size:16px;cursor:pointer}
+.wrong{color:#ff4444;font-size:12px;margin-top:8px;display:none}
+.header{background:#000;color:gold;text-align:center;padding:12px;border-bottom:3px solid gold;display:flex;align-items:center;justify-content:center;gap:10px}
+.header img{width:48px;height:48px;border-radius:50%;border:2px solid gold;background:#fff}
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
+.menuBtn{padding:20px 10px;border:none;border-radius:12px;font-weight:bold;font-size:15px;cursor:pointer;box-shadow:0 3px 6px rgba(0,0,0,0.2);text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center}
+.m1{background:#000;color:gold;border:2px solid gold}
+.m2{background:#ff6600;color:white}
+.m3{background:#3f51b5;color:white}
+.m4{background:#2e7d32;color:white}
+.m5{background:#111;color:white;border:1px dashed gold}
+.m6{background:#9c27b0;color:white}
+.m7{background:#d4af37;color:#000}
+</style>
+</head>
+<body>
+<div id="loginScreen">
+<div class="loginBox">
+<div style="font-size:48px">🏗️</div>
+<h2>YASIN INFRA</h2>
+<small style="color:#fff">DEVELOPERS - Hasegaon</small>
+<p style="color:gold;font-size:12px;margin:15px 0 5px 0">🔒 Password डालो - 0027</p>
+<input type="password" id="passInput" placeholder="••••" maxlength="4" inputmode="numeric">
+<button onclick="checkPass()">UNLOCK 🔓</button>
+<div class="wrong" id="wrongMsg">❌ गलत Password! Call: 9067580027</div>
+</div>
+</div>
+<div class="header">
+<img src="../logo.png" onerror="this.src='logo.png'">
+<h2>YASIN INFRA HASEGAON - V16</h2>
+<button onclick="logout()" style="margin-left:10px;background:#222;color:gold;border:1px solid gold;border-radius:6px;padding:4px 8px;font-size:10px">Lock 🔒</button>
+</div>
+<div class="menu">
+<a class="menuBtn m1" href="dar-patrak.html">💰 दर पत्रक + Terms</a>
+<a class="menuBtn m2" href="bill.html">🧮 बिल - 150+300+500</a>
+<a class="menuBtn m3" href="majdur.html">👷 मजदूर हिसाब</a>
+<a class="menuBtn m4" href="party.html">🏦 पार्टी / बटन हिसाब</a>
+<a class="menuBtn m5" href="custom.html" style="grid-column: span 2">🏗️ 21 आइटम ON/OFF वाला कस्टम - FINAL V16</a>
+<a class="menuBtn m6" href="kharch.html">💰 Kharch - Ghar + Apna</a>
+<a class="menuBtn m7" href="total.html">📊 Total Hisab - Sab Ka Total</a>
+</div>
+<footer style="background:#000;color:gold;text-align:center;padding:10px;border-top:2px solid gold">© 2026 YASIN INFRA - 9067580027 - V16 - LOCKED 0027 🔒</footer>
+<script>
+const CORRECT_PASS="0027";
+function checkPass(){let p=document.getElementById('passInput').value;if(p===CORRECT_PASS){document.getElementById('loginScreen').style.display='none';localStorage.setItem('yasin_auth','yes');}else{document.getElementById('wrongMsg').style.display='block';document.getElementById('passInput').value='';setTimeout(()=>{document.getElementById('wrongMsg').style.display='none';},2000);}}
+function logout(){localStorage.removeItem('yasin_auth');document.getElementById('loginScreen').style.display='flex';}
+if(localStorage.getItem('yasin_auth')==='yes'){document.getElementById('loginScreen').style.display='none';}
+document.getElementById('passInput').addEventListener('keypress',function(e){if(e.key==='Enter')checkPass();});
+</script>
+</body>
+</html>
