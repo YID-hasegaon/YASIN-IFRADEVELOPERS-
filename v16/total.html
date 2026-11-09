@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Total Hisab - V16</title>
+<style>
+body{font-family:Arial;margin:0;background:#f0f0f0;padding-bottom:20px}
+.header{background:#000;color:gold;text-align:center;padding:12px}
+.header a{color:gold;text-decoration:none;font-size:13px}
+.card{background:#fff;margin:12px;padding:16px;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+.row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #eee;font-size:15px}
+.big{background:#000;color:gold;padding:18px;border-radius:12px;text-align:center;font-size:20px;font-weight:bold;margin:12px;line-height:1.6}
+button{width:100%;padding:14px;margin-top:10px;background:#25D366;color:#fff;border:none;border-radius:10px;font-weight:bold;font-size:16px}
+.back{display:block;text-align:center;background:#000;color:gold;padding:14px;margin:12px;border-radius:10px;text-decoration:none;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="header"><a href="index.html">⬅️ HOME</a><h2 style="margin:5px 0">📊 TOTAL HISAB - V16</h2></div>
+<div class="card">
+<div class="row"><span>👷 Majdur Ko Dena Hai</span><b id="t1">₹0</b></div>
+<div class="row"><span>🏦 Party Net Balance</span><b id="t2">₹0</b></div>
+<div class="row"><span>💸 Total Kharch</span><b id="t3">₹0</b></div>
+<div class="row"><span>📦 Total Entries - Majdur</span><b id="t4">0</b></div>
+<div class="row"><span>📦 Total Entries - Party</span><b id="t5">0</b></div>
+<div class="row"><span>📦 Total Entries - Kharch</span><b id="t6">0</b></div>
+</div>
+<div class="big" id="grand">TOTAL DENA HAI<br>₹0</div>
+<div class="card">
+<button onclick="share()">WhatsApp Pe Total Bhejo 📲</button>
+<button onclick="location.reload()" style="background:#111;color:gold">Refresh Karo 🔄</button>
+</div>
+<a class="back" href="index.html">⬅️ WAPAS HOME</a>
+<script>
+let m=JSON.parse(localStorage.getItem('majdur_v16')||'[]');
+let p=JSON.parse(localStorage.getItem('party_v16')||'[]');
+let k=JSON.parse(localStorage.getItem('kharch_v16')||'[]');
+let mTot=0;m.forEach(x=>mTot+=(x.rate*x.days-x.adv));
+let pTot=0;p.forEach(x=>pTot+=(x.type==='diya'?x.amt:-x.amt));
+let kTot=0;k.forEach(x=>kTot+=x.amt);
+document.getElementById('t1').innerText='₹'+mTot.toLocaleString('en-IN');
+document.getElementById('t2').innerText='₹'+pTot.toLocaleString('en-IN');
+document.getElementById('t3').innerText='₹'+kTot.toLocaleString('en-IN');
+document.getElementById('t4').innerText=m.length;
+document.getElementById('t5').innerText=p.length;
+document.getElementById('t6').innerText=k.length;
+let grand=mTot+pTot+kTot;
+document.getElementById('grand').innerHTML=`TOTAL HISAB<br>₹${grand.toLocaleString('en-IN')}<br><span style="font-size:13px;font-weight:normal">Majdur ₹${mTot.toLocaleString('en-IN')} + Party ₹${pTot.toLocaleString('en-IN')} + Kharch ₹${kTot.toLocaleString('en-IN')}</span>`;
+function share(){
+let msg=`*YASIN INFRA - TOTAL HISAB*%0AMajdur Dena: ₹${mTot}%0AParty Balance: ₹${pTot}%0ATotal Kharch: ₹${kTot}%0A*GRAND TOTAL: ₹${grand}*%0A📞 9067580027`;
+window.open(`https://wa.me/?text=${msg}`,'_blank');
+}
+if(localStorage.getItem('yasin_auth')!=='yes'){window.location.href='index.html';}
+</script>
+</body>
+</html>
