@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Party Hisab - V16</title>
+<style>
+body{font-family:Arial;margin:0;background:#f0f0f0;padding-bottom:20px}
+.header{background:#000;color:gold;text-align:center;padding:12px}
+.header a{color:gold;text-decoration:none;font-size:13px}
+.card{background:#fff;margin:12px;padding:16px;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+label{font-size:13px;font-weight:bold;display:block;margin-top:10px}
+input,select{width:100%;padding:12px;margin-top:4px;border:1px solid #ccc;border-radius:8px;box-sizing:border-box;font-size:15px}
+button{width:100%;padding:14px;margin-top:12px;background:#2e7d32;color:#fff;border:none;border-radius:10px;font-weight:bold;font-size:16px}
+.item{background:#f9f9f9;padding:10px;border-radius:8px;margin-bottom:8px;font-size:14px;display:flex;justify-content:space-between}
+.total{background:#fff8c5;padding:14px;border-radius:10px;margin-top:12px;font-weight:bold;font-size:16px;text-align:center}
+.back{display:block;text-align:center;background:#000;color:gold;padding:14px;margin:12px;border-radius:10px;text-decoration:none;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="header"><a href="index.html">⬅️ HOME</a><h2 style="margin:5px 0">🏦 PARTY / BATAN HISAB</h2></div>
+<div class="card">
+<label>Party Ka Naam</label>
+<input id="pname" placeholder="Ex: Shaikh Sahab">
+<label>Kitna Diya / Liya?</label>
+<select id="ptype">
+<option value="diya">Diya - Party ko diya (Udhar)</option>
+<option value="liya">Liya - Party se liya</option>
+</select>
+<label>Amount</label>
+<input type="number" id="pamt" placeholder="Ex: 20000" inputmode="numeric">
+<label>Note / Kis Kaam Ke Liye</label>
+<input id="pnote" placeholder="Ex: Cement ke liye">
+<button onclick="addParty()">ADD KARO ➕</button>
+<div id="plist" style="margin-top:12px"></div>
+<div class="total" id="ptotal">Total: ₹0</div>
+<button onclick="clearAll()" style="background:#ff4444">Sab Clear Karo 🗑️</button>
+</div>
+<a class="back" href="index.html">⬅️ WAPAS HOME</a>
+<script>
+let arr=JSON.parse(localStorage.getItem('party_v16')||'[]');
+function render(){
+let h='';let tot=0;
+arr.forEach(x=>{
+let amt=x.type==='diya'?x.amt:-x.amt;tot+=amt;
+let col=x.type==='diya'?'#d32f2f':'#2e7d32';
+h+=`<div class="item"><span><b>${x.name}</b><br><small>${x.note||''}</small></span><b style="color:${col}">${x.type==='diya'?'- ₹':'+ ₹'}${x.amt.toLocaleString('en-IN')}</b></div>`;
+});
+document.getElementById('plist').innerHTML=h||'Abhi koi entry nahi';
+document.getElementById('ptotal').innerHTML=`Net Balance: ₹${tot.toLocaleString('en-IN')}<br><small>${tot>=0?'Party se lena hai':'Party ko dena hai'}</small>`;
+}
+function addParty(){
+let n=document.getElementById('pname').value||'Party';
+let t=document.getElementById('ptype').value;
+let a=+document.getElementById('pamt').value||0;
+let note=document.getElementById('pnote').value;
+arr.push({name:n,type:t,amt:a,note:note});
+localStorage.setItem('party_v16',JSON.stringify(arr));
+document.getElementById('pname').value='';document.getElementById('pamt').value='';document.getElementById('pnote').value='';
+render();
+}
+function clearAll(){if(confirm('Sab delete kare?')){arr=[];localStorage.removeItem('party_v16');render();}}
+render();
+if(localStorage.getItem('yasin_auth')!=='yes'){window.location.href='index.html';}
+</script>
+</body>
+</html>
