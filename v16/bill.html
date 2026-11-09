@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bill - V16</title>
+<style>
+body{font-family:Arial;margin:0;background:#f0f0f0;padding-bottom:20px}
+.header{background:#000;color:gold;text-align:center;padding:12px}
+.header a{color:gold;text-decoration:none;font-size:13px}
+.card{background:#fff;margin:12px;padding:16px;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+label{font-size:13px;font-weight:bold;display:block;margin-top:10px}
+input,select{width:100%;padding:12px;margin-top:4px;border:1px solid #ccc;border-radius:8px;box-sizing:border-box;font-size:15px}
+button{width:100%;padding:14px;margin-top:12px;background:#ff6600;color:#fff;border:none;border-radius:10px;font-weight:bold;font-size:16px}
+.result{background:#fff8c5;padding:14px;border-radius:10px;margin-top:12px;font-size:16px;line-height:1.8;font-weight:bold}
+.back{display:block;text-align:center;background:#000;color:gold;padding:14px;margin:12px;border-radius:10px;text-decoration:none;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="header"><a href="index.html">⬅️ HOME</a><h2 style="margin:5px 0">🧮 BILL - 150 / 300 / 500</h2></div>
+<div class="card">
+<label>Party / Customer Ka Naam</label>
+<input id="pname" placeholder="Ex: Ramesh - Hasegaon">
+<label>Kaam Ka Type Chuno</label>
+<select id="rate">
+<option value="150">150 - RCC Slab Only</option>
+<option value="300">300 - With Material</option>
+<option value="500">500 - Full Finish</option>
+</select>
+<label>Total Sq Ft Daalo</label>
+<input type="number" id="sqft" placeholder="Ex: 1000" inputmode="numeric">
+<label>Advance Diya Kitna?</label>
+<input type="number" id="adv" placeholder="Ex: 50000" value="0" inputmode="numeric">
+<button onclick="calc()">BILL BANAO 🧾</button>
+<div class="result" id="out">Yaha Bill Aayega...</div>
+<button onclick="share()" style="background:#25D366">WhatsApp Pe Bhejo 📲</button>
+</div>
+<a class="back" href="index.html">⬅️ WAPAS HOME</a>
+<script>
+function calc(){
+let r=+document.getElementById('rate').value;
+let s=+document.getElementById('sqft').value||0;
+let a=+document.getElementById('adv').value||0;
+let total=r*s;
+let baki=total-a;
+document.getElementById('out').innerHTML=`Rate: ₹${r} x ${s} Sq Ft<br>Total: ₹${total.toLocaleString('en-IN')}<br>Advance: ₹${a.toLocaleString('en-IN')}<br><span style="color:red">Baki: ₹${baki.toLocaleString('en-IN')}</span>`;
+}
+function share(){
+let n=document.getElementById('pname').value||'Party';
+let t=document.getElementById('out').innerText;
+let msg=`*YASIN INFRA - BILL*%0A*${n}*%0A${t.replace(/\n/g,'%0A')}%0A📞 9067580027`;
+window.open(`https://wa.me/?text=${msg}`,'_blank');
+}
+if(localStorage.getItem('yasin_auth')!=='yes'){window.location.href='index.html';}
+</script>
+</body>
+</html>
