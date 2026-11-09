@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kharch - V16</title>
+<style>
+body{font-family:Arial;margin:0;background:#f0f0f0;padding-bottom:20px}
+.header{background:#000;color:gold;text-align:center;padding:12px}
+.header a{color:gold;text-decoration:none;font-size:13px}
+.card{background:#fff;margin:12px;padding:16px;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+label{font-size:13px;font-weight:bold;display:block;margin-top:10px}
+input,select{width:100%;padding:12px;margin-top:4px;border:1px solid #ccc;border-radius:8px;box-sizing:border-box;font-size:15px}
+button{width:100%;padding:14px;margin-top:12px;background:#e65100;color:#fff;border:none;border-radius:10px;font-weight:bold;font-size:16px}
+.item{background:#f9f9f9;padding:10px;border-radius:8px;margin-bottom:8px;font-size:14px;display:flex;justify-content:space-between}
+.total{background:#fff8c5;padding:14px;border-radius:10px;margin-top:12px;font-weight:bold;font-size:16px;text-align:center}
+.back{display:block;text-align:center;background:#000;color:gold;padding:14px;margin:12px;border-radius:10px;text-decoration:none;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="header"><a href="index.html">⬅️ HOME</a><h2 style="margin:5px 0">💸 ROZ KA KHARCH</h2></div>
+<div class="card">
+<label>Kis Cheez Pe Kharch Hua?</label>
+<select id="ktype">
+<option>Cement</option><option>Reti</option><option>Gitti</option><option>Steel / Sariya</option><option>Diesel / Petrol</option><option>Majdur Payment</option><option>Khana / Chai</option><option>Transport</option><option>Other</option>
+</select>
+<label>Amount</label>
+<input type="number" id="kamt" placeholder="Ex: 5000" inputmode="numeric">
+<label>Note</label>
+<input id="knote" placeholder="Ex: 10 bag cement">
+<button onclick="addKharch()">ADD KARO ➕</button>
+<div id="klist" style="margin-top:12px"></div>
+<div class="total" id="ktotal">Aaj Ka Total Kharch: ₹0</div>
+<button onclick="clearAll()" style="background:#ff4444">Sab Clear Karo 🗑️</button>
+</div>
+<a class="back" href="index.html">⬅️ WAPAS HOME</a>
+<script>
+let arr=JSON.parse(localStorage.getItem('kharch_v16')||'[]');
+function render(){
+let h='';let tot=0;
+arr.forEach(x=>{tot+=x.amt;h+=`<div class="item"><span><b>${x.type}</b><br><small>${x.note||''} - ${x.date}</small></span><b>₹${x.amt.toLocaleString('en-IN')}</b></div>`;});
+document.getElementById('klist').innerHTML=h||'Abhi koi kharch nahi';
+document.getElementById('ktotal').innerText=`Total Kharch: ₹${tot.toLocaleString('en-IN')}`;
+}
+function addKharch(){
+let t=document.getElementById('ktype').value;
+let a=+document.getElementById('kamt').value||0;
+let n=document.getElementById('knote').value;
+let d=new Date().toLocaleDateString('hi-IN');
+arr.push({type:t,amt:a,note:n,date:d});
+localStorage.setItem('kharch_v16',JSON.stringify(arr));
+document.getElementById('kamt').value='';document.getElementById('knote').value='';
+render();
+}
+function clearAll(){if(confirm('Sab delete kare?')){arr=[];localStorage.removeItem('kharch_v16');render();}}
+render();
+if(localStorage.getItem('yasin_auth')!=='yes'){window.location.href='index.html';}
+</script>
+</body>
+</html>
