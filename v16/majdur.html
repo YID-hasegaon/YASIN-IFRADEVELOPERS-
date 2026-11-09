@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Majdur Hisab - V16</title>
+<style>
+body{font-family:Arial;margin:0;background:#f0f0f0;padding-bottom:20px}
+.header{background:#000;color:gold;text-align:center;padding:12px}
+.header a{color:gold;text-decoration:none;font-size:13px}
+.card{background:#fff;margin:12px;padding:16px;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+label{font-size:13px;font-weight:bold;display:block;margin-top:10px}
+input,select{width:100%;padding:12px;margin-top:4px;border:1px solid #ccc;border-radius:8px;box-sizing:border-box;font-size:15px}
+button{width:100%;padding:14px;margin-top:12px;background:#3f51b5;color:#fff;border:none;border-radius:10px;font-weight:bold;font-size:16px}
+.list{margin-top:12px}
+.item{background:#f9f9f9;padding:10px;border-radius:8px;margin-bottom:8px;display:flex;justify-content:space-between;font-size:14px}
+.total{background:#fff8c5;padding:14px;border-radius:10px;margin-top:12px;font-weight:bold;font-size:16px;text-align:center}
+.back{display:block;text-align:center;background:#000;color:gold;padding:14px;margin:12px;border-radius:10px;text-decoration:none;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="header"><a href="index.html">⬅️ HOME</a><h2 style="margin:5px 0">👷 MAJDUR HISAB</h2></div>
+<div class="card">
+<label>Majdur Ka Naam</label>
+<input id="mname" placeholder="Ex: Ramu">
+<label>Kaam</label>
+<select id="mtype">
+<option value="800">Mistry - ₹800 / Day</option>
+<option value="500">Majdur - ₹500 / Day</option>
+<option value="400">Helper - ₹400 / Day</option>
+</select>
+<label>Kitne Din Kaam Kiya?</label>
+<input type="number" id="mdays" placeholder="Ex: 5" inputmode="numeric">
+<label>Advance / Udhar Diya?</label>
+<input type="number" id="madv" placeholder="Ex: 1000" value="0" inputmode="numeric">
+<button onclick="addMajdur()">ADD KARO ➕</button>
+<div class="list" id="mlist"></div>
+<div class="total" id="mtotal">Total Dena Hai: ₹0</div>
+<button onclick="clearAll()" style="background:#ff4444">Sab Clear Karo 🗑️</button>
+</div>
+<a class="back" href="index.html">⬅️ WAPAS HOME</a>
+<script>
+let arr=JSON.parse(localStorage.getItem('majdur_v16')||'[]');
+function render(){
+let h='';let tot=0;
+arr.forEach((x,i)=>{
+let total=x.rate*x.days-x.adv;tot+=total;
+h+=`<div class="item"><span><b>${x.name}</b><br>${x.days} din x ₹${x.rate} - Adv ₹${x.adv}</span><b>₹${total}</b></div>`;
+});
+document.getElementById('mlist').innerHTML=h||'Abhi koi entry nahi';
+document.getElementById('mtotal').innerText=`Total Dena Hai: ₹${tot.toLocaleString('en-IN')}`;
+}
+function addMajdur(){
+let n=document.getElementById('mname').value||'Majdur';
+let r=+document.getElementById('mtype').value;
+let d=+document.getElementById('mdays').value||0;
+let a=+document.getElementById('madv').value||0;
+arr.push({name:n,rate:r,days:d,adv:a});
+localStorage.setItem('majdur_v16',JSON.stringify(arr));
+document.getElementById('mname').value='';document.getElementById('mdays').value='';
+render();
+}
+function clearAll(){if(confirm('Sab delete kare?')){arr=[];localStorage.removeItem('majdur_v16');render();}}
+render();
+if(localStorage.getItem('yasin_auth')!=='yes'){window.location.href='index.html';}
+</script>
+</body>
+</html>
