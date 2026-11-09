@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom Bill - V16</title>
+<style>
+body{font-family:Arial;margin:0;background:#f0f0f0;padding-bottom:20px}
+.header{background:#000;color:gold;text-align:center;padding:12px}
+.header a{color:gold;text-decoration:none;font-size:13px}
+.card{background:#fff;margin:12px;padding:14px;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+label{font-size:13px;font-weight:bold;display:block;margin-top:8px}
+input{width:100%;padding:11px;margin-top:4px;border:1px solid #ccc;border-radius:8px;box-sizing:border-box;font-size:15px}
+.item{display:flex;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid #eee;font-size:14px}
+.item input[type=checkbox]{width:22px;height:22px;flex-shrink:0}
+.item b{flex:1}
+.item span{color:#666;font-size:12px}
+.item input[type=number]{width:70px;padding:8px}
+.total{background:#fff8c5;padding:14px;border-radius:10px;margin-top:12px;font-weight:bold;font-size:16px;line-height:1.8}
+button{width:100%;padding:14px;margin-top:10px;background:#111;color:gold;border:none;border-radius:10px;font-weight:bold;font-size:16px}
+.back{display:block;text-align:center;background:#000;color:gold;padding:14px;margin:12px;border-radius:10px;text-decoration:none;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="header"><a href="index.html">⬅️ HOME</a><h2 style="margin:5px 0">🏗️ CUSTOM BILL - 21 ITEM</h2></div>
+<div class="card">
+<label>Party Ka Naam</label><input id="pname" placeholder="Ex: Ramesh">
+<label>Total Sq Ft</label><input type="number" id="sqft" placeholder="Ex: 1000" value="1000" inputmode="numeric">
+<div id="list"></div>
+<div class="total" id="out">Total: ₹0</div>
+<button onclick="calc()">TOTAL NIKALO 🧮</button>
+<button onclick="share()" style="background:#25D366;color:#fff">WhatsApp Pe Bhejo 📲</button>
+</div>
+<a class="back" href="index.html">⬅️ WAPAS HOME</a>
+<script>
+const items=[
+["RCC Slab",150],["With Material",300],["Full Finish",500],["Plaster",25],["Flooring",35],["Painting",15],["Putty",10],["POP",40],["Tiles",30],["Marble",60],["Granite",80],["Wood Work",120],["Steel Work",90],["Plumbing",45],["Electrical",35],["Waterproofing",20],["Gate / Grill",70],["Compound Wall",110],["Septik Tank",15000],["Borewell",25000],["Labour Charge",5000]
+];
+let h='';
+items.forEach((it,i)=>{
+h+=`<div class="item"><input type="checkbox" id="c${i}" ${i<3?'':''}><b>${it[0]}</b><span>₹${it[1]}</span><input type="number" id="r${i}" value="${it[1]}"></div>`;
+});
+document.getElementById('list').innerHTML=h;
+function calc(){
+let s=+document.getElementById('sqft').value||0;let tot=0;let det='';
+items.forEach((it,i)=>{
+if(document.getElementById('c'+i).checked){
+let r=+document.getElementById('r'+i).value||0;
+let amt=r<1000?r*s:r;tot+=amt;
+det+=`${it[0]}: ₹${amt.toLocaleString('en-IN')}<br>`;
+}
+});
+document.getElementById('out').innerHTML=det+`<b>GRAND TOTAL: ₹${tot.toLocaleString('en-IN')}</b>`;
+return tot;
+}
+function share(){
+let n=document.getElementById('pname').value||'Party';
+let t=calc();
+let msg=`*YASIN INFRA - CUSTOM BILL*%0A*${n}*%0A${document.getElementById('out').innerText.replace(/\n/g,'%0A')}%0A📞 9067580027`;
+window.open(`https://wa.me/?text=${msg}`,'_blank');
+}
+if(localStorage.getItem('yasin_auth')!=='yes'){window.location.href='index.html';}
+</script>
+</body>
+</html>
