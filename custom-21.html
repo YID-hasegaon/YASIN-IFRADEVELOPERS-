@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>21 Item - Yasin Wala - V15 Se</title>
+<style>
+body{font-family:Arial;margin:0;background:#f0f0f0;padding-bottom:20px}
+.header{background:#000;color:gold;text-align:center;padding:12px}
+.header a{color:gold;text-decoration:none;font-size:13px}
+.card{background:#fff;margin:12px;padding:14px;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+label{font-size:13px;font-weight:bold;display:block;margin-top:8px}
+input{width:100%;padding:11px;margin-top:4px;border:1px solid #ccc;border-radius:8px;box-sizing:border-box;font-size:15px}
+.itemRow{display:flex;align-items:center;gap:8px;background:#fffbe6;padding:8px;border-radius:8px;margin:6px 0;border:1px solid #e0c56a}
+.itemRow.checked{border:2px solid #2e7d32;background:#e8f5e9}
+.itemRow input[type=checkbox]{width:22px;height:22px}
+.itemRow .qty{width:90px;padding:8px}
+.groupHead{background:gold;color:#000;padding:6px 10px;border-radius:20px;font-weight:bold;font-size:12px;margin:12px 0 6px 0;display:inline-block}
+.newItem{border:2px solid #ff6600!important;background:#fff3e0!important}
+.total{background:#fff8c5;padding:14px;border-radius:10px;margin-top:12px;font-weight:bold;font-size:16px;line-height:1.8}
+button{width:100%;padding:14px;margin-top:10px;background:#111;color:gold;border:none;border-radius:10px;font-weight:bold;font-size:16px}
+.back{display:block;text-align:center;background:#000;color:gold;padding:14px;margin:12px;border-radius:10px;text-decoration:none;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="header"><a href="index.html">⬅️ HOME</a><h2 style="margin:5px 0">🏗️ 21 ITEM - V15 SE LIYA</h2></div>
+<div class="card">
+<label>Party Ka Naam</label><input id="pname" placeholder="Ex: Ramesh - Hasegaon">
+<div style="display:flex;gap:6px;margin-top:10px">
+<button style="width:auto;padding:8px 12px;font-size:13px;background:gold;color:#000" onclick="checkAll(true)">सब टिक ✅</button>
+<button style="width:auto;padding:8px 12px;font-size:13px;background:#000;color:gold" onclick="checkAll(false)">सब हटाओ ❌</button>
+<button style="width:auto;padding:8px 12px;font-size:13px;background:#25D366;color:#fff" onclick="demoQty()">Demo Qty भरो</button>
+</div>
+<div id="customItems" style="margin-top:10px"></div>
+<label>Extra</label><input id="cExtra" type="number" value="0" oninput="calcCustom()">
+<div class="total"><div id="cBreak" style="font-size:13px;font-weight:normal"></div><hr>Total: <span id="cTotal">₹0</span><br><span style="font-size:22px">FINAL: <span id="cFinal">₹0</span></span></div>
+<button onclick="
