@@ -1,194 +1,124 @@
 <!DOCTYPE html>
-<html lang="hi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>YASIN INFRA - V24 FINAL</title>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YASIN INFRA - V25 FINAL</title>
 <style>
-*{box-sizing:border-box}body{font-family:Arial;margin:0;background:#eef2f7;padding-bottom:25px}
-.header{background:#000;color:gold;text-align:center;padding:14px;position:sticky;top:0;z-index:99}
-.header small{color:#fff}
-.topBtns{display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap}
-.topBtns button{padding:8px 16px;border:none;border-radius:20px;font-weight:bold;cursor:pointer;font-size:13px}
-.menu{display:flex;flex-wrap:wrap;gap:6px;padding:10px;background:#fff;position:sticky;top:58px;z-index:98}
-.menu button{flex:1 1 30%;padding:10px;border:none;border-radius:10px;background:#e8eaf6;font-weight:bold;font-size:12px;cursor:pointer}
-.menu button.active{background:#000;color:gold}
-.card{background:#fff;margin:12px;padding:15px;border-radius:14px;box-shadow:0 3px 10px rgba(0,0,0,.1)}
-label{font-size:13px;font-weight:bold;display:block;margin-top:10px}
-input,select{width:100%;padding:11px;margin-top:4px;border:1.5px solid #ddd;border-radius:10px}
-button.add{width:100%;padding:13px;margin-top:12px;background:#3f51b5;color:#fff;border:none;border-radius:10px;font-weight:bold;cursor:pointer}
-.item{background:#f1f4fa;padding:10px;border-radius:9px;margin-top:7px;font-size:14px;line-height:1.5}
-.b{padding:5px 9px;border:none;border-radius:6px;margin-left:5px;font-size:12px;cursor:pointer}
-.edit{background:#ffca28}.del{background:#ff5252;color:#fff}
-.dash{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.dbox{background:linear-gradient(135deg,#3f51b5,#000);color:#fff;padding:14px;border-radius:12px;text-align:center}
-.dbox b{font-size:20px;display:block}
-.totalBox{background:#fff9c4;padding:12px;border-radius:10px;margin-top:10px;font-weight:bold;border:1px solid #ffca28}
-.section{display:none}.section.active{display:block}
-small{color:#666}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#eef2f7;color:#172033;padding-bottom:30px}
+header{background:linear-gradient(120deg,#080d18,#202d45);color:#fff;padding:12px 14px;position:sticky;top:0;z-index:30}
+.headrow{max-width:1250px;margin:auto;display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}
+header h1{font-size:20px;margin:0;color:#f5c542}header small{color:#dbe3ef}
+.topbtns{display:flex;gap:6px;flex-wrap:wrap}
+button{border:0;border-radius:9px;padding:10px 13px;font-weight:700;cursor:pointer;background:#e2e8f0}
+button.primary{background:#2447a8;color:#fff}button.dark{background:#111827;color:#fff}button.good{background:#15803d;color:#fff}button.danger{background:#fee2e2;color:#991b1b}button.gold{background:#f5c542}button.orange{background:#ff6d00;color:#fff}button.green2{background:#0ea5e9;color:#fff}
+.wrap{max-width:1250px;margin:auto;padding:12px}
+.nav{display:flex;gap:7px;overflow:auto;padding:9px;background:#fff;border-radius:12px;position:sticky;top:78px;z-index:20}
+.nav button{white-space:nowrap;font-size:13px;padding:11px 14px;background:#f1f5f9}.nav button.active{background:#111827;color:#f5c542}
+.view{display:none}.view.active{display:block}.panel{background:#fff;border-radius:14px;padding:15px;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.field label{display:block;font-size:12px;font-weight:700;margin:8px 0 4px}
+input,select{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:9px;font:inherit}
+.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.actions button{flex:1}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}.stat{background:#f8fafc;border:1px solid #e2e8f0;padding:12px;border-radius:11px}.stat small{color:#64748b;font-weight:700}.stat b{font-size:19px;display:block;margin-top:5px}
+.list{display:grid;gap:8px;margin-top:12px}.entry{border:1px solid #e2e8f0;background:#f8fafc;border-radius:10px;padding:11px;display:flex;justify-content:space-between;gap:10px}.entry small{color:#64748b;display:block;margin-top:4px}.mini{display:flex;gap:5px}.mini button{font-size:11px;padding:6px 8px}
+.total{background:#fff7d6;border:1px solid #f3d36a;padding:11px;border-radius:10px;margin-top:10px;font-weight:700}
+.muted{color:#64748b;font-size:12px}.empty{padding:16px;text-align:center;color:#64748b;background:#f8fafc;border-radius:9px}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:9px;border-bottom:1px solid #e2e8f0}th{background:#f8fafc}.tablewrap{overflow:auto}
+.hidden{display:none!important}
 #lockScreen{position:fixed;inset:0;background:#000;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
-.lockBox{background:#fff;width:100%;max-width:340px;padding:25px;border-radius:18px;text-align:center}
-.lockBox input{text-align:center;font-size:22px;letter-spacing:5px;font-weight:bold}
-@media print{.menu,.header,button.add,.b{display:none!important}.card{box-shadow:none;border:1px solid #000}}
-.header{position:relative!important;top:auto!important}
-.menu,.tabBar{position:relative!important;top:auto!important}
-</style></head>
+.lockBox{background:#fff;width:100%;max-width:360px;padding:25px;border-radius:18px;text-align:center}.lockBox input{text-align:center;font-size:22px;letter-spacing:5px;font-weight:bold}
+footer{text-align:center;color:#64748b;font-size:12px;padding:20px}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.nav{top:118px}}
+@media print{header,.nav,.no-print,footer,#lockScreen{display:none!important}.view{display:none!important}.view.active{display:block!important}}
+</style>
+</head>
 <body>
-<div id="lockScreen"><div class="lockBox">
-<h1>🏗️ YASIN INFRA</h1><p>V24 FINAL - Locked 🔒</p>
-<label style="text-align:left">Password Daalo</label>
-<input id="passInput" type="password" inputmode="numeric" placeholder="••••" onkeydown="if(event.key==='Enter')checkPass()">
-<button class="add" onclick="checkPass()">🔓 UNLOCK KARO</button>
-<p id="passMsg" style="color:red;font-size:13px"></p>
-<small>Password: <b>0027</b></small><br><br>
-<button onclick="goWebsite()" style="padding:10px 18px;border:none;border-radius:20px;background:#25D366;color:#fff;font-weight:bold">🌐 WEBSITE PE WAPAS JAO</button>
-</div></div>
-<div class="header"><h2 style="margin:0">🏗️ YASIN INFRA - V24 FINAL</h2><small>Complete Construction Business Management | Mobile + Computer | Offline + Backup</small>
-<div class="topBtns">
-<button style="background:gold;color:#000" onclick="lockApp()">🔒 LOCK KARO</button>
-<button style="background:#25D366;color:#fff" onclick="goWebsite()">🌐 WEBSITE PE WAPAS</button>
-<button style="background:#fff;color:#000" onclick="goHome()">🏠 HOME</button>
-</div></div>
-<div class="menu" id="menu"></div>
-<div id="s0" class="section active card"><h3>📊 DASHBOARD - Ek Nazar Me Sab</h3>
-<div class="dash">
-<div class="dbox">Aaj Present<b id="dPresent">0</b></div>
-<div class="dbox" style="background:linear-gradient(135deg,#009688,#004d40)">Majdur Total<b id="dMajdur">₹0</b></div>
-<div class="dbox" style="background:linear-gradient(135deg,#ff9800,#e65100)">Party Baki<b id="dParty">₹0</b></div>
-<div class="dbox" style="background:linear-gradient(135deg,#9c27b0,#4a148c)">Total Sale<b id="dSale">₹0</b></div>
+<div id="lockScreen"><div class="lockBox"><h1>🏗️ YASIN INFRA</h1><p>V25 FINAL - Locked 🔒</p><p style="font-size:13px">Complete Construction Business Management<br>Mobile + Computer | Offline + Backup</p><input id="passInput" type="password" inputmode="numeric" placeholder="••••" onkeydown="if(event.key==='Enter')checkPass()"><button class="primary" style="width:100%;margin-top:12px" onclick="checkPass()">🔓 UNLOCK KARO</button><p id="passMsg" style="color:red"></p><small>Password: <b>0027</b></small></div></div>
+
+<header><div class="headrow"><div><h1>🏗️ YASIN INFRA - V25 FINAL</h1><small>Complete Construction Business Management | Mobile + Computer | Offline + Backup</small></div><div class="topbtns"><button class="gold" onclick="lockApp()">🔒 LOCK KARO</button><button class="green2" onclick="goWebsite()">🌐 WEBSITE PE WAPAS</button><button class="dark" onclick="show('dashboard')">🏠 HOME</button></div></div></header>
+
+<div class="wrap">
+<nav class="nav no-print" id="nav"></nav>
+
+<section id="dashboard" class="view active">
+<div class="panel"><h2>📊 DASHBOARD - Ek Nazar Me Sab</h2><div class="stats" id="dashStats"></div><div class="total" id="dashSummary"></div>
+<div class="actions"><button class="gold" onclick="backupData()">💾 BACKUP Download Karo</button><button onclick="document.getElementById('restoreFile').click()">📂 BACKUP Wapas Lao</button><input id="restoreFile" type="file" accept="application/json" class="hidden" onchange="restoreData(event)"><button onclick="window.print()">🖨️ PDF / Print Report</button><button class="good" onclick="exportCSV()">📗 Excel (CSV) Download</button></div>
+<button class="green2" style="width:100%;margin-top:10px" onclick="goWebsite()">🌐 WEBSITE PE WAPAS JAO</button>
+<p class="muted">Har hafte Backup download karke WhatsApp pe khud ko bhej de. Mobile kharab ho jaye to bhi data safe rahega.</p>
+<hr><h3>🔑 Password Badlo</h3><div class="grid"><div class="field"><label>Naya Password</label><input id="newPass" type="password" placeholder="Naya Password"></div></div><div class="actions"><button class="dark" onclick="changePass()">Password Change Karo</button></div>
 </div>
-<div class="totalBox" id="dBank">Bank: ₹0 | Cash: ₹0</div>
-<div class="totalBox" id="dProj">Project Profit: -</div>
-<div class="totalBox" id="dStock">Material Stock: -</div>
-<button class="add" style="background:#25D366" onclick="backupData()">💾 BACKUP Download Karo</button>
-<button class="add" style="background:#000" onclick="document.getElementById('fileIn').click()">📂 BACKUP Wapas Lao</button>
-<input type="file" id="fileIn" hidden onchange="restoreData(this)">
-<button class="add" style="background:#ff6d00" onclick="window.print()">🖨️ PDF / Print Report</button>
-<button class="add" style="background:#00897b" onclick="exportExcel()">📗 Excel (CSV) Download</button>
-<button class="add" style="background:#25D366" onclick="goWebsite()">🌐 WEBSITE PE WAPAS JAO</button>
-<small>Har hafte Backup download karke WhatsApp pe khud ko bhej de. Mobile kharab ho jaye to bhi data safe rahega.</small>
-<hr><h3>🔑 Password Badlo</h3>
-<label>Naya Password</label><input id="newPass" type="password" placeholder="Naya Password">
-<button class="add" style="background:#000" onclick="changePass()">Password Change Karo</button></div>
-<div id="s1" class="section card"><h3>1. 👷 Majdur - Haaziri + Payment</h3>
-<label>Naam</label><input id="mName" placeholder="Ramu">
-<label>Kaam</label><select id="mKaam"><option>Khudai</option><option>Shuttering</option><option>Bandhkam</option><option>Plaster</option><option>Other</option></select>
-<label>Haaziri</label><select id="mAtt" onchange="majdurHalfFix()"><option>Present ✅</option><option>Absent ❌</option><option>Half Day 🌓</option></select>
-<label>Type</label><select id="mType"><option>Payment</option><option>Advance</option><option>Baki</option></select>
-<label>Rupya</label><input id="mAmt" type="number" placeholder="1200">
-<button class="add" onclick="saveMajdur()">ADD KARO ➕</button><div id="mList"></div><div id="mTotal" class="totalBox"></div><div id="mPer" style="margin-top:8px"></div></div>
-<div id="s2" class="section card"><h3>2. 🏢 Office Kharcha</h3>
-<label>Kya Kharcha?</label><input id="oName" placeholder="Chai, Petrol, Stationery">
-<label>Rupya</label><input id="oAmt" type="number">
-<button class="add" onclick="saveExp('office','oName','oAmt')">Add Expense ➕</button><div id="oList"></div><div id="oTotal" class="totalBox"></div></div>
-<div id="s3" class="section card"><h3>3. 👨‍💼 Staff + Salary Payment</h3>
-<label>Staff Naam</label><input id="stName" placeholder="Naam">
-<label>Post</label><input id="stPost" placeholder="Supervisor / Munshi">
-<label>Mobile</label><input id="stMob" placeholder="98XXX">
-<label>Salary / Mahina ₹</label><input id="stSal" type="number" placeholder="15000">
-<button class="add" onclick="saveStaff()">Staff Add ➕</button><div id="stList"></div>
-<hr><label>Salary Dena Hai? Staff Chuno + Rupya</label><select id="salStaff"></select><input id="salAmt" type="number" placeholder="Salary Kitni Di">
-<button class="add" style="background:#009688" onclick="saveSalary()">Salary Payment Add ➕</button><div id="salList"></div></div>
-<div id="s4" class="section card"><h3>4. 👥 Customer / Party Khata</h3>
-<label>Party Naam</label><input id="cName" placeholder="Party Naam">
-<label>Site / Gaon</label><input id="cSite" placeholder="Hasegaon">
-<label>Type</label><select id="cType"><option>Jama</option><option>Kharch</option><option>Advance</option><option>Udhar</option></select>
-<label>Rupya</label><input id="cAmt" type="number">
-<button class="add" onclick="saveCust()">Add Karo ➕</button><div id="cList"></div><div id="cTotal" class="totalBox"></div></div>
-<div id="s5" class="section card"><h3>5. 🏗️ Project - Profit / Loss</h3>
-<label>Project Naam</label><input id="pName" placeholder="Ramu ka Ghar">
-<label>Status</label><select id="pStatus"><option>Chalu Hai 🚧</option><option>Pura Ho Gaya ✅</option></select>
-<label>Total Deal ₹</label><input id="pDeal" type="number">
-<label>Mila Hua ₹</label><input id="pGot" type="number">
-<label>Is Project Me Kharcha ₹</label><input id="pExp" type="number" placeholder="Material + Majdur">
-<button class="add" onclick="saveProj()">Project Add ➕</button><div id="pList"></div></div>
-<div id="s6" class="section card"><h3>6. 🧱 Material Stock</h3>
-<label>Material</label><select id="mtName"><option>Cement</option><option>Reti</option><option>Sariya</option><option>Eet</option><option>Khadi</option><option>Other</option></select>
-<label>Aaya Qty</label><input id="mtIn" type="number" placeholder="50">
-<label>Gaya Qty</label><input id="mtOut" type="number" placeholder="20">
-<button class="add" onclick="saveMat()">Stock Update ➕</button><div id="mtList"></div><div id="mtTotal" class="totalBox"></div></div>
-<div id="s7" class="section card"><h3>7. 🛒 Purchase Register</h3>
-<label>Kya Kharida?</label><input id="puName" placeholder="Cement 20 Bag">
-<label>Dukandar Ka Naam</label><input id="puShop" placeholder="Shop Naam">
-<label>Type</label><select id="puType"><option>Nagad Diya 💵</option><option>Udhar Liya 📝</option></select>
-<label>Rupya</label><input id="puAmt" type="number">
-<button class="add" onclick="savePurchase()">Purchase Add ➕</button><div id="puList"></div><div id="puTotal" class="totalBox"></div></div>
-<div id="s8" class="section card"><h3>8. 💰 Sales Register</h3>
-<label>Kya Becha / Kaam?</label><input id="saName" placeholder="Plaster 500 Sq.Ft">
-<label>Kisko?</label><input id="saTo" placeholder="Party Naam">
-<label>Total Rupya</label><input id="saAmt" type="number">
-<label>Mila Kitna?</label><input id="saGot" type="number" placeholder="Mila hua">
-<button class="add" onclick="saveSale()">Sale Add ➕</button><div id="saList"></div><div id="saTotal" class="totalBox"></div></div>
-<div id="s9" class="section card"><h3>9. 🧾 Professional Bill</h3>
-<label>Customer Naam</label><input id="billName" placeholder="Party Naam">
-<label>Bill No.</label><input id="billNo" value="YI-001">
-<label>Tarikh</label><input id="billDate" type="date">
-<label>Besmit (150) Sq.Ft</label><input id="b1" type="number" value="0" oninput="calcBill()">
-<label>Biltp Work (300) Sq.Ft</label><input id="b2" type="number" value="0" oninput="calcBill()">
-<label>Biltp Pura (500) Sq.Ft</label><input id="b3" type="number" value="0" oninput="calcBill()">
-<label>Extra ₹</label><input id="b4" type="number" value="0" oninput="calcBill()">
-<div id="bFinal" class="totalBox">FINAL: ₹0</div>
-<button class="add" style="background:#25D366" onclick="shareBill()">📤 Pura Bill WhatsApp Pe Bhejo</button>
-<button class="add" style="background:#000" onclick="window.print()">🖨️ Bill PDF / Print</button></div>
-<div id="s10" class="section card"><h3>10. 📁 Document Management</h3>
-<label>Document</label><select id="dName"><option>PAN Card</option><option>Aadhaar</option><option>GST Certificate</option><option>Udyam Certificate</option><option>Agreement</option><option>Bank Passbook</option><option>Other</option></select>
-<label>Kaha Rakha Hai? / Note</label><input id="dNote" placeholder="Office File me / Mobile me photo">
-<label>Photo Chuno (Mobile se)</label><input id="dPhoto" type="file" accept="image/*">
-<button class="add" onclick="saveDoc()">Document Add ➕</button><div id="dList"></div><small>Photo mobile me hi save hogi, Backup me photo nahi jayegi - asli kagaz sambhal ke rakho.</small></div>
-<div id="s11" class="section card"><h3>11. 🏦 Bank & Cash Book</h3>
-<label>Opening Bank ₹</label><input id="openBank" type="number" placeholder="50000" onchange="saveOpen()">
-<label>Opening Cash ₹</label><input id="openCash" type="number" placeholder="10000" onchange="saveOpen()">
-<label>Type</label><select id="bkType"><option>Bank Me Jama 🏦</option><option>Bank Se Nikala 🏦</option><option>Cash Me Aaya 💵</option><option>Cash Me Gaya 💵</option></select>
-<label>Detail</label><input id="bkName" placeholder="Party se mila / Cement liya">
-<label>Rupya</label><input id="bkAmt" type="number">
-<button class="add" onclick="saveBank()">Add Karo ➕</button><div id="bkList"></div><div id="bkTotal" class="totalBox"></div></div>
-<div class="card" style="text-align:center"><b>© YASIN INFRA - V24 FINAL | Mob: 9067580027</b><br><small>Sab nazar me rahega, kuch dimag me rakhne ki zarurat nahi!</small><br><button onclick="goWebsite()" style="margin-top:10px;padding:10px 20px;border:none;border-radius:20px;background:#25D366;color:#fff;font-weight:bold">🌐 WEBSITE PE WAPAS JAO</button></div>
+<div class="panel"><h3>Hal ki Entry - Tareekh ke saath</h3><div id="recent" class="list"></div></div>
+</section>
+
+<section id="labour" class="view"><div class="panel"><h2>1. 👷 Majdur</h2><div class="grid"><div class="field"><label>Naam *</label><input id="lName"></div><div class="field"><label>Kaam / Site</label><input id="lWork"></div><div class="field"><label>Tareekh *</label><input id="lDate" type="date"></div><div class="field"><label>Hajiri</label><select id="lAttend"><option>Present</option><option>Half Day</option><option>Absent</option></select></div><div class="field"><label>Rate ₹</label><input id="lRate" type="number"></div><div class="field"><label>Type</label><select id="lType"><option>Payment</option><option>Advance</option><option>Baki</option></select></div><div class="field"><label>Rakam ₹</label><input id="lAmount" type="number"></div></div><div class="actions"><button class="primary" onclick="saveEntry('labour')">Save / Update</button><button onclick="clearForm('labour')">Naya Form</button></div><div id="labourSummary" class="total"></div><div id="labourList" class="list"></div></div></section>
+
+<section id="expenses" class="view"><div class="panel"><h2>2. 🏢 Office</h2><div class="grid"><div class="field"><label>Kharcha *</label><input id="eName"></div><div class="field"><label>Rakam ₹</label><input id="eAmount" type="number"></div><div class="field"><label>Tareekh *</label><input id="eDate" type="date"></div><div class="field"><label>Note</label><input id="eNote"></div></div><div class="actions"><button class="primary" onclick="saveEntry('expenses')">Save / Update</button><button onclick="clearForm('expenses')">Naya Form</button></div><div id="expensesList" class="list"></div><div id="expensesTotal" class="total"></div></div></section>
+
+<section id="staff" class="view"><div class="panel"><h2>3. 👨‍💼 Staff</h2><div class="grid"><div class="field"><label>Naam *</label><input id="sName"></div><div class="field"><label>Pad</label><input id="sPost"></div><div class="field"><label>Mobile</label><input id="sMobile"></div><div class="field"><label>Salary ₹</label><input id="sSalary" type="number"></div><div class="field"><label>Tareekh *</label><input id="sDate" type="date"></div><div class="field"><label>Note</label><input id="sNote"></div></div><div class="actions"><button class="primary" onclick="saveEntry('staff')">Save / Update</button><button onclick="clearForm('staff')">Naya Form</button></div><div id="staffList" class="list"></div></div></section>
+
+<section id="parties" class="view"><div class="panel"><h2>4. 👥 Party</h2><div class="grid"><div class="field"><label>Party *</label><input id="pName"></div><div class="field"><label>Site</label><input id="pSite"></div><div class="field"><label>Type</label><select id="pType"><option>Jama (मिला)</option><option>Kharch (दिया)</option><option>Advance</option></select></div><div class="field"><label>Rakam ₹</label><input id="pAmount" type="number"></div><div class="field"><label>Tareekh *</label><input id="pDate" type="date"></div><div class="field"><label>Note</label><input id="pNote"></div></div><div class="actions"><button class="primary" onclick="saveEntry('parties')">Save / Update</button><button onclick="clearForm('parties')">Naya Form</button></div><div id="partiesSummary" class="total"></div><div id="partiesList" class="list"></div></div></section>
+
+<section id="projects" class="view"><div class="panel"><h2>5. 🏗️ Project</h2><div class="grid"><div class="field"><label>Project *</label><input id="prName"></div><div class="field"><label>Party</label><input id="prParty"></div><div class="field"><label>Site</label><input id="prSite"></div><div class="field"><label>Status</label><select id="prStatus"><option>चालू</option><option>अधूरा</option><option>पूरा</option><option>रुका हुआ</option></select></div><div class="field"><label>Deal ₹</label><input id="prDeal" type="number"></div><div class="field"><label>Mila ₹</label><input id="prReceived" type="number"></div><div class="field"><label>Kharcha ₹</label><input id="prCost" type="number"></div><div class="field"><label>Tareekh *</label><input id="prDate" type="date"></div></div><div class="actions"><button class="primary" onclick="saveEntry('projects')">Save / Update</button><button onclick="clearForm('projects')">Naya Form</button></div><div id="projectsList" class="list"></div></div></section>
+
+<section id="materials" class="view"><div class="panel"><h2>6. 🧱 Material</h2><div class="grid"><div class="field"><label>Material *</label><input id="mName"></div><div class="field"><label>Site</label><input id="mSite"></div><div class="field"><label>Tareekh *</label><input id="mDate" type="date"></div><div class="field"><label>Unit</label><select id="mUnit"><option>Bag</option><option>Ton</option><option>Brass</option><option>Piece</option><option>Kg</option><option>Sq.Ft</option></select></div><div class="field"><label>Aaya Qty</label><input id="mIn" type="number"></div><div class="field"><label>Gaya Qty</label><input id="mOut" type="number"></div></div><div class="actions"><button class="primary" onclick="saveEntry('materials')">Save / Update</button><button onclick="clearForm('materials')">Naya Form</button></div><div id="materialsSummary" class="total"></div><div id="materialsList" class="list"></div></div></section>
+
+<section id="purchases" class="view"><div class="panel"><h2>7. 🛒 Purchase</h2><div class="grid"><div class="field"><label>Saman *</label><input id="puItem"></div><div class="field"><label>Dukandar</label><input id="puShop"></div><div class="field"><label>Site</label><input id="puSite"></div><div class="field"><label>Kul ₹</label><input id="puAmount" type="number"></div><div class="field"><label>Status</label><select id="puStatus"><option>Paid</option><option>Credit / उधार</option><option>Partial</option></select></div><div class="field"><label>Tareekh *</label><input id="puDate" type="date"></div><div class="field"><label>Diya ₹</label><input id="puPaid" type="number"></div></div><div class="actions"><button class="primary" onclick="saveEntry('purchases')">Save / Update</button><button onclick="clearForm('purchases')">Naya Form</button></div><div id="purchasesList" class="list"></div><div id="purchasesTotal" class="total"></div></div></section>
+
+<section id="sales" class="view"><div class="panel"><h2>8. 💰 Sales</h2><div class="grid"><div class="field"><label>Kaam *</label><input id="saItem"></div><div class="field"><label>Party</label><input id="saParty"></div><div class="field"><label>Project</label><input id="saProject"></div><div class="field"><label>Kul ₹</label><input id="saAmount" type="number"></div><div class="field"><label>Mila ₹</label><input id="saReceived" type="number"></div><div class="field"><label>Tareekh *</label><input id="saDate" type="date"></div></div><div class="actions"><button class="primary" onclick="saveEntry('sales')">Save / Update</button><button onclick="clearForm('sales')">Naya Form</button></div><div id="salesList" class="list"></div><div id="salesTotal" class="total"></div></div></section>
+
+<section id="invoices" class="view"><div class="panel"><h2>9. 🧾 Bill - 21 ITEM</h2><div class="grid"><div class="field"><label>Bill No.</label><input id="iNumber" value="YI-001"></div><div class="field"><label>Customer</label><input id="iCustomer"></div><div class="field"><label>Site</label><input id="iSite"></div><div class="field"><label>Tareekh *</label><input id="iDate" type="date"></div></div><p class="muted">Qty + Rate dono badal sakte ho.</p><div class="tablewrap"><table><thead><tr><th>#</th><th>Kaam</th><th>Qty</th><th>Rate ₹</th><th>Amount ₹</th></tr></thead><tbody id="billRows"></tbody></table></div><div class="total" id="invoiceTotal">Kul Bill: ₹0</div><div class="actions"><button class="good" onclick="printInvoice()">🖨 Bill Print / PDF</button><button class="primary" onclick="shareInvoice()">WhatsApp Par Bhejo</button><button onclick="clearBill()">Bill Clear Karo</button></div></div></section>
+
+<section id="documents" class="view"><div class="panel"><h2>10. 📁 Document</h2><div class="grid"><div class="field"><label>Type</label><select id="dType"><option>PAN Card</option><option>Aadhaar</option><option>GST Certificate</option><option>Udyam Certificate</option><option>Agreement</option><option>Bank Passbook</option><option>Other</option></select></div><div class="field"><label>Kiska</label><input id="dOwner"></div><div class="field"><label>Kahan Rakha</label><input id="dLocation"></div><div class="field"><label>Note</label><input id="dNote"></div></div><div class="actions"><button class="primary" onclick="saveEntry('documents')">Save / Update</button><button onclick="clearForm('documents')">Naya Form</button></div><div id="documentsList" class="list"></div></div></section>
+
+<section id="cashbook" class="view"><div class="panel"><h2>11. 🏦 Bank</h2><div class="grid"><div class="field"><label>Khata</label><select id="bAccount"><option>Cash</option><option>Bank</option></select></div><div class="field"><label>Entry</label><select id="bType"><option>आया (Income)</option><option>गया (Expense)</option></select></div><div class="field"><label>Vivaran *</label><input id="bDesc"></div><div class="field"><label>Rakam ₹ *</label><input id="bAmount" type="number"></div><div class="field"><label>Tareekh *</label><input id="bDate" type="date"></div><div class="field"><label>Note</label><input id="bNote"></div></div><div class="actions"><button class="primary" onclick="saveEntry('cashbook')">Save / Update</button><button onclick="clearForm('cashbook')">Naya Form</button></div><div id="cashbookSummary" class="total"></div><div id="cashbookList" class="list"></div></div></section>
+
+<section id="reports" class="view"><div class="panel"><h2>📑 Reports</h2><div class="grid"><div class="field"><label>Module</label><select id="reportType"><option value="all">Sabhi</option><option value="labour">Majdur</option><option value="expenses">Office</option><option value="staff">Staff</option><option value="parties">Party</option><option value="projects">Project</option><option value="materials">Material</option><option value="purchases">Purchase</option><option value="sales">Sales</option><option value="cashbook">Bank</option></select></div><div class="field"><label>Se</label><input id="rFrom" type="date"></div><div class="field"><label>Tak</label><input id="rTo" type="date"></div></div><div class="actions"><button class="primary" onclick="makeReport()">Report Dekho</button><button onclick="exportCSV()">CSV / Excel</button></div><div id="reportResult" class="list"></div></div></section>
+<footer>© YASIN INFRA - V25 FINAL | Mob: 9067580027<br>Sab nazar me rahega, kuch dimag me rakhne ki zarurat nahi!</footer>
+</div>
 <script>
-let WEBSITE_URL="../index.html";
-function goWebsite(){window.location.href=WEBSITE_URL}
-function goHome(){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById('s0').classList.add('active');window.scrollTo(0,0)}
-function getPass(){return localStorage.getItem('yid24_pass')||'0027'}
-function checkPass(){let v=document.getElementById('passInput').value;if(v===getPass()){document.getElementById('lockScreen').style.display='none';sessionStorage.setItem('yid_unlocked','yes')}else{document.getElementById('passMsg').innerText='❌ Galat Password!';document.getElementById('passInput').value=''}}
+const DBKEY='yasin_infra_v25_final_db';
+const ITEMS=[["Besmit",150],["Biltp Work",300],["Biltp Pura",500],["Khudai",80],["Shuttering",120],["Bandhkam",400],["Plaster",90],["Tiles / Flooring",110],["Painting / Putty",60],["Plumbing",70],["Electrical",80],["Waterproofing",45],["Cement Work",350],["Reti / Khadi",0],["Sariya Work",0],["Eet / Brick Work",0],["Labour Charge",0],["Transport",0],["Machine / Mixer",0],["Extra Material",0],["Other / Extra Kaam",0]];
+const modules={labour:{title:'Majdur'},expenses:{title:'Office'},staff:{title:'Staff'},parties:{title:'Party'},projects:{title:'Project'},materials:{title:'Material'},purchases:{title:'Purchase'},sales:{title:'Sales'},documents:{title:'Document'},cashbook:{title:'Bank'}};
+let db=loadDB(),editing=null,activeReport=[];
+function loadDB(){try{return JSON.parse(localStorage.getItem(DBKEY))||{}}catch(e){return {}}}
+function persist(){try{localStorage.setItem(DBKEY,JSON.stringify(db));return true}catch(e){alert('Storage bhar gaya');return false}}
+function arr(k){return Array.isArray(db[k])?db[k]:[]}
+function money(n){return '₹'+(Number(n)||0).toLocaleString('en-IN')}
+function today(){let d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function fmtDate(d){if(!d)return 'Tareekh nahi';let p=d.split('-');if(p.length===3)return p[2]+'/'+p[1]+'/'+p[0];return d}
+function safe(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function val(id){return document.getElementById(id).value.trim()}
+function num(id){return Math.max(0,Number(val(id))||0)}
+function setDefaults(){document.querySelectorAll('input[type=date]').forEach(x=>{if(!x.value)x.value=today()})}
+function getPass(){return localStorage.getItem('yid25_pass')||'0027'}
+function checkPass(){if(document.getElementById('passInput').value===getPass()){document.getElementById('lockScreen').style.display='none';sessionStorage.setItem('yid_unlocked','yes')}else{document.getElementById('passMsg').innerText='❌ Galat Password!';document.getElementById('passInput').value=''}}
 function lockApp(){document.getElementById('lockScreen').style.display='flex';document.getElementById('passInput').value='';sessionStorage.removeItem('yid_unlocked')}
-function changePass(){let np=document.getElementById('newPass').value.trim();if(np.length<4)return alert('Password kam se kam 4 ank ka rakho');localStorage.setItem('yid24_pass',np);alert('Password badal gaya! Naya: '+np);document.getElementById('newPass').value=''}
+function goWebsite(){window.location.href='https://yasin-infra.github.io/v16/';}
+function changePass(){let np=document.getElementById('newPass').value.trim();if(np.length<4)return alert('Password kam se kam 4 ank ka rakho');localStorage.setItem('yid25_pass',np);alert('Password badal gaya! Naya: '+np);document.getElementById('newPass').value=''}
 if(sessionStorage.getItem('yid_unlocked')==='yes'){document.getElementById('lockScreen').style.display='none'}
-let menus=["📊 Dashboard","1. Majdur","2. Office","3. Staff","4. Party","5. Project","6. Material","7. Purchase","8. Sales","9. Bill","10. Document","11. Bank"];
-let ids=["s0","s1","s2","s3","s4","s5","s6","s7","s8","s9","s10","s11"];
-let mh=document.getElementById('menu');
-menus.forEach((t,i)=>{let b=document.createElement('button');b.innerText=t;b.onclick=()=>{document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById(ids[i]).classList.add('active');document.querySelectorAll('.menu button').forEach(x=>x.classList.remove('active'));b.classList.add('active')};if(i==0)b.classList.add('active');mh.appendChild(b)});
-function get(k){try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return[]}}function set(k,v){localStorage.setItem(k,JSON.stringify(v))}
-function esc(s){return String(s||'').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-function now(){return new Date().toLocaleString('en-IN',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})}
-function del(k,i){if(confirm('Pakka delete karna hai?')){let a=get(k);a.splice(i,1);set(k,a);renderAll();}}
-function editAmt(k,i,label){let a=get(k);let v=prompt(label+' - Naya Rupya',a[i].amt);if(v!==null){a[i].amt=+v||0;set(k,a);renderAll();}}
-if(!localStorage.getItem('v24_final_mig')){['majdur','cust','proj','mat','bank'].forEach(k=>{let old=get('v23_'+k);if(old.length&&!get('v24_'+k).length)set('v24_'+k,old)});localStorage.setItem('v24_final_mig','yes')}
-function majdurHalfFix(){let att=document.getElementById('mAtt').value;let amt=document.getElementById('mAmt');if(att.includes('Absent')){amt.value=0;amt.disabled=true}else{amt.disabled=false}}
-function saveMajdur(){let n=document.getElementById('mName').value.trim(),att=document.getElementById('mAtt').value,a=+document.getElementById('mAmt').value||0;if(!n)return alert('Naam likh');if(att.includes('Absent'))a=0;if(att.includes('Half'))a=Math.floor(a/2);let arr=get('v24_majdur');arr.push({n,kaam:document.getElementById('mKaam').value,att,type:document.getElementById('mType').value,amt:a,date:now()});set('v24_majdur',arr);renderAll();document.getElementById('mName').value='';document.getElementById('mAmt').value='';document.getElementById('mAmt').disabled=false}
-function saveExp(k,nid,aid){let n=document.getElementById(nid).value.trim(),a=+document.getElementById(aid).value||0;if(!n||!a)return alert('Naam + Rupya');let arr=get('v24_'+k);arr.push({n,amt:a,date:now()});set('v24_'+k,arr);renderAll();document.getElementById(nid).value='';document.getElementById(aid).value='';}
-function saveStaff(){let n=document.getElementById('stName').value.trim();if(!n)return alert('Naam likh');let arr=get('v24_staff');arr.push({n,post:document.getElementById('stPost').value,mob:document.getElementById('stMob').value,sal:+document.getElementById('stSal').value||0,date:now()});set('v24_staff',arr);renderAll();}
-function saveSalary(){let sel=document.getElementById('salStaff').value;if(!sel)return alert('Pehle Staff add karo');let a=+document.getElementById('salAmt').value||0;if(!a)return alert('Rupya likh');let arr=get('v24_salary');arr.push({n:sel,amt:a,date:now()});set('v24_salary',arr);renderAll();}
-function saveCust(){let n=document.getElementById('cName').value.trim(),a=+document.getElementById('cAmt').value||0;if(!n||!a)return alert('Naam + Rupya');let arr=get('v24_cust');arr.push({n,site:document.getElementById('cSite').value,type:document.getElementById('cType').value,amt:a,date:now()});set('v24_cust',arr);renderAll();}
-function saveProj(){let n=document.getElementById('pName').value.trim();if(!n)return alert('Project naam');let arr=get('v24_proj');arr.push({n,st:document.getElementById('pStatus').value,deal:+document.getElementById('pDeal').value||0,got:+document.getElementById('pGot').value||0,exp:+document.getElementById('pExp').value||0,date:now()});set('v24_proj',arr);renderAll();}
-function saveMat(){let arr=get('v24_mat'),stock={};arr.forEach(x=>stock[x.n]=(stock[x.n]||0)+x.in-x.out);let nm=document.getElementById('mtName').value,inn=+document.getElementById('mtIn').value||0,out=+document.getElementById('mtOut').value||0;if(out>(stock[nm]||0)+inn){alert('Stock me itna hai hi nahi! Bacha: '+(stock[nm]||0));return;}arr.push({n:nm,in:inn,out,date:now()});set('v24_mat',arr);renderAll();}
-function savePurchase(){let n=document.getElementById('puName').value.trim(),a=+document.getElementById('puAmt').value||0;if(!n||!a)return alert('Detail likh');let arr=get('v24_purchase');arr.push({n,shop:document.getElementById('puShop').value,type:document.getElementById('puType').value,amt:a,date:now()});set('v24_purchase',arr);renderAll();}
-function saveSale(){let n=document.getElementById('saName').value.trim(),a=+document.getElementById('saAmt').value||0;if(!n||!a)return alert('Detail likh');let arr=get('v24_sale');arr.push({n,to:document.getElementById('saTo').value,amt:a,got:+document.getElementById('saGot').value||0,date:now()});set('v24_sale',arr);renderAll();}
-function saveDoc(){let f=document.getElementById('dPhoto').files[0];let obj={n:document.getElementById('dName').value,note:document.getElementById('dNote').value,photo:'',date:now()};if(f){let r=new FileReader();r.onload=e=>{obj.photo=e.target.result;let arr=get('v24_doc');arr.push(obj);set('v24_doc',arr);renderAll();};r.readAsDataURL(f);}else{let arr=get('v24_doc');arr.push(obj);set('v24_doc',arr);renderAll();}}
-function saveOpen(){localStorage.setItem('v24_openBank',document.getElementById('openBank').value||0);localStorage.setItem('v24_openCash',document.getElementById('openCash').value||0);renderAll();}
-function saveBank(){let a=+document.getElementById('bkAmt').value||0;if(!a)return alert('Rupya likh');let arr=get('v24_bank');arr.push({t:document.getElementById('bkType').value,n:document.getElementById('bkName').value,amt:a,date:now()});set('v24_bank',arr);renderAll();}
-function calcBill(){let t=(+document.getElementById('b1').value||0)*150+(+document.getElementById('b2').value||0)*300+(+document.getElementById('b3').value||0)*500+(+document.getElementById('b4').value||0);document.getElementById('bFinal').innerHTML='FINAL: ₹'+t.toLocaleString('en-IN');}
-function shareBill(){let name=document.getElementById('billName').value||'Customer',no=document.getElementById('billNo').value,dt=document.getElementById('billDate').value||new Date().toLocaleDateString('en-IN');let msg=`*YASIN INFRA - BILL*\nBill No: ${no}\nDate: ${dt}\nCustomer: ${name}\n----------------\nBesmit: ${document.getElementById('b1').value} x 150\nBiltp Work: ${document.getElementById('b2').value} x 300\nBiltp Pura: ${document.getElementById('b3').value} x 500\nExtra: ₹${document.getElementById('b4').value}\n----------------\n${document.getElementById('bFinal').innerText}\nMob: 9067580027`;window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');}
-function backupData(){let data={};for(let i=0;i<localStorage.length;i++){let k=localStorage.key(i);if(k.startsWith('v24_')||k.startsWith('v23_')||k.startsWith('yid24_'))data[k]=localStorage.getItem(k)}let blob=new Blob([JSON.stringify(data)],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='YASIN-INFRA-BACKUP-'+new Date().toISOString().slice(0,10)+'.json';a.click();alert('Backup download ho gaya! WhatsApp pe khud ko bhej ke rakh le.');}
-function restoreData(inp){let f=inp.files[0];if(!f)return;let r=new FileReader();r.onload=e=>{try{let d=JSON.parse(e.target.result);Object.entries(d).forEach(([k,v])=>localStorage.setItem(k,v));alert('Purana data wapas aa gaya!');location.reload();}catch(err){alert('Backup file galat hai')}};r.readAsText(f);}
-function exportExcel(){let rows=[['Module','Detail','Rupya','Date']];get('v24_majdur').forEach(x=>rows.push(['Majdur',x.n+'-'+x.kaam+'-'+x.att,x.amt,x.date]));get('v24_cust').forEach(x=>rows.push(['Party',x.n+'-'+x.type,x.amt,x.date]));get('v24_sale').forEach(x=>rows.push(['Sale',x.n+'-'+x.to,x.amt,x.date]));let csv=rows.map(r=>r.join(',')).join('\n');let blob=new Blob([csv],{type:'text/csv'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='YASIN-INFRA-REPORT.csv';a.click();}
-function renderAll(){
-let m=get('v24_majdur'),h='',tot=0,pre=0,per={};m.slice().reverse().forEach((x,idx)=>{let ri=m.length-1-idx;tot+=x.amt;if(x.att.includes('Present'))pre++;per[x.n]=(per[x.n]||0)+x.amt;h+=`<div class="item"><b>${esc(x.n)}</b> - ${esc(x.kaam)} - ${esc(x.att)} - ${esc(x.type)}<br><small>${x.date}</small> - <b>₹${x.amt}</b><button class="b edit" onclick="editAmt('v24_majdur',${ri},'Majdur')">Edit</button><button class="b del" onclick="del('v24_majdur',${ri})">Delete</button></div>`});document.getElementById('mList').innerHTML=h||'Koi entry nahi';document.getElementById('mTotal').innerHTML=`Present: ${pre} | Total: ₹${tot}`;document.getElementById('mPer').innerHTML='<b>Har Majdur Total:</b> '+Object.entries(per).map(([k,v])=>`${esc(k)}: ₹${v}`).join(' | ');document.getElementById('dPresent').innerText=pre;document.getElementById('dMajdur').innerText='₹'+tot;
-let o=get('v24_office'),oh='',ot=0;o.slice().reverse().forEach((x,idx)=>{let ri=o.length-1-idx;ot+=x.amt;oh+=`<div class="item">${esc(x.n)} - <b>₹${x.amt}</b> <small>${x.date}</small><button class="b edit" onclick="editAmt('v24_office',${ri},'Office')">Edit</button><button class="b del" onclick="del('v24_office',${ri})">Delete</button></div>`});document.getElementById('oList').innerHTML=oh||'Koi entry nahi';document.getElementById('oTotal').innerHTML='Total Office Kharcha: ₹'+ot;
-let st=get('v24_staff'),sh='',opts='';st.forEach(x=>{opts+=`<option>${esc(x.n)}</option>`;sh+=`<div class="item"><b>${esc(x.n)}</b> - ${esc(x.post)} - ${esc(x.mob)} - Salary ₹${x.sal} <small>${x.date}</small></div>`});document.getElementById('stList').innerHTML=sh||'Koi staff nahi';document.getElementById('salStaff').innerHTML=opts||'<option value="">Pehle Staff Add Karo</option>';let sal=get('v24_salary'),salh='';sal.slice().reverse().forEach((x,idx)=>{let ri=sal.length-1-idx;salh+=`<div class="item">${esc(x.n)} - Salary Di ₹${x.amt} <small>${x.date}</small><button class="b del" onclick="del('v24_salary',${ri})">Delete</button></div>`});document.getElementById('salList').innerHTML=salh||'Koi salary payment nahi';
-let c=get('v24_cust'),ch='',cj=0,ck=0;c.slice().reverse().forEach((x,idx)=>{let ri=c.length-1-idx;if(x.type=='Jama')cj+=x.amt;else ck+=x.amt;ch+=`<div class="item"><b>${esc(x.n)}</b> - ${esc(x.site)} - ${esc(x.type)} - <b>₹${x.amt}</b> <small>${x.date}</small><button class="b edit" onclick="editAmt('v24_cust',${ri},'Party')">Edit</button><button class="b del" onclick="del('v24_cust',${ri})">Delete</button></div>`});document.getElementById('cList').innerHTML=ch||'Koi party nahi';document.getElementById('cTotal').innerHTML=`Jama: ₹${cj} | Kharch/Advance/Udhar: ₹${ck} | Baki: ₹${cj-ck}`;document.getElementById('dParty').innerText='₹'+(cj-ck);
-let p=get('v24_proj'),ph='',profTxt='';p.slice().reverse().forEach((x,idx)=>{let ri=p.length-1-idx;let prof=x.deal-x.exp;profTxt+=`${x.n}: ₹${prof} | `;ph+=`<div class="item"><b>${esc(x.n)}</b> - ${esc(x.st)}<br><small>Deal ₹${x.deal} - Mila ₹${x.got} - Baki ₹${x.deal-x.got} - Kharcha ₹${x.exp} - <b>Profit ₹${prof}</b></small><button class="b del" onclick="del('v24_proj',${ri})">Delete</button></div>`});document.getElementById('pList').innerHTML=ph||'Koi project nahi';document.getElementById('dProj').innerText='Project Profit: '+(profTxt||'-');
-let mat=get('v24_mat'),mh2='',stock={};mat.forEach(x=>stock[x.n]=(stock[x.n]||0)+x.in-x.out);mat.slice().reverse().forEach((x,idx)=>{let ri=mat.length-1-idx;mh2+=`<div class="item">${esc(x.n)} - Aaya ${x.in} - Gaya ${x.out} <small>${x.date}</small><button class="b del" onclick="del('v24_mat',${ri})">Delete</button></div>`});document.getElementById('mtList').innerHTML=mh2||'Koi stock nahi';document.getElementById('mtTotal').innerHTML=Object.entries(stock).map(([k,v])=>`${k}: ${v} bacha`).join(' | ');document.getElementById('dStock').innerText='Material Stock: '+(Object.entries(stock).map(([k,v])=>`${k}: ${v}`).join(' | ')||'-');
-let pu=get('v24_purchase'),puh='',put=0,puU=0;pu.slice().reverse().forEach((x,idx)=>{let ri=pu.length-1-idx;put+=x.amt;if(x.type.includes('Udhar'))puU+=x.amt;puh+=`<div class="item">${esc(x.n)} - ${esc(x.shop)} - ${esc(x.type)} - <b>₹${x.amt}</b> <small>${x.date}</small><button class="b del" onclick="del('v24_purchase',${ri})">Delete</button></div>`});document.getElementById('puList').innerHTML=puh||'Koi purchase nahi';document.getElementById('puTotal').innerHTML=`Total Purchase: ₹${put} | Udhar Baki: ₹${puU}`;
-let sa=get('v24_sale'),sah='',sat=0,sag=0;sa.slice().reverse().forEach((x,idx)=>{let ri=sa.length-1-idx;sat+=x.amt;sag+=x.got; sah+=`<div class="item">${esc(x.n)} - ${esc(x.to)} - Total ₹${x.amt} - Mila ₹${x.got} - Baki ₹${x.amt-x.got} <small>${x.date}</small><button class="b del" onclick="del('v24_sale',${ri})">Delete</button></div>`});document.getElementById('saList').innerHTML=sah||'Koi sale nahi';document.getElementById('saTotal').innerHTML=`Total Sale: ₹${sat} | Mila: ₹${sag} | Baki: ₹${sat-sag}`;document.getElementById('dSale').innerText='₹'+sat;
-let doc=get('v24_doc'),dh='';doc.slice().reverse().forEach((x,idx)=>{let ri=doc.length-1-idx;dh+=`<div class="item"><b>${esc(x.n)}</b> - ${esc(x.note)} <small>${x.date}</small> ${x.photo?`<br><img src="${x.photo}" style="width:100%;max-width:200px;border-radius:8px;margin-top:6px">`:''}<button class="b del" onclick="del('v24_doc',${ri})">Delete</button></div>`});document.getElementById('dList').innerHTML=dh||'Koi document nahi';
-let bk=get('v24_bank'),bkh='',bank=+localStorage.getItem('v24_openBank')||0,cash=+localStorage.getItem('v24_openCash')||0;document.getElementById('openBank').value=bank||'';document.getElementById('openCash').value=cash||'';bk.slice().reverse().forEach((x,idx)=>{let ri=bk.length-1-idx;if(x.t.includes('Bank Me Jama'))bank+=x.amt;if(x.t.includes('Bank Se Nikala'))bank-=x.amt;if(x.t.includes('Cash Me Aaya'))cash+=x.amt;if(x.t.includes('Cash Me Gaya'))cash-=x.amt;bkh+=`<div class="item">${esc(x.t)} - ${esc(x.n)} - <b>₹${x.amt}</b> <small>${x.date}</small><button class="b del" onclick="del('v24_bank',${ri})">Delete</button></div>`});document.getElementById('bkList').innerHTML=bkh||'Koi entry nahi';document.getElementById('bkTotal').innerHTML=`Bank Balance: ₹${bank} | Cash Hath Me: ₹${cash}`;document.getElementById('dBank').innerText=`Bank: ₹${bank} | Cash: ₹${cash}`;
-calcBill();
-}
-document.getElementById('billDate').valueAsDate=new Date();renderAll();
-</script></body></html>
+const navItems=[['dashboard','📊 Dashboard'],['labour','1. Majdur'],['expenses','2. Office'],['staff','3. Staff'],['parties','4. Party'],['projects','5. Project'],['materials','6. Material'],['purchases','7. Purchase'],['sales','8. Sales'],['invoices','9. Bill'],['documents','10. Document'],['cashbook','11. Bank'],['reports','📑 Reports']];
+function buildNav(){let n=document.getElementById('nav');navItems.forEach(([id,label],i)=>{let b=document.createElement('button');b.textContent=label;b.className=i===0?'active':'';b.onclick=()=>show(id,b);n.appendChild(b)})}
+function show(id,btn){document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active');else{let i=navItems.findIndex(x=>x[0]===id);document.querySelectorAll('.nav button')[i]?.classList.add('active')};window.scrollTo(0,0)}
+function clearForm(k){editing=null;let ids={labour:['lName','lWork','lDate','lAttend','lRate','lType','lAmount'],expenses:['eName','eAmount','eDate','eNote'],staff:['sName','sPost','sMobile','sSalary','sDate','sNote'],parties:['pName','pSite','pType','pAmount','pDate','pNote'],projects:['prName','prParty','prSite','prStatus','prDeal','prReceived','prCost','prDate'],materials:['mName','mSite','mDate','mUnit','mIn','mOut'],purchases:['puItem','puShop','puSite','puAmount','puStatus','puDate','puPaid'],sales:['saItem','saParty','saProject','saAmount','saReceived','saDate'],documents:['dType','dOwner','dLocation','dNote'],cashbook:['bAccount','bType','bDesc','bAmount','bDate','bNote']};(ids[k]||[]).forEach(id=>{let e=document.getElementById(id);if(e){if(e.type==='date')e.value=today();else if(e.tagName==='SELECT')e.selectedIndex=0;else e.value=''}})}
+function getForm(k){let m={labour:{name:val('lName'),work:val('lWork'),date:val('lDate'),attend:val('lAttend'),rate:num('lRate'),type:val('lType'),amount:num('lAmount')},expenses:{name:val('eName'),amount:num('eAmount'),date:val('eDate'),note:val('eNote')},staff:{name:val('sName'),post:val('sPost'),mobile:val('sMobile'),salary:num('sSalary'),date:val('sDate'),note:val('sNote')},parties:{name:val('pName'),site:val('pSite'),type:val('pType'),amount:num('pAmount'),date:val('pDate'),note:val('pNote')},projects:{name:val('prName'),party:val('prParty'),site:val('prSite'),status:val('prStatus'),deal:num('prDeal'),received:num('prReceived'),cost:num('prCost'),date:val('prDate')},materials:{name:val('mName'),site:val('mSite'),date:val('mDate'),unit:val('mUnit'),inQty:num('mIn'),outQty:num('mOut')},purchases:{item:val('puItem'),shop:val('puShop'),site:val('puSite'),amount:num('puAmount'),status:val('puStatus'),date:val('puDate'),paid:num('puPaid')},sales:{item:val('saItem'),party:val('saParty'),project:val('saProject'),amount:num('saAmount'),received:num('saReceived'),date:val('saDate')},documents:{type:val('dType'),owner:val('dOwner'),location:val('dLocation'),note:val('dNote')},cashbook:{account:val('bAccount'),type:val('bType'),desc:val('bDesc'),amount:num('bAmount'),date:val('bDate'),note:val('bNote')}};return m[k]}
+function saveEntry(k){let x=getForm(k);let req={labour:'name',expenses:'name',staff:'name',parties:'name',projects:'name',materials:'name',purchases:'item',sales:'item',documents:'type',cashbook:'desc'}[k];if(!x[req])return alert('Jaruri naam bharein');if(!x.date&&k!=='documents')return alert('Tareekh bharein');if(['labour','expenses','parties','purchases','sales','cashbook'].includes(k)&&!(x.amount>0))return alert('Rakam 0 se adhik bharein');db[k]=arr(k);if(editing&&editing.k===k){let i=db[k].findIndex(z=>z.id===editing.id);if(i>=0)db[k][i]={...db[k][i],...x};editing=null}else db[k].push({...x,id:String(Date.now())+Math.random(),created:new Date().toISOString()});if(persist()){clearForm(k);renderAll();alert('Save ho gaya ✅ - '+fmtDate(x.date))}}
+function editEntry(k,id){let x=arr(k).find(z=>z.id===id);if(!x)return;editing={k:k,id:id};let map={labour:{name:'lName',work:'lWork',date:'lDate',attend:'lAttend',rate:'lRate',type:'lType',amount:'lAmount'},expenses:{name:'eName',amount:'eAmount',date:'eDate',note:'eNote'},staff:{name:'sName',post:'sPost',mobile:'sMobile',salary:'sSalary',date:'sDate',note:'sNote'},parties:{name:'pName',site:'pSite',type:'pType',amount:'pAmount',date:'pDate',note:'pNote'},projects:{name:'prName',party:'prParty',site:'prSite',status:'prStatus',deal:'prDeal',received:'prReceived',cost:'prCost',date:'prDate'},materials:{name:'mName',site:'mSite',date:'mDate',unit:'mUnit',inQty:'mIn',outQty:'mOut'},purchases:{item:'puItem',shop:'puShop',site:'puSite',amount:'puAmount',status:'puStatus',date:'puDate',paid:'puPaid'},sales:{item:'saItem',party:'saParty',project:'saProject',amount:'saAmount',received:'saReceived',date:'saDate'},documents:{type:'dType',owner:'dOwner',location:'dLocation',note:'dNote'},cashbook:{account:'bAccount',type:'bType',desc:'bDesc',amount:'bAmount',date:'bDate',note:'bNote'}}[k];Object.entries(map).forEach(([f,id2])=>{let e=document.getElementById(id2);if(e)e.value=x[f]??''});show(k);window.scrollTo({top:0,behavior:'smooth'})}
+function deleteEntry(k,id){if(!confirm('Pakka delete karna hai?'))return;db[k]=arr(k).filter(x=>x.id!==id);persist();renderAll()}
+function entryCard(k,x){let title=x.name||x.item||x.desc||x.type||'Entry';let amount=x.amount!=null?money(x.amount):x.salary!=null?'Salary '+money(x.salary):x.deal!=null?'Deal '+money(x.deal):x.inQty!=null?'Aaya '+x.inQty+' / Gaya '+x.outQty:'';let det=Object.entries(x).filter(([f])=>!['id','created','name','item','desc','amount','date'].includes(f)).map(([f,v])=>safe(f)+': '+safe(v)).join(' • ');return `<div class="entry"><div><b>📅 ${safe(fmtDate(x.date))} | ${safe(title)}</b><small>${det}</small></div><div><b>${amount}</b><div class="mini"><button onclick="editEntry('${k}','${x.id}')">Edit</button><button class="danger" onclick="deleteEntry('${k}','${x.id}')">Delete</button></div></div></div>`}
+function renderList(k,id){let a=arr(k).slice().sort((a,b)=>(b.date||'').localeCompare(a.date||''));document.getElementById(id).innerHTML=a.length?a.map(x=>entryCard(k,x)).join(''):'<div class="empty">Abhi koi entry nahi hai.</div>'}
+function renderAll(){Object.keys(modules).forEach(k=>{let id=k+'List';if(document.getElementById(id))renderList(k,id)});let total=(k,f)=>arr(k).reduce((s,x)=>s+(Number(x[f])||0),0);let t=today();let aajPresent=arr('labour').filter(x=>x.date===t&&x.attend==='Present').length;let partyJama=arr('parties').filter(x=>x.type.includes('Jama')).reduce((s,x)=>s+x.amount,0);let partyDiya=arr('parties').filter(x=>!x.type.includes('Jama')).reduce((s,x)=>s+x.amount,0);let cash=0,bank=0;arr('cashbook').forEach(x=>{let s=x.type.includes('आया')?1:-1;if(x.account==='Cash')cash+=s*x.amount;else bank+=s*x.amount});let deal=total('projects','deal'),cost=total('projects','cost');let stockIn=total('materials','inQty'),stockOut=total('materials','outQty');document.getElementById('dashStats').innerHTML=[['Aaj Present',aajPresent],['Majdur Total',money(total('labour','amount'))],['Party Baki',money(partyDiya-partyJama)],['Total Sale',money(total('sales','amount'))],['Bank: '+money(bank)+' | Cash: '+money(cash),'Bank + Cash'],['Project Profit',money(deal-cost)],['Material Stock',(stockIn-stockOut)],['Total Expense',money(total('expenses','amount'))]].map(x=>`<div class="stat"><small>${x[0]}</small><b>${x[1]}</b></div>`).join('');document.getElementById('dashSummary').textContent='Bank: '+money(bank)+' | Cash: '+money(cash)+' | Project Profit: '+money(deal-cost)+' | Material Stock: '+(stockIn-stockOut);let set=(id,txt)=>{let e=document.getElementById(id);if(e)e.textContent=txt};set('labourSummary','Kul: '+money(total('labour','amount')));set('expensesTotal','Kul: '+money(total('expenses','amount')));set('partiesSummary','Jama: '+money(partyJama)+' | Diya: '+money(partyDiya));set('materialsSummary','Stock Bacha: '+(stockIn-stockOut));set('purchasesTotal','Purchase: '+money(total('purchases','amount'))+' | Paid: '+money(total('purchases','paid')));set('salesTotal','Sales: '+money(total('sales','amount'))+' | Mila: '+money(total('sales','received')));set('cashbookSummary','Cash: '+money(cash)+' | Bank: '+money(bank));let recent=Object.keys(modules).flatMap(k=>arr(k).map(x=>({...x,_k:k}))).sort((a,b)=>(b.date||'').localeCompare(a.date||'')).slice(0,8);document.getElementById('recent').innerHTML=recent.length?recent.map(x=>`<div class="entry"><div><b>📅 ${safe(fmtDate(x.date))} | ${safe(modules[x._k].title)} — ${safe(x.name||x.item||x.desc||x.type||'')}</b></div><b>${x.amount!=null?money(x.amount):''}</b></div>`).join(''):'<div class="empty">Abhi koi entry nahi.</div>'}
+function buildBill(){document.getElementById('billRows').innerHTML=ITEMS.map((it,i)=>`<tr><td>${i+1}</td><td>${it[0]}</td><td><input id="q${i}" type="number" value="0" oninput="calcInvoice()"></td><td><input id="r${i}" type="number" value="${it[1]}" oninput="calcInvoice()"></td><td id="a${i}">0</td></tr>`).join('')}
+function calcInvoice(){let sum=0;ITEMS.forEach((it,i)=>{let q=Number(document.getElementById('q'+i).value)||0;let r=Number(document.getElementById('r'+i).value)||0;let amt=q*r;document.getElementById('a'+i).textContent=amt.toLocaleString('en-IN');sum+=amt});document.getElementById('invoiceTotal').textContent='Kul Bill: '+money(sum)}
+function clearBill(){ITEMS.forEach((it,i)=>{document.getElementById('q'+i).value=0;document.getElementById('r'+i).value=it[1]});calcInvoice()}
+function invoiceText(){let t=`YASIN INFRA BILL\nBill No: ${val('iNumber')}\nCustomer: ${val('iCustomer')}\nSite: ${val('iSite')}\nDate: ${fmtDate(val('iDate'))}\n----------------\n`;ITEMS.forEach((it,i)=>{let q=Number(document.getElementById('q'+i).value)||0;if(q>0){let r=Number(document.getElementById('r'+i).value)||0;t+=`${it[0]}: ${q} x ${r} = ${(q*r).toLocaleString('en-IN')}\n`}});t+=`----------------\n${document.getElementById('invoiceTotal').textContent}`;return t}
+function shareInvoice(){window.open('https://wa.me/?text='+encodeURIComponent(invoiceText()),'_blank')}
+function printInvoice(){let w=window.open('','_blank');if(!w)return alert('Popup allow karein');w.document.write('<html><head><title>BILL</title><style>body{font-family:Arial;padding:25px}pre{white-space:pre-wrap;font:16px/1.7 Arial}</style></head><body><h2>YASIN INFRA</h2><pre>'+safe(invoiceText())+'</pre><script>window.onload=()=>window.print()<\/script></body></html>');w.document.close()}
+function backupData(){let txt=JSON.stringify({app:'YASIN INFRA V25 FINAL',data:db});let blob=new Blob([txt],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='YASIN_V25_Backup_'+today()+'.json';a.click()}
+function restoreData(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let obj=JSON.parse(r.result);db=obj.data||obj;persist();renderAll();alert('Restore ho gaya ✅')}catch(err){alert('Sahi Backup nahi hai')};e.target.value=''};r.readAsText(f)}
+function makeReport(){let k=val('reportType'),from=val('rFrom'),to=val('rTo');activeReport=k==='all'?Object.keys(modules).flatMap(kk=>arr(kk).map(x=>({module:modules[kk].title,...x}))):arr(k).map(x=>({module:modules[k].title,...x}));activeReport=activeReport.filter(x=>(!from||!x.date||x.date>=from)&&(!to||!x.date||x.date<=to));activeReport.sort((a,b)=>(b.date||'').localeCompare(a.date||''));document.getElementById('reportResult').innerHTML=activeReport.map(x=>`<div class="entry"><div><b>📅 ${safe(fmtDate(x.date))} | ${safe(x.module)} — ${safe(x.name||x.item||x.desc||x.type||'')}</b></div><b>${x.amount!=null?money(x.amount):''}</b></div>`).join('')||'<div class="empty">Koi entry nahi</div>'}
+function exportCSV(){if(!activeReport.length)makeReport();if(!activeReport.length)return alert('Entry nahi hai');let keys=[...new Set(activeReport.flatMap(x=>Object.keys(x)))];let csv=[keys.join(','),...activeReport.map(x=>keys.map(k=>'"'+String(x[k]??'').replace(/"/g,'""')+'"').join(','))].join('\r\n');let blob=new Blob(['\ufeff'+csv],{type:'text/csv'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Report_'+today()+'.csv';a.click()}
+buildNav();setDefaults();buildBill();renderAll();calcInvoice();
+</script>
+</body>
+</html>
