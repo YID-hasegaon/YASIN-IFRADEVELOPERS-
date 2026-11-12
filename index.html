@@ -1,182 +1,58 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YID - hasegaon </title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111111">
+<title>YASIN INFRA DEVELOPERS | Management System</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{background:#0a0a0a;color:#ddd;overflow-x:hidden;}
-:root{--gold:#d4af37;--gold2:#ffcc00;}
-header{background:#080808;padding:14px 4%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:999;border-bottom:1.5px solid var(--gold);}
-.logo-area{display:flex;align-items:center;gap:12px;}
-.logo-area img{width:56px;height:56px;border-radius:50%;border:2px solid var(--gold);object-fit:cover;}
-.logo-fallback{width:56px;height:56px;border-radius:50%;border:2px solid var(--gold);background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;color:#000;font-weight:800;}
-.logo-text b{color:var(--gold);font-size:18px;line-height:1;} .logo-text span{color:#fff;font-size:11px;letter-spacing:2px;}
-nav{display:flex;gap:14px;flex-wrap:wrap;} nav a{color:#fff;text-decoration:none;font-weight:600;font-size:14px;}
-.menu-btn{display:none;background:var(--gold);color:#000;border:none;width:42px;height:42px;border-radius:10px;font-size:22px;font-weight:800;cursor:pointer;}
-.info-strip{background:#e3f0a9;color:#111;text-align:center;padding:10px 5%;font-size:13px;font-weight:600;word-break:break-word;}
-.hero{background:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.6)), url('banner.jpg');background-size:cover;background-position:center;text-align:center;padding:90px 20px;color:#fff;}
-.hero h1{font-size:42px;color:var(--gold);} .hero p{font-size:18px;margin-top:12px;color:#eee;}
-.btn-gold{background:linear-gradient(90deg,var(--gold),var(--gold2));color:#000;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:800;display:inline-block;margin-top:22px;}
-.section{padding:60px 5%;} .section-alt{background:#111;}
-.section-title{text-align:center;margin-bottom:35px;}
-.section-title h2{font-size:36px;color:#fff;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
-.section-title h2 span{color:var(--gold);background:#1a1a1a;padding:2px 12px;border-radius:10px;border:1px solid var(--gold);white-space:nowrap;}
-.section-title p{color:#888;margin-top:8px;word-break:break-word;}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;}
-.card{background:#1a1a1a;border-radius:18px;overflow:hidden;border-top:5px solid var(--gold);}
-.card img{width:100%;height:200px;object-fit:cover;display:block;}
-.card-content{padding:24px;} .card-content h3{color:var(--gold);margin-bottom:8px;} .card-icon{font-size:38px;margin-bottom:8px;}
-.about-box{background:linear-gradient(135deg,#111,#1a1a1a);border:1px solid var(--gold);color:#fff;border-radius:20px;padding:35px;display:flex;gap:30px;flex-wrap:wrap;}
-.about-box>div{flex:1 1 280px;min-width:0;word-break:break-word;}
-.about-box img{width:100%;height:250px;object-fit:cover;border-radius:15px;border:2px solid var(--gold);margin-bottom:12px;}
-.step{background:#1a1a1a;border-radius:15px;padding:20px;text-align:center;border:1px dashed var(--gold);}
-.step-num{background:var(--gold);color:#000;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;margin:0 auto 12px auto;}
-.filter-bar{text-align:center;margin-bottom:25px;} .filter-btn{background:#1a1a1a;color:#fff;padding:8px 15px;border:1px solid #333;border-radius:20px;margin:4px;} .filter-btn.active{background:var(--gold);color:#000;font-weight:700;}
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;}
-.gal-card{position:relative;border-radius:18px;overflow:hidden;border:1.5px solid #333;cursor:pointer;background:#1a1a1a;}
-.gal-card img{width:100%;height:165px;object-fit:cover;display:block;}
-.gal-label{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.75);color:#fff;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700;white-space:nowrap;}
-.gal-info{background:rgba(212,175,55,0.1);border:1px solid var(--gold);border-radius:15px;padding:18px;margin-top:20px;color:#ccc;font-size:14px;}
-#lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;z-index:9999;padding:20px;}
-#lightbox img{max-width:95%;max-height:90%;border-radius:15px;border:2px solid var(--gold);}
-.contact-box{background:linear-gradient(135deg,#111,#222);border:1px solid var(--gold);color:#fff;border-radius:20px;padding:40px;text-align:center;max-width:650px;margin:auto;word-break:break-word;}
-.contact-box input,.contact-box textarea{width:100%;padding:13px;margin:8px 0;border-radius:12px;border:none;background:#ffffff;color:#000000;font-weight:600;box-sizing:border-box;}
-@media(max-width:768px){
-  .menu-btn{display:block;}
-  nav{position:fixed;top:0;left:-100%;width:78%;height:100vh;background:#0f0f0f;border-right:2px solid var(--gold);flex-direction:column;align-items:flex-start;padding:65px 20px 20px 20px;gap:0;transition:0.35s;z-index:99999;overflow-y:auto;}
-  nav.active{left:0;} 
-  nav a{width:100%;padding:14px 10px;border-bottom:1px solid #222;font-size:16px;margin:0; box-sizing:border-box;}
-  nav .closebtn{
-    position:absolute !important;
-    top:12px !important; right:12px !important;
-    width:42px !important; height:42px !important;
-    background:#1e1e1e !important; color:#fff !important;
-    border:1.5px solid #333 !important;
-    border-radius:10px !important;
-    font-size:28px !important; line-height:38px !important;
-    text-align:center !important; padding:0 !important;
-    display:block !important;
-  }
-  .hero h1{font-size:26px;} .grid{grid-template-columns:1fr;} .gallery{grid-template-columns:1fr 1fr;gap:10px;} .gal-card img{height:130px;} .about-box{flex-direction:column;padding:20px;}
-}
-</style>
-</head>
-<body>
-<header>
-  <div class="logo-area">
-    <img src="logo.png" alt="YID Logo" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='flex';">
-    <div id="fallback-logo" class="logo-fallback" style="display:none;">YID</div>
-    <div class="logo-text"><b>Yasin Infra Developers</b><br><span>HASEGAON • EST. 2024</span></div>
-  </div>
-  <button class="menu-btn" onclick="document.querySelector('nav').classList.add('active')">☰</button>
-  <nav>
-    <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">×</a>
-     <a href="#home" onclick="closeMenu()">Home</a><a href="#about" onclick="closeMenu()">About</a><a href="#services" onclick="closeMenu()">Services</a><a href="#projects" onclick="closeMenu()">Projects</a><a href="#gallery" onclick="closeMenu()">Gallery</a><a href="#process" onclick="closeMenu()">Process</a><a href="#blog" onclick="closeMenu()">Blog</a><a href="#contact" onclick="closeMenu()">Contact</a>
- 
-  </nav>
-</header>
-<div class="info-strip">.मजबूत नींव, सुंदर निर्माण — आपके सपनों का घर । कॉलेज भवन, अपार्टमेंट और कमर्शियल बिल्डिंग के विशेषज्ञ। 🏗️ YID - जहाँ भरोसा, वहीं निर्माण 📍 Bhusni Road, Near Grampanchayat, Hasegaon - 413531</div>
-<div class="hero" id="home">
-<h1>YID के साथ अपने सपनों का & निर्माण</h1>
-<p>लातूर की नंबर 1 भरोसेमंद कंस्ट्रक्शन कंपनी- YID</p>
-<a href="#contact" class="btn-gold">📞 FREE QUOTE PAYE</a>
-</div>
-<div class="section" id="about">
-<div class="section-title"><h2>हमारे <span>बारे में</span></h2><p>YID क्यों Latur की सबसे भरोसेमंद कंपनी है</p></div>
-<div class="about-box">
-<div><img src=" banner.jpg " alt="YID Team" onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd'"><h2 style="color:var(--gold);">YID - Yaseen Infrastructure & मैं हसेगांव, लातूर से हूँ।</h2><br><p><b>हमारा मिशन:</b> YID की शुरुआत 2024 में इसी मिट्टी से हुई — लातूर के लोगों को मुंबई-पुणे जैसी क्वालिटी, लोकल बजट में मिले। हर परिवार को मजबूत, सुंदर और बजट में घर देना।<br><br><b>हमारा विजन:</b> Latur में No.1 Construction Brand बनना।<br><br><b>हमें क्यों चुनें?</b> ✅ 15+ साल अनुभव ✅ लाइसेंस्ड इंजीनियर ✅ समय पर काम ✅ फुल ट्रांसपेरेंसी</p></div>
-<div style="background:var(--gold);color:#000;padding:20px;border-radius:15px;text-align:center;"><h3>🛡️ हमारे Core Values</h3><p>सुरक्षा | ईमानदारी | क्वालिटी | समय</p><br><h3>👷‍♂️ Team से मिलिए</h3><p>Engineers, Architects & Skilled Workers</p></div>
-</div>
-</div>
-<div class="section section-alt" id="services">
-<div class="section-title"><h2>हमारी <span>सेवाएं</span></h2></div>
-<div class="grid">
-<div class="card"><img src=" images (2).jpeg " onerror="this.src='https://images.unsplash.com/photo-1541888946425-d81bb19240f6'"><div class="card-content"><div class="card-icon">🏠</div><h3>आवासीय निर्माण</h3><p>घर, विला, अपार्टमेंट का लग्जरी निर्माण।</p></div></div>
-<div class="card"><img src=" images (6).jpeg   " onerror="this.src='banner.jpg'"><div class="card-content"><div class="card-icon">🏢</div><h3>कमर्शियल कंस्ट्रक्शन</h3><p>दुकान, ऑफिस, कॉम्प्लेक्स का निर्माण।</p></div></div>
-<div class="card"><img src=" images (7).jpeg    " onerror="this.src='banner.jpg'"><div class="card-content"><div class="card-icon">🔨</div><h3>रेनोवेशन</h3><p>पुराने घर का नया रूप, रीमॉडलिंग।</p></div></div>
-<div class="card"><img src="images (4).jpeg  " onerror="this.src='banner.jpg'"><div class="card-content"><div class="card-icon">🎨</div><h3>इंटीरियर डिजाइन</h3><p>नक्शा और अंदर की सजावट।</p></div></div>
-<div class="card"><img src=" images (5).jpeg  " onerror="this.src='banner.jpg'"><div class="card-content"><div class="card-icon">🏗️</div><h3>Turnkey Projects</h3><p>लैंड सर्वे से चाबी तक पूरा काम।</p></div></div>
-</div>
-</div>
-<div class="section" id="projects">
-<div class="section-title"><h2>हमारे <span>प्रोजेक्ट्स</span><br>हमारे साथ अपना प्रोजेक्ट शुरू करें 🚀</h2><p>YID - चुनिंदा और भरोसेमंद निर्माण कार्य</p><p>पूरे हुए और चल रहे प्रोजेक्ट्स की गैलरी</p></div>
-<div class="grid">
-<div class="card"><img src=" images (10).jpeg " onerror="this.src='https://images.unsplash.com/photo-1541888946425-d81bb19240f6'"><div class="card-content"><h3>🌟 Sunrise Apartment</h3><p><b>लोकेशन:</b> Hasegaon, Latur | <b>6 महीने में पूरा</b></p><div style="background:#222;padding:10px;border-radius:10px;margin-top:10px;color:var(--gold);">⭐ "YID का काम शानदार!" - Client</div></div></div>
-<div class="card"><img src=" guru dixain.jpeg " onerror="this.src='banner.jpg'"><div class="card-content"><h3>🏢 Commercial Complex</h3><p>Before/After फोटो वाली गैलरी यहाँ आएगी</p></div></div>
-<div class="card"><img src=" project .jpeg  " onerror="this.src='banner.jpg'"><div class="card-content"><h3>🏠 Villa Project</h3><p>फिल्टर: Residential / Commercial</p></div></div>
-</div>
-</div>
-<div class="section section-alt" id="gallery">
-<div class="section-title"><h2>ALL PHOTOS <span>GALLERY</span></h2><p>TAP TO OPEN LIGHTBOX</p></div>
-<div class="gallery">
-<div class="gal-card" onclick="openLB(this)"><img src=" cost_of_building.webp  "><div class="gal-label">Hero Banner</div></div>
-<div class="gal-card" onclick="openLB(this)"><img src=" 20261104232817.jpg  "><div class="gal-label">Workers</div></div>
-<div class="gal-card" onclick="openLB(this)"><img src="latur-work-1.jpg"><div class="gal-label">Trust Banner</div></div>
-<div class="gal-card" onclick="openLB(this)"><img src="images (3).jpeg  "><div class="gal-label">House Hands</div></div>
-<div class="gal-card" onclick="openLB(this)"><img src=" images (12).jpeg "><div class="gal-label">Ongoing 2BHK</div></div>
-<div class="gal-card" onclick="openLB(this)"><img src="images (10).jpeg  "><div class="gal-label">Completed Nashik</div></div>
-<div class="gal-card" onclick="openLB(this)"><img src="  20261105001659.jpeg "><div class="gal-label">Brick/Plaster</div></div>
-<div class="gal-card" onclick="openLB(this)"><img src=" 20261105001647.jpeg  "><div class="gal-label">Rate List</div></div>
-<div class="gal-card" onclick="openLB(this)"><img src=" ghar.jpeg  "><div class="gal-label">Business Card</div></div>
-</div>
-<div class="gal-info">सभी 9 फोटो इसी वेबसाइट में जोड़ी गई हैं। किसी भी फोटो पर क्लिक करें - Full View Lightbox खुलेगा।</div>
-</div>
-<div class="section" id="process">
-<div class="section-title"><h2 style="color:#fff;">काम करने का <span>तरीका 🏗️</span></h2>
-<div class="filter-bar">
-<button class="filter-btn active">सभी / All</button><button class="filter-btn">🏠 आवासीय</button><button class="filter-btn">🏢 कमर्शियल</button><button class="filter-btn">🏭 इंडस्ट्रियल</button><button class="filter-btn">🔨 रेनोवेशन</button><button class="filter-btn">🎨 इंटीरियर</button>
-</div>
-<p style="color:#aaa;text-align:center;">5 स्टेप में आपका सपनों का घर</p></div>
-<div class="grid">
-<div class="step"><div class="step-num">0</div><h3>प्रोजेक्ट</h3><p>निर्माण, RCC स्ट्रक्चर, फुल फिनिशिंग के साथ। <b>मुख्य चुनौतियाँ और समाधान किया।</b></p></div>
-<div class="step"><div class="step-num">1</div><h3>Consultation</h3><p>बातचीत और प्लानिंग</p></div>
-<div class="step"><div class="step-num">2</div><h3>Quotation</h3><p>बजट और एस्टीमेट</p></div>
-<div class="step"><div class="step-num">3</div><h3>Approval</h3><p>मंजूरी और मटेरियल</p></div>
-<div class="step"><div class="step-num">4</div><h3>Construction</h3><p>असली निर्माण काम</p></div>
-<div class="step"><div class="step-num">5</div><h3>Handover</h3><p>चाबी सौंपना</p></div>
-</div>
-</div>
-<div class="section" id="blog">
-<div class="section-title"><h2>ब्लॉग / <span>जानकारी 📚</span></h2><p><b>घर बनाने से पहले YID की एक्सपर्ट सलाह जरूर पढ़ें</b><br>Expert tips from YID before you build your dream home</p><p>Google पर Rank कराने वाले टॉपिक</p></div>
-<div class="grid">
-<div class="card"><img src="banner.jpg"><div class="card-content"><h3>🏠 घर बनाते समय किन बातों का ध्यान रखें?</h3><p>90% लोग ये 5 गलतियाँ करते हैं..जानिए YID के 15 साल के अनुभव से सही तरीका क्या है.</p><a href="#" style="color:var(--gold);font-weight:700;text-decoration:none;">पूरा पढ़ें →</a></div></div>
-<div class="card"><img src="latur-work-1.jpg"><div class="card-content"><h3>🧱 मटेरियल की सही पहचान कैसे करें?</h3><p>नकली सीमेंट और सरिया से बचें? असली और नकली की पहचान का आसान तरीका यहाँ जानें..</p><a href="#" style="color:var(--gold);font-weight:700;text-decoration:none;">पूरा पढ़ें →</a></div></div>
-<div class="card"><img src="Projec1.jpg"><div class="card-content"><h3>💰 बजट में घर का नक्शा कैसे बनाएं?</h3><p>कम बजट में भी लग्जरी घर! कैसे बनता है? बजट का प्लान और नक्शा</p><a href="#" style="color:var(--gold);font-weight:700;text-decoration:none;">पूरा पढ़ें →</a></div></div>
-</div>
-</div>
-<div class="section section-alt" id="contact">
-<div class="contact-box">
-<h2 style="color:var(--gold);font-size:36px;">संपर्क करें / Free Quote 🚀</h2><p style="color:#ccc;">आज ही इंजीनियर से बात करें</p><br>
-<input type="text" placeholder="आपका नाम"><input type="text" placeholder="फोन नंबर"><textarea placeholder="आपका प्रोजेक्ट क्या है?"></textarea>
-<a href="https://wa.me/919067580027" class="btn-gold" style="width:100%;text-align:center;display:block;">भेजें</a>
-<br><br><p>📍 Office: Latur, Maharashtra | 📞 +91 9067580027 | ✉️ yasinfradevelopers@gmail.com<br>🕒 सोम - शनि, सुबह 9:00 - शाम 6:00</p>
-</div>
-</div>
-<div style="background:#111; border:1px solid #ffcc00; border-radius:15px; padding:0; overflow:hidden; margin:30px auto; max-width:850px;">
-  <div style="background:#0d1b2a; color:#ffcc00; padding:15px; text-align:center; font-weight:bold;">
-    🇮🇳 भारत सरकार मान्यताप्राप्त | MSME   Registered
-  </div>
-  <div style="padding:25px; background:#111; color:#fff; line-height:2.2; font-size:15px;">
-    ✓ <span style="color:#ffcc00;">Type:</span> MICRO - Proprietary<br>
-    ✓ <span style="color:#ffcc00;">Name:</span> YASIN INFRA DEVELOPERS<br>
-    ✓ <span style="color:#ffcc00;">Owner:</span> ISMAIL MAJRODIN SHAIKH<br>
-    ✓ <span style="color:#ffcc00;">Udyam:</span> UDYAM-MH-16-0071702<br>
-    ✓ <span style="color:#ffcc00;">NIC:</span> 41001 - Construction<br>
-    ✓ <span style="color:#ffcc00;">Address:</span> Bhusni Road, Hasegaon 413531<br>
-    ✓ <span style="color:#ffcc00;">Shop Act:</span> 2641700321590862<br>
-    ✓ <span style="color:#ffcc00;">Date:</span> 01/01/2019
-  </div>
-</div>
-<!-- LIGHTBOX - FIXED -->
-<div id="lightbox" onclick="this.style.display='none'"><img id="lb-img" src=""></div>
-<!-- V16 BUTTON - SAHI JAGAH -->
-<div style="text-align:center; padding:20px; background:#000;">
-<a href="v16/index.html" style="display:inline-block; background:gold; color:#000; padding:16px 30px; border-radius:12px; font-weight:bold; font-size:18px; text-decoration:none;">🔐 V16 - STAFF LOGIN / HISAB KHOLO</a>
-</div>
-<footer style="background:#000;color:var(--gold);text-align:center;padding:20px;border-top:1px solid var(--gold);">© 2026 YID - Hasegaon Developers | Designed with 💛 <b>लोकेशन:</b> हसेगांव, लातूर Maharashtra</footer>
-<script>function openLB(el){document.getElementById('lb-img').src=el.querySelector('img').src;document.getElementById('lightbox').style.display='flex';} function closeMenu(){document.querySelector('nav').classList.remove('active');}</script>
-</body>
-</html>
+:root{--bg:#101010;--panel:#191919;--panel2:#202020;--gold:#d6ad55;--gold2:#f1d58b;--text:#f4f1e8;--muted:#aaa397;--line:#38332a;--red:#df6868;--green:#69bd88;--blue:#79a9df;--shadow:0 10px 30px #0006}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 Arial,Helvetica,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.app{min-height:100vh}.topbar{position:sticky;top:0;z-index:10;background:#111e;border-bottom:1px solid var(--line);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:12px 18px;gap:12px}.brand{display:flex;align-items:center;gap:11px}.logo{width:42px;height:42px;border:2px solid var(--gold);border-radius:10px;display:grid;place-items:center;color:var(--gold);font-weight:900;font-size:19px}.brand h1{font-size:16px;letter-spacing:1px;margin:0;color:var(--gold2)}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px}.top-actions{display:flex;gap:8px;align-items:center}.layout{display:grid;grid-template-columns:230px 1fr;min-height:calc(100vh - 67px)}.sidebar{border-right:1px solid var(--line);padding:16px 10px;background:#141414}.nav-title{color:#887d68;font-size:10px;letter-spacing:2px;padding:8px 12px}.nav button{display:flex;width:100%;align-items:center;gap:12px;border:0;background:transparent;color:#c9c3b7;padding:11px 12px;border-radius:9px;text-align:left;margin:2px 0}.nav button:hover,.nav button.active{background:#302817;color:var(--gold2)}.nav .ico{width:20px;text-align:center;font-size:16px}.main{padding:22px;max-width:1500px;width:100%;margin:auto}.page-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:20px}.page-head h2{margin:0;font-size:24px}.page-head p{margin:5px 0;color:var(--muted)}.gold{color:var(--gold)}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:9px 13px;border-radius:8px}.btn:hover{border-color:var(--gold);color:var(--gold2)}.btn.primary{background:var(--gold);color:#17130b;border-color:var(--gold);font-weight:700}.btn.danger{color:#ffaaaa;border-color:#693b3b}.btn.small{padding:5px 8px;font-size:12px}.grid{display:grid;gap:14px}.stats{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:18px}.card{background:linear-gradient(145deg,#1d1d1d,#171717);border:1px solid var(--line);border-radius:13px;padding:16px;box-shadow:var(--shadow)}.stat-label{color:var(--muted);font-size:12px}.stat-value{font-size:25px;font-weight:800;margin:7px 0 2px;color:var(--gold2)}.stat-foot{font-size:11px;color:var(--muted)}.two{grid-template-columns:1.2fr .8fr}.section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.section-title h3{margin:0;font-size:16px}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:10px}table{width:100%;border-collapse:collapse;min-width:620px}th,td{padding:11px 12px;text-align:left;border-bottom:1px solid #302d27}th{font-size:11px;color:var(--gold);letter-spacing:.7px;background:#211e18}td{color:#e4dfd4}tr:last-child td{border-bottom:0}.muted{color:var(--muted)}.pill{display:inline-block;padding:3px 8px;border-radius:30px;background:#302817;color:var(--gold2);font-size:11px}.empty{text-align:center;padding:30px;color:var(--muted)}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.search{min-width:190px;flex:1}.field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}.field label{font-size:12px;color:var(--muted)}input,select,textarea{background:#111;border:1px solid #454036;border-radius:8px;padding:10px;color:var(--text);width:100%;outline:none}input:focus,select:focus,textarea:focus{border-color:var(--gold)}textarea{min-height:75px;resize:vertical}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px}.modal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:15px;z-index:30}.modal.show{display:flex}.modal-box{width:min(650px,100%);max-height:90vh;overflow:auto;background:#1b1b1b;border:1px solid var(--gold);border-radius:14px;padding:18px;box-shadow:var(--shadow)}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.modal-head h3{margin:0;color:var(--gold2)}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}.notice{padding:12px;border:1px solid #62502b;background:#2b2417;border-radius:9px;color:#e8d39c;margin:12px 0}.quick{grid-template-columns:repeat(4,minmax(0,1fr))}.quick button{padding:16px;text-align:left;background:#1b1b1b;border:1px solid var(--line);border-radius:10px;color:var(--text)}.quick button b{display:block;color:var(--gold2);margin-top:6px}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#282318;color:var(--gold2);border:1px solid var(--gold);padding:10px 16px;border-radius:9px;display:none;z-index:50}.mobile-menu{display:none}.footer{text-align:center;color:#716b60;padding:25px 0 10px;font-size:11px}.danger-text{color:var(--red)}.positive{color:var(--green)}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:fixed;z-index:20;left:-260px;top:67px;bottom:0;width:245px;transition:.2s;box-shadow:var(--shadow)}.sidebar.open{left:0}.mobile-menu{display:inline-flex}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}.quick{grid-template-columns:repeat(2,minmax(0,1fr))}.main{padding:16px}}
+@media(max-width:480px){.brand h1{font-size:13px}.brand small{font-size:8px}.logo{width:36px;height:36px}.topbar{padding:10px}.top-actions .btn{padding:7px 9px}.page-head h2{font-size:20px}.stats{gap:9px}.card{padding:12px}.stat-value{font-size:21px}.form-grid{grid-template-columns:1fr}.main{padding:12px}}
+@media print{.topbar,.sidebar,.toolbar,.btn,.no-print{display:none!important}.layout{display:block}.main{padding:0}.card{box-shadow:none;background:white;color:black;border:1px solid #ccc}body{background:white;color:black}table{min-width:0}th,td{color:black;border-color:#ccc}}
+</style></head>
+<body><div class="app">
+<header class="topbar"><div class="brand"><button class="btn mobile-menu" onclick="toggleMenu()">☰</button><div class="logo">YI</div><div><h1>YASIN INFRA DEVELOPERS</h1><small>CONSTRUCTION MANAGEMENT SYSTEM</small></div></div><div class="top-actions"><button class="btn" onclick="toggleLanguage()" id="langBtn">हिंदी</button><button class="btn" onclick="exportData()">⇩ Backup</button></div></header>
+<div class="layout"><aside class="sidebar" id="sidebar"><div class="nav-title" data-en="WORKSPACE" data-hi="कार्य क्षेत्र">WORKSPACE</div><nav class="nav" id="nav">
+<button class="active" data-page="dashboard"><span class="ico">▦</span><span data-en="Dashboard" data-hi="डैशबोर्ड">Dashboard</span></button>
+<button data-page="projects"><span class="ico">🏗</span><span data-en="Projects" data-hi="प्रोजेक्ट">Projects</span></button>
+<button data-page="labour"><span class="ico">👷</span><span data-en="Labour & Attendance" data-hi="मजदूर और हाजिरी">Labour & Attendance</span></button>
+<button data-page="materials"><span class="ico">📦</span><span data-en="Material & Stock" data-hi="मटेरियल और स्टॉक">Material & Stock</span></button>
+<button data-page="transactions"><span class="ico">₹</span><span data-en="Income & Expense" data-hi="आय और खर्च">Income & Expense</span></button>
+<button data-page="contacts"><span class="ico">♙</span><span data-en="Clients & Suppliers" data-hi="ग्राहक और सप्लायर">Clients & Suppliers</span></button>
+<button data-page="billing"><span class="ico">▤</span><span data-en="Quotation & Billing" data-hi="कोटेशन और बिलिंग">Quotation & Billing</span></button>
+<button data-page="tenders"><span class="ico">▣</span><span data-en="Tenders & Work Orders" data-hi="टेंडर और वर्क ऑर्डर">Tenders & Work Orders</span></button>
+<button data-page="machinery"><span class="ico">🚜</span><span data-en="Machinery & Vehicles" data-hi="मशीनरी और वाहन">Machinery & Vehicles</span></button>
+<button data-page="reports"><span class="ico">▥</span><span data-en="Reports" data-hi="रिपोर्ट">Reports</span></button>
+<button data-page="backup"><span class="ico">☁</span><span data-en="Backup & Settings" data-hi="बैकअप और सेटिंग">Backup & Settings</span></button>
+</nav></aside><main class="main" id="main"></main></div></div>
+<div class="modal" id="modal"><div class="modal-box"><div class="modal-head"><h3 id="modalTitle">Add Record</h3><button class="btn small" onclick="closeModal()">✕</button></div><form id="recordForm"><div id="formFields"></div><div class="modal-actions"><button type="button" class="btn" onclick="closeModal()" data-en="Cancel" data-hi="रद्द करें">Cancel</button><button class="btn primary" type="submit" data-en="Save Record" data-hi="सेव करें">Save Record</button></div></form></div></div><div class="toast" id="toast"></div>
+<script>
+const DBKEY='yasin_infra_v1_data';let lang='en',currentPage='dashboard',editingId=null,formType=null;
+const blank={projects:[],labour:[],materials:[],transactions:[],contacts:[],billing:[],tenders:[],machinery:[],attendance:[]};let db=loadDB();
+function loadDB(){try{return {...blank,...JSON.parse(localStorage.getItem(DBKEY)||'{}')}}catch(e){return {...blank}}}function saveDB(){localStorage.setItem(DBKEY,JSON.stringify(db));}
+const schema={projects:{title:['Project Name','प्रोजेक्ट का नाम'],fields:[['name','Project Name','text',1],['client','Client Name','text'],['location','Location','text'],['type','Project Type','select',['Government','Private']],['budget','Budget (₹)','number'],['start','Start Date','date'],['end','Expected End Date','date'],['status','Status','select',['Planning','In Progress','On Hold','Completed']],['notes','Notes','textarea']]},labour:{title:['Labour Details','मजदूर विवरण'],fields:[['name','Labour Name','text',1],['phone','Mobile Number','tel'],['role','Work / Skill','text'],['rate','Daily Wage (₹)','number'],['advance','Advance (₹)','number'],['status','Status','select',['Active','Inactive']],['notes','Notes','textarea']]},materials:{title:['Material / Stock Entry','मटेरियल / स्टॉक'],fields:[['name','Material Name','text',1],['unit','Unit','select',['Bag','Kg','Ton','CFT','Brass','Piece','Litre','Other']],['qty','Quantity','number'],['rate','Rate per Unit (₹)','number'],['supplier','Supplier','text'],['date','Entry Date','date'],['notes','Notes','textarea']]},transactions:{title:['Add Transaction','लेन-देन जोड़ें'],fields:[['kind','Transaction Type','select',['Income','Expense']],['date','Date','date',1],['category','Category','text',1],['amount','Amount (₹)','number',1],['project','Project','text'],['party','Party / Person','text'],['mode','Payment Mode','select',['Cash','Bank','UPI','Cheque','Other']],['note','Description','textarea']]},contacts:{title:['Client / Supplier','ग्राहक / सप्लायर'],fields:[['kind','Type','select',['Client','Supplier','Both'],1],['name','Name','text',1],['phone','Mobile','tel'],['email','Email','email'],['address','Address','textarea'],['gst','GSTIN','text'],['notes','Notes','textarea']]},billing:{title:['Quotation / Invoice','कोटेशन / इनवॉइस'],fields:[['kind','Document Type','select',['Quotation','Invoice'],1],['number','Bill / Quote Number','text',1],['date','Date','date',1],['client','Client Name','text',1],['project','Project','text'],['description','Work Description','textarea'],['amount','Amount (₹)','number',1],['tax','GST %','number'],['status','Status','select',['Draft','Sent','Approved','Paid','Unpaid']],['notes','Notes','textarea']]},tenders:{title:['Tender / Work Order','टेंडर / वर्क ऑर्डर'],fields:[['name','Tender / Work Name','text',1],['department','Department','text'],['number','Tender / WO Number','text'],['value','Estimated Value (₹)','number'],['lastdate','Last Date','date'],['status','Status','select',['Not Applied','Applied','Won','Lost','Work Order Received']],['notes','Notes','textarea']]},machinery:{title:['Machinery / Vehicle','मशीनरी / वाहन'],fields:[['name','Machine / Vehicle Name','text',1],['number','Registration / ID','text'],['owner','Owned / Rented','select',['Owned','Rented']],['rate','Rent per Day (₹)','number'],['fuel','Fuel / Day (₹)','number'],['service','Last Service Date','date'],['status','Status','select',['Available','In Use','Maintenance']],['notes','Notes','textarea']]}};
+const labels={dashboard:['Dashboard','डैशबोर्ड'],projects:['Projects','प्रोजेक्ट'],labour:['Labour & Attendance','मजदूर और हाजिरी'],materials:['Material & Stock','मटेरियल और स्टॉक'],transactions:['Income & Expense','आय और खर्च'],contacts:['Clients & Suppliers','ग्राहक और सप्लायर'],billing:['Quotation & Billing','कोटेशन और बिलिंग'],tenders:['Tenders & Work Orders','टेंडर और वर्क ऑर्डर'],machinery:['Machinery & Vehicles','मशीनरी और वाहन'],reports:['Reports','रिपोर्ट'],backup:['Backup & Settings','बैकअप और सेटिंग']};
+const tr=(en,hi)=>lang==='hi'?hi:en;const money=n=>'₹'+Number(n||0).toLocaleString('en-IN',{maximumFractionDigits:2});const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const today=()=>new Date().toISOString().slice(0,10);
+function toggleLanguage(){lang=lang==='en'?'hi':'en';document.documentElement.lang=lang;document.getElementById('langBtn').textContent=lang==='en'?'हिंदी':'English';document.querySelectorAll('[data-en]').forEach(el=>el.textContent=el.dataset[lang]);render()}
+function toggleMenu(){document.getElementById('sidebar').classList.toggle('open')}
+document.getElementById('nav').addEventListener('click',e=>{let b=e.target.closest('button[data-page]');if(!b)return;currentPage=b.dataset.page;document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x===b));document.getElementById('sidebar').classList.remove('open');render()});
+function render(){let m=document.getElementById('main');if(currentPage==='dashboard')m.innerHTML=dashboard();else if(currentPage==='reports')m.innerHTML=reports();else if(currentPage==='backup')m.innerHTML=backupPage();else m.innerHTML=modulePage(currentPage);}
+function pageHead(title,sub,action=''){return `<div class="page-head"><div><h2>${title}</h2><p>${sub}</p></div>${action}</div>`}
+function dashboard(){let income=db.transactions.filter(x=>x.kind==='Income').reduce((a,x)=>a+ +x.amount,0),expense=db.transactions.filter(x=>x.kind==='Expense').reduce((a,x)=>a+ +x.amount,0),due=db.billing.filter(x=>x.status!=='Paid').reduce((a,x)=>a+ +x.amount,0),active=db.projects.filter(x=>x.status==='In Progress').length;let stats=[[tr('Total Projects','कुल प्रोजेक्ट'),db.projects.length,'🏗'],[tr('Active Projects','चालू प्रोजेक्ट'),active,'⚒'],[tr('Total Income','कुल आय'),money(income),'↗'],[tr('Total Expense','कुल खर्च'),money(expense),'↘'],[tr('Net Balance','शेष बैलेंस'),money(income-expense),'₹'],[tr('Outstanding Bills','बकाया बिल'),money(due),'▤'],[tr('Labour Records','मजदूर रिकॉर्ड'),db.labour.length,'👷'],[tr('Material Items','मटेरियल आइटम'),db.materials.length,'📦']];let recent=[...db.transactions].sort((a,b)=>(b.date||'').localeCompare(a.date||'')).slice(0,5);return `${pageHead(tr('Company Dashboard','कंपनी डैशबोर्ड'),tr('Your construction business at a glance','आपकी कंपनी का पूरा सारांश'),`<button class="btn primary" onclick="openForm('transactions')">＋ ${tr('Add Transaction','लेन-देन जोड़ें')}</button>`)}<div class="grid stats">${stats.map(s=>`<div class="card"><div class="stat-label">${s[0]}</div><div class="stat-value">${s[1]}</div><div class="stat-foot">${s[2]} Yasin Infra</div></div>`).join('')}</div><div class="grid two"><div class="card"><div class="section-title"><h3>${tr('Recent Transactions','हाल के लेन-देन')}</h3><button class="btn small" onclick="go('transactions')">${tr('View All','सभी देखें')} →</button></div>${recent.length?tableHTML('transactions',recent):`<div class="empty">${tr('No transactions yet. Add your first entry.','अभी कोई लेन-देन नहीं है। पहली एंट्री जोड़ें।')}</div>`}</div><div class="card"><div class="section-title"><h3>${tr('Quick Actions','जल्दी काम करें')}</h3></div><div class="grid quick">${[['projects','🏗','New Project'],['labour','👷','Add Labour'],['materials','📦','Add Material'],['billing','▤','Create Bill']].map(x=>`<button onclick="go('${x[0]}')">${x[1]}<b>${tr(x[2],({ 'New Project':'नया प्रोजेक्ट','Add Labour':'मजदूर जोड़ें','Add Material':'मटेरियल जोड़ें','Create Bill':'बिल बनाएं'})[x[2]])}</b></button>`).join('')}</div><div class="notice">${tr('Tip: Export a backup regularly and keep a copy outside this device.','सलाह: नियमित रूप से बैकअप डाउनलोड करें और उसकी कॉपी दूसरे डिवाइस पर रखें।')}</div></div></div><div class="footer">© ${new Date().getFullYear()} YASIN INFRA DEVELOPERS · ${tr('Management System','मैनेजमेंट सिस्टम')}</div>`}
+function go(p){currentPage=p;document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===p));render()}
+function modulePage(type){let arr=db[type]||[],s=schema[type],title=tr(...labels[type]);let search=`<input class="search" id="searchBox" placeholder="${tr('Search records...','रिकॉर्ड खोजें...')}" oninput="filterTable('${type}')">`;return `${pageHead(title,tr('Manage and maintain your company records','अपनी कंपनी के रिकॉर्ड मैनेज करें'),`<button class="btn primary" onclick="openForm('${type}')">＋ ${tr('Add New','नया जोड़ें')}</button>`)}<div class="toolbar">${search}<button class="btn" onclick="print()">⎙ ${tr('Print','प्रिंट')}</button><button class="btn" onclick="exportCSV('${type}')">⇩ CSV</button></div><div id="tableArea">${tableHTML(type,arr)}</div>`}
+function tableHTML(type,arr){if(!arr.length)return `<div class="empty">${tr('No records found. Click “Add New” to begin.','कोई रिकॉर्ड नहीं मिला। शुरू करने के लिए “नया जोड़ें” दबाएं।')}</div>`;let cols={projects:['name','client','location','type','budget','status'],labour:['name','phone','role','rate','advance','status'],materials:['name','unit','qty','rate','supplier','date'],transactions:['date','kind','category','amount','project','mode'],contacts:['kind','name','phone','email','gst'],billing:['kind','number','date','client','project','amount','status'],tenders:['name','department','number','value','lastdate','status'],machinery:['name','number','owner','rate','status']}[type];let heads={name:'Name',client:'Client',location:'Location',type:'Type',budget:'Budget',status:'Status',phone:'Phone',role:'Work / Skill',rate:'Rate',advance:'Advance',unit:'Unit',qty:'Quantity',supplier:'Supplier',date:'Date',kind:'Type',category:'Category',amount:'Amount',project:'Project',mode:'Mode',email:'Email',gst:'GSTIN',number:'Number',value:'Value',lastdate:'Last Date',department:'Department',owner:'Ownership'};return `<div class="table-wrap"><table><thead><tr>${cols.map(c=>`<th>${tr(heads[c]||c,heads[c]||c)}</th>`).join('')}<th>${tr('Actions','एक्शन')}</th></tr></thead><tbody>${arr.map(r=>`<tr>${cols.map(c=>`<td>${c==='amount'||c==='budget'||c==='rate'||c==='advance'||c==='value'?money(r[c]):c==='status'?`<span class="pill">${esc(r[c]||'-')}</span>`:esc(r[c]||'-')}</td>`).join('')}<td><button class="btn small" onclick="editRecord('${type}','${r.id}')">✎</button> <button class="btn small danger" onclick="deleteRecord('${type}','${r.id}')">✕</button></td></tr>`).join('')}</tbody></table></div>`}
+function filterTable(type){let q=document.getElementById('searchBox').value.toLowerCase(),arr=db[type].filter(r=>Object.values(r).join(' ').toLowerCase().includes(q));document.getElementById('tableArea').innerHTML=tableHTML(type,arr)}
+function openForm(type,id=null){formType=type;editingId=id;let s=schema[type],record=id?db[type].find(x=>x.id===id):{};document.getElementById('modalTitle').textContent=tr(...s.title);document.getElementById('formFields').innerHTML=`<div class="form-grid">${s.fields.map(f=>{let [key,label,kind,opts]=f;let required=opts===1;let val=record?.[key]??(key==='date'?today():'');let input=kind==='textarea'?`<textarea name="${key}">${esc(val)}</textarea>`:kind==='select'?`<select name="${key}">${opts.map(o=>`<option ${val===o?'selected':''}>${esc(o)}</option>`).join('')}</select>`:`<input name="${key}" type="${kind}" value="${esc(val)}" ${required?'required':''} ${kind==='number'?'min="0" step="any"':''}>`;return `<div class="field"><label>${tr(label,hiLabel(label))}${required?' *':''}</label>${input}</div>`}).join('')}</div>`;document.getElementById('modal').classList.add('show')}
+function hiLabel(s){let map={'Project Name':'प्रोजेक्ट का नाम','Client Name':'ग्राहक का नाम','Location':'लोकेशन','Project Type':'काम का प्रकार','Budget (₹)':'बजट (₹)','Start Date':'शुरू तारीख','Expected End Date':'अनुमानित समाप्ति','Status':'स्थिति','Notes':'नोट्स','Labour Name':'मजदूर का नाम','Mobile Number':'मोबाइल नंबर','Work / Skill':'काम / कौशल','Daily Wage (₹)':'दैनिक मजदूरी (₹)','Advance (₹)':'एडवांस (₹)','Material Name':'मटेरियल का नाम','Unit':'यूनिट','Quantity':'मात्रा','Rate per Unit (₹)':'प्रति यूनिट रेट (₹)','Supplier':'सप्लायर','Entry Date':'एंट्री तारीख','Transaction Type':'लेन-देन का प्रकार','Date':'तारीख','Category':'कैटेगरी','Amount (₹)':'रकम (₹)','Project':'प्रोजेक्ट','Party / Person':'व्यक्ति / पार्टी','Payment Mode':'पेमेंट तरीका','Description':'विवरण','Type':'प्रकार','Name':'नाम','Mobile':'मोबाइल','Email':'ईमेल','Address':'पता','GSTIN':'जीएसटी नंबर','Document Type':'दस्तावेज का प्रकार','Bill / Quote Number':'बिल / कोटेशन नंबर','Client Name':'ग्राहक का नाम','Work Description':'काम का विवरण','GST %':'जीएसटी %','Tender / Work Name':'टेंडर / काम का नाम','Department':'विभाग','Tender / WO Number':'टेंडर / वर्क ऑर्डर नंबर','Estimated Value (₹)':'अनुमानित रकम (₹)','Last Date':'अंतिम तारीख','Machine / Vehicle Name':'मशीन / वाहन का नाम','Registration / ID':'रजिस्ट्रेशन / आईडी','Owned / Rented':'खुद की / किराये की','Rent per Day (₹)':'दैनिक किराया (₹)','Fuel / Day (₹)':'दैनिक डीजल खर्च (₹)','Last Service Date':'आखिरी सर्विस तारीख'};return map[s]||s}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+document.getElementById('recordForm').addEventListener('submit',e=>{e.preventDefault();let obj=Object.fromEntries(new FormData(e.target).entries());for(let k in obj)if(['amount','budget','rate','advance','qty','tax','value','fuel'].includes(k))obj[k]=Number(obj[k]||0);if(editingId){let i=db[formType].findIndex(x=>x.id===editingId);db[formType][i]={...db[formType][i],...obj}}else db[formType].unshift({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),createdAt:new Date().toISOString(),...obj});saveDB();closeModal();render();toast(tr('Record saved successfully','रिकॉर्ड सफलतापूर्वक सेव हुआ'))});
+function editRecord(type,id){openForm(type,id)}function deleteRecord(type,id){if(!confirm(tr('Delete this record permanently?','क्या यह रिकॉर्ड हमेशा के लिए डिलीट करना है?')))return;db[type]=db[type].filter(x=>x.id!==id);saveDB();render();toast(tr('Record deleted','रिकॉर्ड डिलीट हुआ'))}
+function toast(msg){let t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',2400)}
+function exportData(){let blob=new Blob([JSON.stringify({app:'YASIN INFRA DEVELOPERS',version:1,exportedAt:new Date().toISOString(),data:db},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Yasin_Infra_Backup_'+today()+'.json';a.click();URL.revokeObjectURL(a.href);toast(tr('Backup downloaded','बैकअप डाउनलोड हुआ'))}
+function importData(input){let f=input.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let parsed=JSON.parse(r.result),data=parsed.data||parsed;if(!confirm(tr('Restore backup? Current data will be replaced.','बैकअप रिस्टोर करें? मौजूदा डेटा बदल जाएगा।')))return;db={...blank,...data};saveDB();render();toast(tr('Backup restored','बैकअप रिस्टोर हुआ'))}catch(e){alert(tr('Invalid backup file','गलत बैकअप फाइल'))}};r.readAsText(f)}
+function exportCSV(type){let arr=db[type];if(!arr.length){toast(tr('No data to export','एक्सपोर्ट करने के लिए डेटा नहीं'));return}let keys=[...new Set(arr.flatMap(x=>Object.keys(x)))],csv=[keys.join(','),...arr.map(r=>keys.map(k=>'"'+String(r[k]??'').replace(/"/g,'""')+'"').join(','))].join('\n'),blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Yasin_'+type+'_'+today()+'.csv';a.click();URL.revokeObjectURL(a.href)}
+function reports(){let inc=db.transactions.filter(x=>x.kind==='Income').reduce((a,x)=>a+ +x.amount,0),exp=db.transactions.filter(x=>x.kind==='Expense').reduce((a,x)=>a+ +x.amount,0),paid=db.billing.filter(x=>x.status==='Paid').reduce((a,x)=>a+ +x.amount,0),unpaid=db.billing.filter(x=>x.status!=='Paid').reduce((a,x)=>a+ +x.amount,0);return `${pageHead(tr('Business Reports','व्यवसाय रिपोर्ट'),tr('Financial summary from records entered in this software','सॉफ्टवेयर में दर्ज रिकॉर्ड के आधार पर वित्तीय सारांश'),`<button class="btn" onclick="print()">⎙ ${tr('Print Report','रिपोर्ट प्रिंट')}</button>`)}<div class="grid stats">${[[tr('Income','कुल आय'),money(inc)],[tr('Expenses','कुल खर्च'),money(exp)],[tr('Net Profit / Loss','शुद्ध लाभ / हानि'),money(inc-exp)],[tr('Paid Invoices','भरे हुए बिल'),money(paid)],[tr('Unpaid Invoices','बकाया बिल'),money(unpaid)],[tr('Projects','कुल प्रोजेक्ट'),db.projects.length],[tr('Labour','मजदूर'),db.labour.length],[tr('Stock Entries','स्टॉक एंट्री'),db.materials.length]].map(x=>`<div class="card"><div class="stat-label">${x[0]}</div><div class="stat-value">${x[1]}</div></div>`).join('')}</div><div class="card"><h3>${tr('Important note','जरूरी सूचना')}</h3><p class="muted">${tr('Reports are calculated from entries you have saved. Enter all receipts, payments and expenses to keep the totals accurate. This is a basic management report, not a statutory accounting or GST filing system.','रिपोर्ट आपके सेव किए गए रिकॉर्ड से बनती है। सही हिसाब के लिए सभी प्राप्तियां, भुगतान और खर्च दर्ज करें। यह सामान्य मैनेजमेंट रिपोर्ट है, वैधानिक अकाउंटिंग या GST रिटर्न सिस्टम नहीं।')}</p></div>`}
+function backupPage(){return `${pageHead(tr('Backup & Settings','बैकअप और सेटिंग'),tr('Protect your company data and manage preferences','कंपनी का डेटा सुरक्षित रखें'),`<button class="btn primary" onclick="exportData()">⇩ ${tr('Download Backup','बैकअप डाउनलोड')}</button>`)}<div class="grid two"><div class="card"><h3 class="gold">${tr('Local Data Backup','लोकल डेटा बैकअप')}</h3><p class="muted">${tr('Your entries are stored in this browser on this device. Download a JSON backup regularly. Keep the file in another safe location.','आपकी एंट्री इसी डिवाइस के ब्राउज़र में सेव होती हैं। नियमित रूप से JSON बैकअप डाउनलोड करें और फाइल को सुरक्षित दूसरी जगह रखें।')}</p><button class="btn primary" onclick="exportData()">⇩ ${tr('Export Backup (JSON)','बैकअप एक्सपोर्ट (JSON)')}</button><div class="field" style="margin-top:18px"><label>${tr('Restore from backup file','बैकअप फाइल से रिस्टोर करें')}</label><input type="file" accept=".json,application/json" onchange="importData(this)"></div></div><div class="card"><h3 class="gold">${tr('Online Cloud Backup','ऑनलाइन क्लाउड बैकअप')}</h3><div class="notice">${tr('Cloud sync is not connected in this standalone HTML version. Automatic online backup requires a secure server / cloud database and account setup.','इस HTML वर्जन में क्लाउड सिंक कनेक्ट नहीं है। ऑटोमैटिक ऑनलाइन बैकअप के लिए सुरक्षित सर्वर / क्लाउड डेटाबेस और अकाउंट सेटअप जरूरी है।')}</div><p class="muted">${tr('For now, export the backup file and upload it to your own Google Drive or other cloud storage manually.','फिलहाल बैकअप फाइल डाउनलोड करके अपने Google Drive या अन्य क्लाउड स्टोरेज पर खुद अपलोड करें।')}</p></div><div class="card"><h3 class="gold">${tr('Storage Information','स्टोरेज जानकारी')}</h3><p>${tr('Saved records','सेव रिकॉर्ड')}: <b>${Object.values(db).reduce((a,x)=>a+x.length,0)}</b></p><p>${tr('Last opened','आखिरी बार खोला')}: <b>${new Date().toLocaleString()}</b></p><button class="btn" onclick="saveDB();toast(tr('Data saved','डेटा सेव हुआ'))">${tr('Save Now','अभी सेव करें')}</button></div><div class="card"><h3 class="danger-text">${tr('Danger Zone','सावधानी')}</h3><p class="muted">${tr('This permanently removes all records from this browser. Download a backup first.','इससे इस ब्राउज़र के सभी रिकॉर्ड हमेशा के लिए हट जाएंगे। पहले बैकअप डाउनलोड करें।')}</p><button class="btn danger" onclick="clearAll()">${tr('Delete All Company Data','सारा डेटा डिलीट करें')}</button></div></div>`}
+function clearAll(){if(!confirm(tr('Are you sure? This cannot be undone.','क्या आप निश्चित हैं? यह वापस नहीं होगा।')))return;if(!confirm(tr('Final confirmation: delete every saved record?','आखिरी पुष्टि: सभी सेव रिकॉर्ड डिलीट करें?')))return;db={...blank};saveDB();render();toast(tr('All data cleared','सारा डेटा हटा दिया गया'))}
+render();
+</script></body></html>
