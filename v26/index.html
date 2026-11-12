@@ -1,1 +1,127 @@
-
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>YASIN INFRA - V26 FINAL</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,Roboto,sans-serif;background:#0f172a;color:#e2e8f0;padding-bottom:120px}
+.top{position:sticky;top:0;z-index:20;background:#0f172a;padding:12px 14px;border-bottom:1px solid #1e293b}
+.top h1{margin:0;font-size:19px;color:#facc15}
+.top p{margin:2px 0 0;font-size:12px;color:#94a3b8}
+.top p b{color:#fff}
+.card{background:#1e293b;margin:12px;border-radius:14px;padding:14px}
+h2{font-size:15px;margin:0 0 10px;color:#facc15}
+label{font-size:12px;color:#cbd5e1;display:block;margin-top:10px}
+input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #334155;background:#0f172a;color:#fff;font-size:15px;margin-top:4px}
+.row{display:flex;gap:10px}.row>div{flex:1}
+.item{background:#0f172a;border:1px solid #334155;border-radius:12px;padding:12px;margin-bottom:10px;position:relative}
+.item b{font-size:14px;display:block;padding-right:28px}
+.item small{color:#94a3b8;font-size:12px}
+.item .price{color:#4ade80;font-weight:700;margin-top:4px}
+.qtybox{display:flex;align-items:center;gap:8px;margin-top:10px}
+.qtybox button{width:40px;height:40px;border-radius:10px;border:none;background:#334155;color:#fff;font-size:20px;font-weight:800}
+.qtybox input{text-align:center;font-weight:700;margin:0}
+.btn{width:100%;padding:14px;border:none;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer;margin-top:10px}
+.btn-y{background:#facc15;color:#000}.btn-g{background:#22c55e;color:#fff}.btn-r{background:#ef4444;color:#fff}.btn-d{background:#334155;color:#fff}.btn-add{background:#22c55e;color:#fff;padding:12px;font-size:15px}
+.del{position:absolute;top:8px;right:8px;background:#ef4444;color:#fff;border:none;width:26px;height:26px;border-radius:50%;font-size:16px;cursor:pointer}
+.hidden{display:none!important}
+.chip{display:inline-block;background:#334155;padding:6px 10px;border-radius:20px;font-size:12px;margin:3px;cursor:pointer}
+.chip.on{background:#facc15;color:#000;font-weight:700}
+.totalbox{background:#facc15;color:#000;border-radius:14px;padding:14px;margin:12px;text-align:center}
+.totalbox h3{margin:0;font-size:22px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+td,th{padding:8px 6px;border-bottom:1px solid #334155;text-align:left}
+th{color:#facc15}.right{text-align:right}.small{font-size:12px;color:#94a3b8}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:50;display:flex;align-items:flex-end;justify-content:center;padding:12px}
+.modal>div{background:#1e293b;width:100%;max-width:520px;border-radius:16px;padding:16px}
+</style>
+</head>
+<body>
+<div class="top"><h1>🏗️ YASIN INFRA DEVELOPERS</h1><p>Site: <b>HASEGAON</b> | V26 FINAL - 21 Item + ADD Button</p></div>
+<div id="home">
+<div class="card">
+<h2>📋 Client / Site Details</h2>
+<label>Client Ka Naam</label><input id="client" placeholder="e.g. Sheikh Sahab">
+<label>Site Location</label><input id="site" value="Hasegaon">
+<label>Plot Size (sq.ft)</label><input id="plot" type="number" placeholder="e.g. 1200">
+<label>Mobile No.</label><input id="mobile" type="number" placeholder="e.g. 98XXXXXXX">
+<label>Kaam Ki Category</label><div id="cats" style="margin-top:8px"></div>
+<div class="row"><div><label>L x W (ft)</label><input id="lw" placeholder="e.g. 30x40"></div><div><label>Rate ₹/sqft</label><input id="rateSqft" type="number" value="1450"></div></div>
+<label>Apna Margin %</label><input id="margin" type="number" value="10">
+</div>
+<div class="card">
+<h2>🛒 Item List</h2>
+<p class="small">Qty badlo, rate apne aap badal jayega. Naya item bhi jod sakte ho.</p>
+<button class="btn btn-add" onclick="openAdd()">+ NEW ITEM ADD KARO</button>
+<button class="btn btn-d" onclick="resetCustom()">↺ Custom Item Delete Karke Original Wapas Lao</button>
+<div id="list" style="margin-top:12px"></div>
+</div>
+<div class="card"><h2>💰 Estimate</h2><div id="est"></div><button class="btn btn-y" onclick="showBill()">➡️ BILL / SUMMARY DEKHO</button></div>
+</div>
+<div id="billPage" class="hidden">
+<div class="card"><h2>🧾 FINAL BILL - YASIN INFRA</h2><div id="bill"></div>
+<button class="btn btn-g" onclick="shareWA()">📲 WhatsApp Pe Bhejo</button>
+<button class="btn btn-d" onclick="backHome()">⬅️ Wapas Edit Karo</button>
+<button class="btn btn-r" onclick="if(confirm('Sab clear kar du?')){localStorage.clear();location.reload()}">🗑️ Sab Clear Karo</button>
+</div></div>
+<div id="addModal" class="modal hidden"><div>
+<h2>+ Naya Item Jodo</h2><p class="small">Ye item isi phone me save rahega.</p>
+<label>Item Ka Naam</label><input id="newName" placeholder="e.g. POP Work">
+<label>Unit</label><select id="newUnit"><option value="sq.ft">sq.ft</option><option value="nos">nos</option><option value="rft">rft</option><option value="bag">bag</option><option value="kg">kg</option><option value="lot">lot</option><option value="cum">cum</option></select>
+<label>Rate ₹ (per unit)</label><input id="newRate" type="number" placeholder="e.g. 45">
+<label>Qty (default 1)</label><input id="newQty" type="number" value="1">
+<button class="btn btn-g" onclick="saveNewItem()">✅ SAVE KARO</button>
+<button class="btn btn-d" onclick="closeAdd()">Cancel</button>
+</div></div>
+<script>
+let DEFAULT_ITEMS=[
+{id:'exc',name:'Excavation / Khudai',unit:'cum',rate:120},
+{id:'pcc',name:'PCC 1:4:8 (100mm)',unit:'sq.ft',rate:28},
+{id:'rcc_foot',name:'RCC Footing M20',unit:'cum',rate:6800},
+{id:'rcc_col',name:'RCC Column M20',unit:'cum',rate:9800},
+{id:'rcc_beam',name:'RCC Beam / Slab M20',unit:'cum',rate:9200},
+{id:'rcc_chhat',name:'RCC Chhat / Slab (incl. shuttering)',unit:'sq.ft',rate:185},
+{id:'steel',name:'Steel / Sariya Fe500',unit:'kg',rate:62},
+{id:'brick',name:'Brick Work 9" (1:6)',unit:'sq.ft',rate:145},
+{id:'brick4',name:'Brick Work 4.5" Partition',unit:'sq.ft',rate:78},
+{id:'plaster_in',name:'Plaster Inside 1:6 (12mm)',unit:'sq.ft',rate:32},
+{id:'plaster_out',name:'Plaster Outside 1:4 + Waterproof',unit:'sq.ft',rate:42},
+{id:'floor',name:'Flooring - Vitrified Tiles',unit:'sq.ft',rate:95},
+{id:'toilet_tile',name:'Toilet / Bathroom Tiles',unit:'sq.ft',rate:110},
+{id:'paint',name:'Paint - Putty + Primer + 2 Coat',unit:'sq.ft',rate:28},
+{id:'putty',name:'Wall Putty + Primer Only',unit:'sq.ft',rate:14},
+{id:'plumbing',name:'Plumbing Point + Fitting',unit:'nos',rate:2800},
+{id:'electrical',name:'Electrical Point + Wiring',unit:'nos',rate:950},
+{id:'door',name:'Door - Flush Door + Frame',unit:'nos',rate:8500},
+{id:'window',name:'Window - Aluminium Sliding',unit:'sq.ft',rate:420},
+{id:'waterproof',name:'Waterproofing - Terrace + Toilet',unit:'sq.ft',rate:38},
+{id:'misc',name:'Misc / Other Work',unit:'lot',rate:5000},
+];
+let customItems=JSON.parse(localStorage.getItem('yid_v26_custom')||'[]');
+let ITEMS=[...DEFAULT_ITEMS,...customItems];
+let CATS=['Full Construction','Only Structure','Only Finishing','Repair / Renovation'];
+let selCat='Full Construction';
+let state=JSON.parse(localStorage.getItem('yid_v26')||'{}');
+function save(){let d={client:val('client'),site:val('site'),plot:val('plot'),mobile:val('mobile'),lw:val('lw'),rateSqft:val('rateSqft'),margin:val('margin'),cat:selCat,qtys:{}};ITEMS.forEach(it=>{let e=document.getElementById('q_'+it.id);if(e)d.qtys[it.id]=e.value});localStorage.setItem('yid_v26',JSON.stringify(d))}
+function val(id){let e=document.getElementById(id);return e?e.value:''}
+function setVal(id,v){let e=document.getElementById(id);if(e&&v!==undefined)e.value=v}
+function renderCats(){document.getElementById('cats').innerHTML=CATS.map(c=>`<span class="chip ${c===selCat?'on':''}" onclick="selCat='${c}';save();renderCats();calc()">${c}</span>`).join('')}
+function renderItems(){let h='';ITEMS.forEach((it,i)=>{let q=(state.qtys&&state.qtys[it.id])||0;let isCustom=it.id.startsWith('custom_');h+=`<div class="item">${isCustom?`<button class="del" onclick="deleteItem('${it.id}')">×</button>`:''}<b>${i+1}. ${it.name}</b><small>${it.unit} • ₹${it.rate}/${it.unit} ${isCustom?'• <span style="color:#4ade80">Tumhara Item</span>':''}</small><div class="price">₹ ${(q*it.rate).toLocaleString('en-IN')}</div><div class="qtybox"><button onclick="chg('${it.id}',-1)">−</button><input id="q_${it.id}" type="number" value="${q}" oninput="calc()"><button onclick="chg('${it.id}',1)">+</button><span style="font-size:12px;color:#94a3b8">${it.unit}</span></div></div>`});document.getElementById('list').innerHTML=h}
+function chg(id,d){let e=document.getElementById('q_'+id);e.value=Math.max(0,(parseFloat(e.value)||0)+d);calc()}
+function openAdd(){document.getElementById('addModal').classList.remove('hidden')}
+function closeAdd(){document.getElementById('addModal').classList.add('hidden')}
+function saveNewItem(){let n=document.getElementById('newName').value.trim();let r=parseFloat(document.getElementById('newRate').value)||0;let u=document.getElementById('newUnit').value;let q=parseFloat(document.getElementById('newQty').value)||1;if(!n){alert('Naam to likho bhai!');return}if(!r){alert('Rate likho!');return}let nid='custom_'+Date.now();let newItem={id:nid,name:n,unit:u,rate:r};customItems.push(newItem);ITEMS.push(newItem);localStorage.setItem('yid_v26_custom',JSON.stringify(customItems));if(!state.qtys)state.qtys={};state.qtys[nid]=q;document.getElementById('newName').value='';document.getElementById('newRate').value='';document.getElementById('newQty').value='1';closeAdd();renderItems();calc();alert('Ho gaya! Item jod diya ✅')}
+function deleteItem(id){if(!confirm('Ye item delete kar du?'))return;customItems=customItems.filter(x=>x.id!==id);ITEMS=ITEMS.filter(x=>x.id!==id);localStorage.setItem('yid_v26_custom',JSON.stringify(customItems));renderItems();calc()}
+function resetCustom(){if(!confirm('Saare tumhare jode hue item delete karke original 21 wapas lau?'))return;customItems=[];localStorage.removeItem('yid_v26_custom');ITEMS=[...DEFAULT_ITEMS];renderItems();calc()}
+function calc(){let total=0,rows='';ITEMS.forEach(it=>{let e=document.getElementById('q_'+it.id);let q=parseFloat(e?e.value:0)||0;let amt=q*it.rate;total+=amt;if(q>0)rows+=`<tr><td>${it.name}</td><td class="right">${q} ${it.unit}</td><td class="right">₹${amt.toLocaleString('en-IN')}</td></tr>`});let plot=parseFloat(val('plot'))||0;let rsq=parseFloat(val('rateSqft'))||0;let mg=parseFloat(val('margin'))||0;let base=plot*rsq;let useBase=(selCat==='Full Construction'&&plot>0)?base:total;let marginAmt=useBase*mg/100;let grand=useBase+marginAmt;document.getElementById('est').innerHTML=`<table>${rows||'<tr><td>Abhi koi qty nahi dali</td></tr>'}<tr><td><b>Material + Labour Total</b></td><td></td><td class="right"><b>₹${useBase.toLocaleString('en-IN')}</b></td></tr><tr><td>Margin (${mg}%)</td><td></td><td class="right">₹${marginAmt.toLocaleString('en-IN')}</td></tr></table><div class="totalbox"><p>GRAND TOTAL</p><h3>₹ ${grand.toLocaleString('en-IN')}</h3><p>${selCat} • ${plot||0} sq.ft</p></div>`;window._grand=grand;window._total=useBase;window._margin=marginAmt;save()}
+function showBill(){calc();let c=val('client')||'Client';let s=val('site')||'Hasegaon';let p=val('plot')||'-';let m=val('mobile')||'-';let rows='';ITEMS.forEach(it=>{let e=document.getElementById('q_'+it.id);let q=parseFloat(e?e.value:0)||0;if(q>0)rows+=`<tr><td>${it.name}</td><td class="right">${q} ${it.unit}</td><td class="right">₹${(q*it.rate).toLocaleString('en-IN')}</td></tr>`});document.getElementById('bill').innerHTML=`<p><b>Client:</b> ${c}<br><b>Site:</b> ${s}<br><b>Plot:</b> ${p} sq.ft • <b>Mobile:</b> ${m}<br><b>Kaam:</b> ${selCat}</p><table><tr><th>Item</th><th class="right">Qty</th><th class="right">Amount</th></tr>${rows}<tr><td><b>Sub Total</b></td><td></td><td class="right"><b>₹${window._total.toLocaleString('en-IN')}</b></td></tr><tr><td>Margin</td><td></td><td class="right">₹${window._margin.toLocaleString('en-IN')}</td></tr></table><div class="totalbox"><p>GRAND TOTAL</p><h3>₹ ${window._grand.toLocaleString('en-IN')}</h3><p>YASIN INFRA DEVELOPERS - HASEGAON</p></div>`;document.getElementById('home').classList.add('hidden');document.getElementById('billPage').classList.remove('hidden');window.scrollTo(0,0)}
+function backHome(){document.getElementById('billPage').classList.add('hidden');document.getElementById('home').classList.remove('hidden')}
+function shareWA(){let txt=`*YASIN INFRA DEVELOPERS - ESTIMATE*%0A%0AClient: ${val('client')}%0ASite: ${val('site')}%0APlot: ${val('plot')} sq.ft%0AKaam: ${selCat}%0A%0A`;ITEMS.forEach(it=>{let e=document.getElementById('q_'+it.id);let q=parseFloat(e?e.value:0)||0;if(q>0)txt+=`${it.name} - ${q} ${it.unit} = Rs ${(q*it.rate).toLocaleString('en-IN')}%0A`});txt+=`%0ASub Total: Rs ${window._total.toLocaleString('en-IN')}%0AMargin: Rs ${window._margin.toLocaleString('en-IN')}%0A*GRAND TOTAL: Rs ${window._grand.toLocaleString('en-IN')}*`;window.open(`https://wa.me/${val('mobile')||''}?text=${txt}`,'_blank')}
+setVal('client',state.client);setVal('site',state.site||'Hasegaon');setVal('plot',state.plot);setVal('mobile',state.mobile);setVal('lw',state.lw);setVal('rateSqft',state.rateSqft||1450);setVal('margin',state.margin||10);if(state.cat)selCat=state.cat;
+renderCats();renderItems();calc();
+['client','site','plot','mobile','lw','rateSqft','margin'].forEach(id=>{let e=document.getElementById(id);if(e)e.addEventListener('input',calc)});
+</script>
+</body>
+</html>
